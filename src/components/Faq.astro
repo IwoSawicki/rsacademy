@@ -1,0 +1,53 @@
+---
+import { faq, images } from "../data/site";
+import SectionLabel from "./SectionLabel.astro";
+---
+
+<section class="section-x flex w-full items-center justify-center">
+  <div
+    class="grid w-full max-w-[1000px] gap-10 tablet:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] tablet:gap-1"
+  >
+    <div class="flex flex-col gap-6" data-reveal="up">
+      <SectionLabel label="FAQ" />
+      <h2 class="t-h2">Häufig gestellte Fragen.</h2>
+      <img
+        src={images.faqSide}
+        alt=""
+        loading="lazy"
+        class="hidden w-full rounded-card object-cover tablet:block"
+      />
+    </div>
+
+    <ul class="flex flex-col">
+      {
+        faq.map((item) => (
+          <li class="border-b border-ink/10" data-reveal="up">
+            <button
+              type="button"
+              class="group flex w-full items-center justify-between gap-5 py-6 text-left"
+              data-accordion
+              aria-expanded="false"
+            >
+              <span class="t-subhead">{item.q}</span>
+              <span
+                class="relative block h-[18px] w-[18px] shrink-0 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
+                aria-hidden="true"
+              >
+                <span class="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-ink" />
+                <span class="absolute top-0 left-1/2 h-full w-[1.5px] -translate-x-1/2 bg-ink" />
+              </span>
+            </button>
+            <div
+              class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[450ms] ease-[var(--ease-framer)]"
+              data-accordion-panel
+            >
+              <div class="overflow-hidden">
+                <p class="t-body-lg pb-6 opacity-70">{item.a}</p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

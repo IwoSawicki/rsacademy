@@ -1,0 +1,124 @@
+---
+import { nav, legal, contact } from "../data/site";
+---
+
+<header
+  class="fixed top-0 left-1/2 z-50 w-full max-w-[1200px] -translate-x-1/2 bg-surface/90 px-5 py-[19px] backdrop-blur-[7px] tablet:px-8 desktop:px-9"
+>
+  <nav class="flex items-center justify-between">
+    <a href="/" class="text-ink" style="letter-spacing:-0.04em;line-height:110%">
+      <span class="text-[14px] font-semibold tablet:text-[20px]"
+        >Rescue & Safety Academy AG</span
+      >
+    </a>
+
+    <!-- Desktop-Navigation -->
+    <ul class="hidden items-center gap-[30px] desktop:flex">
+      {
+        nav.slice(1).map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="relative text-[16px] font-semibold text-ink-soft transition-opacity duration-300 hover:opacity-60"
+              style="letter-spacing:-0.04em;line-height:110%"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Menü-Toggle -->
+    <button
+      type="button"
+      id="menu-toggle"
+      class="flex h-[34px] w-[34px] items-center justify-center desktop:hidden"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="menu-overlay"
+    >
+      <span class="relative block h-[12px] w-[20px]">
+        <span
+          class="absolute top-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-300 ease-[var(--ease-framer)]"
+          data-burger-top></span>
+        <span
+          class="absolute bottom-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-300 ease-[var(--ease-framer)]"
+          data-burger-bottom></span>
+      </span>
+    </button>
+  </nav>
+</header>
+
+<!-- Overlay-Navigation -->
+<div
+  id="menu-overlay"
+  class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-ink px-5 pt-[90px] pb-10 opacity-0 transition-[opacity,visibility] duration-500 ease-[var(--ease-framer)] tablet:px-8"
+>
+  <ul class="flex flex-col gap-2">
+    {
+      nav.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="t-h1 block text-white transition-opacity duration-300 hover:opacity-60"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="flex flex-col gap-4 text-white">
+    <div class="flex flex-col gap-1">
+      <a href={contact.phoneHref} class="t-body hover:opacity-60"
+        >{contact.phone}</a
+      >
+      <a href={`mailto:${contact.mailInfo}`} class="t-body hover:opacity-60"
+        >{contact.mailInfo}</a
+      >
+    </div>
+    <div class="flex gap-4 opacity-60">
+      {
+        legal.map((item) => (
+          <a href={item.href} class="t-caption hover:opacity-100">
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+    <p class="t-caption opacity-60">© 2026 Search & Rescue Academy AG</p>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const overlay = document.getElementById("menu-overlay");
+  const top = document.querySelector<HTMLElement>("[data-burger-top]");
+  const bottom = document.querySelector<HTMLElement>("[data-burger-bottom]");
+
+  let open = false;
+
+  const setOpen = (next: boolean) => {
+    open = next;
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+    overlay?.classList.toggle("invisible", !open);
+    overlay?.classList.toggle("opacity-0", !open);
+    document.body.style.overflow = open ? "hidden" : "";
+    if (top) {
+      top.style.transform = open ? "translateY(5px) rotate(45deg)" : "";
+      top.style.backgroundColor = open ? "#ffffff" : "";
+    }
+    if (bottom) {
+      bottom.style.transform = open ? "translateY(-5px) rotate(-45deg)" : "";
+      bottom.style.backgroundColor = open ? "#ffffff" : "";
+    }
+  };
+
+  toggle?.addEventListener("click", () => setOpen(!open));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open) setOpen(false);
+  });
+</script>

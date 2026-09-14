@@ -1,0 +1,34 @@
+---
+/**
+ * Button mit Text-Roll-Hover (Original: "Schwarz" mit "Submit 1" + "Submit 2").
+ * Beim Hover rollt das obere Label herein, das untere nach unten heraus.
+ */
+interface Props {
+  label: string;
+  href: string;
+  variant?: "dark" | "light";
+  class?: string;
+}
+
+const { label, href, variant = "dark", class: className = "" } = Astro.props;
+const skin = variant === "dark" ? "bg-ink text-white" : "bg-white text-ink";
+const roll =
+  "t-label transition-transform duration-[400ms] ease-[var(--ease-framer)]";
+---
+
+<a
+  href={href}
+  class:list={[
+    "group relative flex h-[58px] w-max items-center justify-center overflow-hidden rounded-pill px-[30px] whitespace-nowrap",
+    skin,
+    className,
+  ]}
+>
+  <span
+    class:list={[
+      roll,
+      "absolute left-1/2 -translate-x-1/2 -translate-y-[58px] group-hover:translate-y-0",
+    ]}>{label}</span
+  >
+  <span class:list={[roll, "group-hover:translate-y-[58px]"]}>{label}</span>
+</a>

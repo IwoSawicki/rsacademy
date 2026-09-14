@@ -1,0 +1,108 @@
+---
+import { nav, legal, contact } from "../data/site";
+
+const social = [
+  { label: "Linked In", href: "https://www.linkedin.com" },
+  { label: "Google Maps", href: "https://maps.google.com" },
+];
+---
+
+<footer class="w-full bg-surface">
+  <div class="section-x mx-auto flex w-full max-w-[1000px] flex-col gap-16 py-16">
+    <div class="flex flex-col gap-10 desktop:flex-row desktop:justify-between">
+      <a
+        href={`mailto:${contact.mailKurs}`}
+        class="t-h1 block w-max border-b border-ink/20 pb-2 transition-opacity duration-300 hover:opacity-60"
+        >{contact.mailKurs}</a
+      >
+    </div>
+
+    <div class="grid gap-10 tablet:grid-cols-3">
+      <nav class="flex flex-col gap-3">
+        <p class="t-caption opacity-60">Navigation</p>
+        <ul class="flex flex-col gap-2">
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="t-body inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
+                >
+                  <span class="h-[5px] w-[5px] rounded-full bg-ink" />
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="flex flex-col gap-3">
+        <p class="t-caption opacity-60">Soziale Netzwerke</p>
+        <ul class="flex flex-col gap-2">
+          {
+            social.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="t-body group inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
+                >
+                  {item.label}
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="flex flex-col gap-3">
+        <p class="t-caption opacity-60">Rechtliches</p>
+        <ul class="flex flex-col gap-2">
+          {
+            legal.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="t-body transition-opacity duration-300 hover:opacity-60"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="flex flex-col gap-4 border-t border-ink/10 pt-6 tablet:flex-row tablet:items-end tablet:justify-between"
+    >
+      <p class="t-h2">Rescue & Safety<br />Academy AG</p>
+      <div class="flex flex-col gap-1 tablet:items-end">
+        <p class="t-caption opacity-60">© 2026 Search & Rescue Academy AG</p>
+        <p class="t-caption opacity-60">
+          Mit ❤️ erstellt von <a
+            href="https://sawix.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2">Sawix Studio</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,67 @@
+---
+import { images, contact } from "../data/site";
+import PlusIcon from "./PlusIcon.astro";
+import RollButton from "./RollButton.astro";
+
+const paragraphs = [
+  "Ob Sicherheit bei der Höhenarbeit, Ausbildung von Sicherheitsbeauftragten oder IPAF Zertifizierungen - Wir unterstützen Sie mit Rat und Tat!",
+  "Unser Experten-Team verfügt über langjährige Erfahrung in der Praxis und dank stetigen Aus- und Weiterbildungen bleiben wir immer auf dem neusten Stand.",
+  "Dieses Know-how geben wir gerne an Sie weiter!",
+];
+---
+
+<section class="section-x flex w-full items-center justify-center">
+  <div class="grid w-full max-w-[1000px] gap-1 tablet:grid-cols-2">
+    <!-- Portrait-Karte -->
+    <div
+      class="relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-card bg-ink p-7 desktop:min-h-[560px]"
+      data-reveal="up"
+    >
+      <div class="relative z-[2] flex items-start justify-between">
+        <div class="flex flex-col gap-1">
+          <p class="t-body text-white">Roger Schüle</p>
+          <p class="t-caption text-white/70">
+            Geschäftsführer<br />Rescue & Safety Academy AG
+          </p>
+        </div>
+        <PlusIcon size={10} />
+      </div>
+
+      <p class="relative z-[2] t-quote max-w-[420px] text-white desktop:text-right">
+        "Ein erfolgreiches Unternehmen muss man mit Leidenschaft aufbauen"
+      </p>
+
+      <img
+        src={`${images.portrait}?width=944&height=1500`}
+        alt="Roger Schüle"
+        width="944"
+        height="1500"
+        loading="lazy"
+        class="pointer-events-none absolute bottom-0 left-1/2 z-[1] h-[85%] -translate-x-1/2 object-contain"
+      />
+    </div>
+
+    <!-- Text-Karte -->
+    <div
+      class="flex flex-col justify-between gap-8 rounded-card bg-white p-7 desktop:p-10"
+      data-reveal="up"
+      style="transition-delay:90ms"
+    >
+      <h2 class="t-h3">Wir stehen für Sicherheit am Arbeitsplatz.</h2>
+
+      <div class="flex flex-col gap-4">
+        {paragraphs.map((text) => <p class="t-body-lg opacity-70">{text}</p>)}
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <RollButton label="Mehr über RS Academy" href="/ueber-uns" />
+        <RollButton
+          label={contact.phoneLabel}
+          href={contact.phoneHref}
+          variant="light"
+          class="border border-ink/10"
+        />
+      </div>
+    </div>
+  </div>
+</section>

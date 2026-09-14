@@ -1,0 +1,70 @@
+---
+import { leistungen, images } from "../data/site";
+import RollButton from "./RollButton.astro";
+---
+
+<section
+  class="section-x flex w-full items-center justify-center bg-surface py-[50px] tablet:py-[100px] desktop:py-[200px]"
+>
+  <div
+    class="relative w-full max-w-[1000px] overflow-hidden rounded-card bg-ink px-6 py-12 desktop:px-14 desktop:py-20"
+  >
+    <img
+      src={images.leistungenBg}
+      alt=""
+      loading="lazy"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 -z-10 bg-ink/70" aria-hidden="true"></div>
+
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-4" data-reveal="up">
+        <h2 class="t-h2 text-white">Eigene Leistungen</h2>
+        <p class="t-body-lg max-w-[620px] text-white/90">
+          Wir bieten nicht nur Schulungen an, sondern können die Arbeiten selbst
+          ausführen. <br class="hidden desktop:inline" />Mit einem Team an
+          Spezialisten, sind wir Ihr Ansprechpartner für Arbeiten in der Höhe.
+        </p>
+      </div>
+
+      <ul class="flex flex-col">
+        {
+          leistungen.map((item) => (
+            <li class="border-b border-white/100" data-reveal="up">
+              <button
+                type="button"
+                class="group flex w-full items-center gap-5 py-6 text-left"
+                data-accordion
+                aria-expanded="false"
+              >
+                <span
+                  class="font-geist text-[28px] font-semibold text-white desktop:text-[48px]"
+                  style="letter-spacing:-0.4px;line-height:120%"
+                >
+                  {item.no}
+                </span>
+                <span
+                  class="font-geist flex-1 text-[22px] font-semibold text-white desktop:text-[40px]"
+                  style="letter-spacing:-0.4px;line-height:120%"
+                >
+                  {item.title}
+                </span>
+                <span
+                  class="relative block h-[26px] w-[26px] shrink-0 rotate-45 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-0"
+                  aria-hidden="true"
+                >
+                  <span class="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-white" />
+                  <span class="absolute top-0 left-1/2 h-full w-[2px] -translate-x-1/2 bg-white" />
+                </span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div data-reveal="up">
+        <RollButton label="Jetzt Kontaktieren" href="/kontakt" variant="light" />
+      </div>
+    </div>
+  </div>
+</section>

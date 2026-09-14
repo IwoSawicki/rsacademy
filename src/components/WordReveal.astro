@@ -1,0 +1,20 @@
+---
+/** Text, dessen Wörter beim Scrollen nacheinander einblenden. */
+interface Props {
+  text: string;
+  class?: string;
+  step?: number;
+}
+const { text, class: className = "", step = 18 } = Astro.props;
+const words = text.split(/\s+/).filter(Boolean);
+---
+
+<p class:list={["word-reveal", className]} data-word-reveal>
+  {
+    words.map((word, i) => (
+      <>
+        <span style={`transition-delay:${i * step}ms`}>{word}</span>{" "}
+      </>
+    ))
+  }
+</p>

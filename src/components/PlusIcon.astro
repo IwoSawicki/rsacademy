@@ -1,0 +1,21 @@
+---
+/** Plus-Glyph aus zwei 1px-Balken (Original: "V" + "H"). */
+interface Props {
+  size?: number;
+  color?: string;
+  class?: string;
+}
+const { size = 10, color = "#ffffff", class: className = "" } = Astro.props;
+const bar = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+---
+
+<span
+  class:list={["relative inline-block shrink-0", className]}
+  style={`width:${size}px;height:${size}px`}
+>
+  <span class={bar} style={`width:1px;height:100%;background-color:${color}`}
+  ></span>
+  <span
+    class:list={[bar, "rotate-90"]}
+    style={`width:1px;height:100%;background-color:${color}`}></span>
+</span>

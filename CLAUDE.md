@@ -7,12 +7,15 @@
 
 ## 1. Projektziel
 
-Nachbau der **Homepage** von `https://rsacademy.ch` (Framer-Seite) als eigenständiges,
-framework-freies Web-Projekt — **pixelgenau, 1:1**.
+Nachbau der **Homepage** von `https://rsacademy.ch` (Framer-Seite) als eigenständiges
+**Astro + Tailwind**-Projekt — so nah am Original wie sinnvoll möglich.
 
-Das Ergebnis muss im Browser visuell und im Verhalten **ununterscheidbar** vom Original sein:
-gleiche Fonts, Schriftgrößen, Zeilenhöhen, Laufweiten, Farben, Abstände, Rundungen, Schatten,
-Breakpoints, Animationen, Hover-States, Scroll-Effekte und Ladeverhalten.
+Das Ergebnis soll visuell und im Verhalten dem Original entsprechen: gleiche Fonts, Farben,
+Proportionen, Rundungen, Breakpoints, Animationen, Hover-States, Scroll-Effekte und Ladeverhalten.
+
+**Sauberer Code hat Vorrang vor der letzten Nachkommastelle.** Werte dürfen auf eine
+konsistente Skala gerundet werden (aus `17.6px` darf `16px` oder `18px` werden), solange
+das Gesamtbild stimmt. Struktur, Rhythmus und Wirkung müssen passen — nicht jeder Pixel.
 
 **Scope Phase 1:** ausschließlich die Startseite (`/`). Unterseiten nur nach ausdrücklicher Freigabe.
 
@@ -35,39 +38,33 @@ Breakpoints, Animationen, Hover-States, Scroll-Effekte und Ladeverhalten.
 ## 3. Nicht verhandelbare Vorgaben
 
 ### 3.1 Typografie
-- **Exakt dieselben Schriftdateien** wie im Original (aus `reference/` übernehmen, self-hosted).
-  Keine „ähnlichen" Fonts, kein Google-Fonts-Ersatz, kein System-Font-Fallback als Hauptschrift.
-- `font-family`, `font-weight`, `font-style`, `font-size`, `line-height`, `letter-spacing`,
-  `text-transform`, `font-feature-settings` werden **1:1 in px / exakten Werten** übernommen.
-- Framer setzt Fonts häufig als Variable Fonts mit `font-variation-settings` — diese Werte
-  ebenfalls übernehmen.
-- Keine Umrechnung in `rem`, wenn das Original `px` nutzt. Keine „aufgeräumten" Werte
-  (aus `17.6px` wird **nicht** `18px`).
+- Dieselben Schriftfamilien wie im Original: **Inter** (Haupt), **Geist**, **Figtree**, **Poppins**.
+  Keine anderen Fonts.
+- Die Text-Skala des Originals wird als benannte Klassen in `global.css` gepflegt
+  (`.t-display`, `.t-h1`, …) — pro Breakpoint ein Wert. Einzelwerte dürfen gerundet werden.
+- Gewichte, `letter-spacing` und `line-height` aus dem Original übernehmen.
 
 ### 3.2 Farben
 - Exakte Farbwerte aus dem Original (inkl. Alpha). Keine Annäherung, keine Palette-Vereinheitlichung.
 - Gradients, `backdrop-filter`, `mix-blend-mode`, Overlays exakt übernehmen.
 
 ### 3.3 Layout & Abstände
-- Alle `margin`, `padding`, `gap`, `width`, `max-width`, `height`, `top/right/bottom/left`
-  exakt in den Einheiten des Originals.
-- Framer-Breakpoints unverändert übernehmen (aus dem Clone auslesen, typisch:
-  Desktop ≥ 1200px, Tablet 810–1199px, Phone ≤ 809px — **verifizieren, nicht annehmen**).
-- Container-Breiten, Content-Max-Widths und Section-Höhen exakt.
+- Abstände am Original orientieren, gerundet auf eine saubere Skala.
+- Breakpoints (aus dem Clone verifiziert): **Desktop ≥ 1200px**, **Tablet 810–1199.98px**,
+  **Phone ≤ 809.98px**. Diese drei Stufen gelten verbindlich.
+- Container-Max-Widths aus dem Original übernehmen (Content 1000px, Full 1520px).
 
 ### 3.4 Rundungen, Rahmen, Schatten
-- `border-radius` (inkl. asymmetrischer Werte) exakt.
-- `border`, `outline`, `box-shadow` (alle Layer, inkl. Spread und Farbe) exakt.
+- `border-radius`, `border` und `box-shadow` am Original orientieren (Rundung erlaubt).
 
 ### 3.5 Animationen & Interaktion
 Alles so exakt wie möglich rekonstruieren:
 - **Loading / Entry:** Initial-Fade, Stagger, Delay-Ketten beim ersten Paint.
 - **Scroll:** Appear-/Reveal-Effekte, Parallax, Sticky-Verhalten, Scroll-Progress.
 - **Hover / Focus / Active:** Farbwechsel, Scale, Translate, Cursor, Underline-Effekte.
-- **Transitions:** `duration`, `delay`, `easing` **exakt**. Framer nutzt überwiegend
-  Framer-Motion-Springs (`type: spring`, `stiffness`, `damping`, `mass`) — diese aus dem
-  gebündelten JS auslesen und entweder als Spring nachrechnen oder als exakt gefittete
-  `cubic-bezier()` abbilden. Faustregeln wie `ease-in-out 0.3s` sind **nicht** akzeptabel.
+- **Transitions:** Framer-Motion-Springs werden als passend gewählte `cubic-bezier()`
+  abgebildet. Wirkung und Timing müssen stimmen, die Kurve muss nicht mathematisch
+  identisch sein.
 - Reduced-Motion-Verhalten des Originals übernehmen, falls vorhanden.
 - Video-/Lottie-/Marquee-Elemente: gleiche Geschwindigkeit, Richtung, Loop, Autoplay-Flags.
 
@@ -87,16 +84,17 @@ Alles so exakt wie möglich rekonstruieren:
 
 ## 4. Technik-Stack
 
-**Default (sofern in `docs/plan.md` nicht anders freigegeben):**
-- Statisches **HTML + CSS + Vanilla JS**, kein Framework, kein Build-Step.
-- Kein Tailwind, kein Bootstrap, keine UI-Library — sie erzwingen gerundete Skalenwerte
-  und stehen der Pixelgenauigkeit im Weg.
-- Fonts und alle Assets **self-hosted** unter `src/assets/`.
-- Kein CDN-Request zur Laufzeit, keine Framer-Runtime, kein Framer-Tracking/Analytics.
-- Optional erlaubt, wenn nachweislich nötig für Animationstreue: eine einzelne,
-  gepinnte Animations-Lib (z. B. Motion One). Nur nach Freigabe in `plan.md`.
+**Vom Nutzer festgelegt:**
+- **Astro** (v7) als Framework, statischer Build.
+- **Tailwind CSS** (v4) über `@tailwindcss/vite`, Tokens in `@theme` in `src/styles/global.css`.
+- Vanilla JS für Animationen (IntersectionObserver, Counter, Accordion) — keine Animations-Lib.
+- Kein Framer-Runtime, kein Analytics/Tracking.
+- Sauberer, lesbarer, komponentisierter Code.
 
-Der finale Stack wird in `docs/plan.md` vorgeschlagen und muss vom Nutzer **freigegeben** werden.
+**Bilder:** Der Clone enthält den Ordner `framerusercontent.com/` nicht; die Umgebung
+hat keinen Netzzugriff auf diese Domain. Bilder werden vorerst per absoluter CDN-URL
+eingebunden. Sobald die Dateien lokal vorliegen, werden sie nach `public/images/`
+umgezogen und die URLs ersetzt.
 
 ---
 
@@ -105,16 +103,9 @@ Der finale Stack wird in `docs/plan.md` vorgeschlagen und muss vom Nutzer **frei
 1. Nutzer lädt den `wget`-Clone nach `reference/` hoch.
 2. Claude analysiert den Clone **vollständig** (HTML-Struktur, CSS-Variablen, Fonts,
    Breakpoints, Animations-Parameter, Asset-Inventar).
-3. Claude schreibt **`docs/plan.md`** mit:
-   - Section-für-Section-Aufbau der Homepage
-   - Design-Token-Inventar (Farben, Fonts, Spacing, Radien, Shadows)
-   - Animations-Inventar (Element → Trigger → Parameter)
-   - Asset-Liste
-   - Stack-Entscheidung + offene Fragen
-   - Umsetzungsschritte in Reihenfolge
-4. **Stopp. Warten auf Freigabe durch den Nutzer.** Vor Freigabe wird kein Code gebaut.
-5. Nach Freigabe: Umsetzung in der in `plan.md` festgelegten Reihenfolge, mit Zwischenständen.
-6. Verifikation (siehe §6), dann Commit & Push.
+3. Claude dokumentiert Struktur, Tokens und Animationen in **`docs/analyse.md`**.
+4. Umsetzung Section für Section, Nutzer reviewt Zwischenstände.
+5. Verifikation (siehe §6), dann Commit & Push.
 
 ---
 
@@ -122,9 +113,7 @@ Der finale Stack wird in `docs/plan.md` vorgeschlagen und muss vom Nutzer **frei
 
 - **Visueller Diff:** Playwright-Screenshots (Chromium ist vorinstalliert) von Original und
   Nachbau bei **1440 / 1024 / 390 px** Breite, Full-Page, danach Pixel-Diff.
-  Zielwert: **< 1 % abweichende Pixel** pro Viewport.
-- **Computed-Style-Diff:** Für jedes relevante Element `getComputedStyle()` auf beiden Seiten
-  auslesen und vergleichen (font, size, spacing, radius, color).
+  Zielwert: visuell stimmige Übereinstimmung, keine harte Pixelquote.
 - Abweichungen werden in `docs/` protokolliert — **nicht stillschweigend akzeptiert**.
 - Keine Fertigmeldung ohne durchgeführte Verifikation.
 
@@ -132,11 +121,10 @@ Der finale Stack wird in `docs/plan.md` vorgeschlagen und muss vom Nutzer **frei
 
 ## 7. Verbote
 
-- ❌ Keine Ersatz-Fonts, keine „ungefähr passenden" Werte, kein Aufrunden.
-- ❌ Keine eigenen Design-Verbesserungen, Umbauten oder „Optimierungen".
+- ❌ Keine Ersatz-Fonts außerhalb von Inter / Geist / Figtree / Poppins.
+- ❌ Keine eigenen Design-Verbesserungen oder Umbauten.
 - ❌ Keine erfundenen Inhalte, Bilder oder Sections.
 - ❌ Keine Sections weglassen, weil sie aufwendig sind.
-- ❌ Kein Tailwind / CSS-Framework mit fester Skala.
 - ❌ Keine Änderungen in `reference/`.
 - ❌ Kein Framer-Analytics/Tracking-Code im Nachbau.
 
@@ -153,10 +141,10 @@ Der finale Stack wird in `docs/plan.md` vorgeschlagen und muss vom Nutzer **frei
 ## 9. Definition of Done
 
 - [ ] Alle Sections der Homepage vorhanden und in korrekter Reihenfolge
-- [ ] Typografie, Farben, Abstände, Rundungen belegt identisch
+- [ ] Typografie, Farben, Abstände, Rundungen stimmig zum Original
 - [ ] Alle Animationen (Load, Scroll, Hover) rekonstruiert
 - [ ] Responsive auf allen Original-Breakpoints identisch
-- [ ] Alle Assets self-hosted, keine externen Requests
-- [ ] Screenshot-Diff < 1 % auf allen drei Viewports, Protokoll in `docs/`
+- [ ] Bilder lokal unter `public/images/` (sobald verfügbar)
+- [ ] Visueller Abgleich auf allen drei Viewports, Protokoll in `docs/`
 - [ ] Meta-Tags, Favicons, `alt`-Texte übernommen
 - [ ] Auf `main` gepusht

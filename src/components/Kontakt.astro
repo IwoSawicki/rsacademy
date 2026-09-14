@@ -1,0 +1,98 @@
+---
+import { contact } from "../data/site";
+import PlusIcon from "./PlusIcon.astro";
+
+const fields = [
+  { name: "name", label: "Ihr Name*", type: "text", required: true },
+  { name: "email", label: "E-mail*", type: "email", required: true },
+  { name: "phone", label: "Telefon*", type: "tel", required: true },
+];
+---
+
+<section id="kontakt" class="section-x flex w-full items-center justify-center">
+  <div class="grid w-full max-w-[1000px] gap-1 tablet:grid-cols-2">
+    <!-- Formular -->
+    <div class="flex flex-col gap-8 rounded-card bg-white p-7 desktop:p-10" data-reveal="up">
+      <div class="flex flex-col gap-2">
+        <p class="t-body opacity-60">Rescue & Safety Academy AG</p>
+        <h2 class="t-h3">Noch Fragen?</h2>
+      </div>
+
+      <form class="flex flex-col gap-4" data-contact-form>
+        {
+          fields.map((field) => (
+            <label class="flex flex-col gap-2">
+              <span class="t-caption opacity-60">{field.label}</span>
+              <input
+                type={field.type}
+                name={field.name}
+                required={field.required}
+                class="t-body border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 focus:border-ink"
+              />
+            </label>
+          ))
+        }
+
+        <label class="flex flex-col gap-2">
+          <span class="t-caption opacity-60">Nachricht</span>
+          <textarea
+            name="message"
+            rows="3"
+            class="t-body resize-none border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 focus:border-ink"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="mt-2 flex h-[58px] w-max items-center justify-center rounded-pill bg-ink px-[30px] transition-opacity duration-300 hover:opacity-85"
+        >
+          <span class="t-label text-white">Nachricht verschicken</span>
+        </button>
+
+        <p class="t-caption opacity-60">
+          Durch das Abschicken erklären Sie sich mit unserer <a
+            href="/datenschutz"
+            class="underline underline-offset-2">Datenschutzerklärung</a
+          > einverstanden
+        </p>
+      </form>
+    </div>
+
+    <!-- Kontaktdaten -->
+    <div
+      class="flex flex-col justify-between gap-10 rounded-card bg-ink p-7 desktop:p-10"
+      data-reveal="up"
+      style="transition-delay:90ms"
+    >
+      <div class="flex items-start justify-between">
+        <h2 class="t-h1 text-white">
+          Jetzt<br />Kontaktieren
+        </h2>
+        <PlusIcon size={10} />
+      </div>
+
+      <dl class="flex flex-col gap-6">
+        <div class="flex flex-col gap-1">
+          <dt class="t-caption text-white/60">E-Mail</dt>
+          <dd>
+            <a
+              href={`mailto:${contact.mailKurs}`}
+              class="t-subhead text-white transition-opacity duration-300 hover:opacity-70"
+              >{contact.mailKurs}</a
+            >
+          </dd>
+        </div>
+        <div class="flex flex-col gap-1">
+          <dt class="t-caption text-white/60">Telefon</dt>
+          <dd>
+            <a
+              href={contact.phoneHref}
+              class="t-subhead text-white transition-opacity duration-300 hover:opacity-70"
+              >{contact.phone}</a
+            >
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

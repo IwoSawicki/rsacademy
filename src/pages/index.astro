@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Preloader from "../components/Preloader.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import Einleitung from "../components/Einleitung.astro";
+import Kurse from "../components/Kurse.astro";
+import Numbers from "../components/Numbers.astro";
+import Bento from "../components/Bento.astro";
+import Leistungen from "../components/Leistungen.astro";
+import Faq from "../components/Faq.astro";
+import Kontakt from "../components/Kontakt.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout title="Rescue & Safety Academy AG">
+  <Preloader />
+  <SiteHeader />
+
+  <main
+    class="flex w-full flex-col items-center gap-[120px] overflow-hidden bg-surface desktop:gap-[190px]"
+  >
+    <Hero />
+    <Einleitung />
+    <Kurse />
+    <Numbers />
+    <Bento />
+    <Leistungen />
+    <Faq />
+    <Kontakt />
+  </main>
+
+  <SiteFooter />
+
+  <script>
+    import "../scripts/motion";
+  </script>
+</BaseLayout>

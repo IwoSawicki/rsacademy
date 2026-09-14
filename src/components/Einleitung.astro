@@ -1,0 +1,53 @@
+---
+import { contact } from "../data/site";
+import SectionLabel from "./SectionLabel.astro";
+import WordReveal from "./WordReveal.astro";
+import RollButton from "./RollButton.astro";
+import StarRating from "./StarRating.astro";
+
+const paragraphs = [
+  "Wir bilden Fachkräfte für anspruchsvolle Arbeitsumgebungen aus – von Höhenarbeit und Absturzsicherung bis hin zu komplexen Rettungseinsätzen. Unser Fokus liegt auf realitätsnahen Trainings, die nicht nur Wissen vermitteln, sondern Handlungssicherheit schaffen.",
+  "Seit 1987 stehen wir für durchdachte Konzepte, erfahrene Instruktoren und Schulungen, die im Ernstfall funktionieren.",
+];
+---
+
+<section
+  class="section-x flex w-full flex-col items-center gap-[70px]"
+  data-reveal="scale"
+>
+  <div class="flex w-full max-w-[1000px] flex-col gap-10">
+    <SectionLabel label="Über uns" />
+
+    <div class="flex flex-col gap-10">
+      <h2 class="t-h1 max-w-[900px]" data-reveal="up">
+        <strong class="font-semibold">Praxisnahe Sicherheits- und Rettungsausbildung</strong
+        ><span class="text-ink/60">
+          <strong class="font-semibold"> auf höchstem Niveau.</strong></span
+        >
+      </h2>
+
+      <div
+        class="flex flex-col gap-8 tablet:flex-row tablet:items-end tablet:justify-between"
+      >
+        <div class="flex max-w-[620px] flex-col gap-6">
+          {
+            paragraphs.map((text) => (
+              <WordReveal text={text} class="t-lead" />
+            ))
+          }
+        </div>
+
+        <div class="flex flex-col items-start gap-6">
+          <div class="flex items-center gap-3">
+            <StarRating size={16} />
+            <div class="flex flex-col">
+              <span class="t-subhead font-semibold">4,9</span>
+              <span class="t-caption opacity-60">320+ Bewertungen</span>
+            </div>
+          </div>
+          <RollButton label={contact.phoneLabel} href={contact.phoneHref} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
