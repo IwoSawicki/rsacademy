@@ -11,41 +11,52 @@ const paragraphs = [
 ];
 ---
 
-<section
-  class="section-x flex w-full flex-col items-center gap-[70px]"
-  data-reveal="scale"
->
-  <div class="flex w-full max-w-[1000px] flex-col gap-10">
-    <SectionLabel label="Über uns" />
-
-    <div class="flex flex-col gap-10">
-      <h2 class="t-h1 max-w-[900px]" data-reveal="up">
-        <strong class="font-semibold">Praxisnahe Sicherheits- und Rettungsausbildung</strong
-        ><span class="text-ink/60">
-          <strong class="font-semibold"> auf höchstem Niveau.</strong></span
-        >
-      </h2>
+<section class="section-x flex w-full flex-col items-center gap-[70px]">
+  <div
+    class="flex w-full max-w-[1520px] flex-col items-center gap-9 tablet:gap-[60px] desktop:gap-[120px]"
+    data-reveal="scale"
+  >
+    <!-- Kopfbereich: Label links, Überschrift über drei Spalten -->
+    <div
+      class="flex w-full flex-col gap-4 tablet:grid tablet:grid-cols-4 tablet:gap-1"
+    >
+      <div class="order-1 tablet:order-none">
+        <SectionLabel label="Über uns" />
+      </div>
 
       <div
-        class="flex flex-col gap-8 tablet:flex-row tablet:items-end tablet:justify-between"
+        class="flex flex-col items-start gap-[14px] tablet:col-span-3 tablet:gap-[21px] desktop:gap-[22px]"
       >
-        <div class="flex max-w-[620px] flex-col gap-6">
-          {
-            paragraphs.map((text) => (
-              <WordReveal text={text} class="t-lead" />
-            ))
-          }
-        </div>
+        <h2 class="t-h1" data-reveal="up">
+          <strong class="font-semibold"
+            >Praxisnahe Sicherheits- und Rettungsausbildung</strong
+          ><span class="text-ink/60">
+            <strong class="font-semibold"> auf höchstem Niveau.</strong></span
+          >
+        </h2>
 
-        <div class="flex flex-col items-start gap-6">
-          <div class="flex items-center gap-3">
-            <StarRating size={16} />
-            <div class="flex flex-col">
-              <span class="t-subhead font-semibold">4,9</span>
-              <span class="t-caption opacity-60">320+ Bewertungen</span>
+        <!-- Fließtext (zwei Spalten) + rechte Spalte mit Button und Bewertung -->
+        <div
+          class="flex w-full flex-col gap-[42px] tablet:grid tablet:grid-cols-3 tablet:gap-1"
+        >
+          <div
+            class="flex flex-col items-start gap-10 tablet:col-span-2 desktop:gap-[30px]"
+          >
+            {paragraphs.map((text) => <WordReveal text={text} class="t-lead" />)}
+          </div>
+
+          <div
+            class="flex flex-col items-start gap-5 tablet:items-end tablet:justify-self-end"
+          >
+            <RollButton label={contact.phoneLabel} href={contact.phoneHref} />
+            <div class="flex items-center gap-3 tablet:flex-row-reverse">
+              <div class="flex flex-col tablet:items-end">
+                <span class="t-subhead font-semibold">4,9</span>
+                <span class="t-caption opacity-60">320+ Bewertungen</span>
+              </div>
+              <StarRating size={16} />
             </div>
           </div>
-          <RollButton label={contact.phoneLabel} href={contact.phoneHref} />
         </div>
       </div>
     </div>
