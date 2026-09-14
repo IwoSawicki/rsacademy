@@ -4,11 +4,11 @@ import RollButton from "./RollButton.astro";
 ---
 
 <section class="section-x flex w-full flex-col items-center gap-[70px]">
-  <div class="flex w-full max-w-[1000px] flex-col gap-10">
+  <div class="container-wide flex flex-col gap-10">
     <h2 class="t-h2" data-reveal="up">Kursangebot</h2>
 
     <ul
-      class="flex flex-col gap-[10px] tablet:grid tablet:grid-cols-2 tablet:gap-5"
+      class="container-narrow mx-auto flex flex-col gap-[10px] tablet:grid tablet:grid-cols-2 tablet:gap-5"
     >
       {
         kurse.map((kurs, i) => (

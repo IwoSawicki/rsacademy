@@ -52,7 +52,11 @@ Framer-Preset → Klasse in `src/styles/global.css`, Werte je Breakpoint (Deskto
 ## Layout-Maße
 
 - Seitenabstand: `36px` Desktop, `30px` Tablet, `20px` Phone (`.section-x`)
-- Content-Max-Width: `1000px`, Full-Width-Elemente `1520px`
+- Container-Max-Width: **`1520px`** für alle Sections (Einleitung, Numbers, Bento,
+  Leistungen, FAQ, Kontakt, Footer). Einzige Ausnahme: das **Kursraster mit `1000px`**,
+  innerhalb des 1520er-Containers zentriert.
+- Bento: Raster `600px` hoch, Karten je zwei von vier Spalten, Innenabstand `40px`
+  (Phone `510px` hoch, `30px` Innenabstand)
 - Abstand zwischen Sections (`<main>`): `190px` Desktop, `120px` Tablet/Phone
 - Header: fixed, max. `1200px`, Padding `19px 36px`, `backdrop-filter: blur(7px)`
 - Button: Höhe `58px`, Padding `18px 30px`, Radius `50px`

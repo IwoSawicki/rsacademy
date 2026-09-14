@@ -161,6 +161,16 @@
     .t-caption { font-size: 12px; }
   }
 
+  /* Container-Breiten des Originals */
+  .container-wide {
+    width: 100%;
+    max-width: 1520px;
+  }
+  .container-narrow {
+    width: 100%;
+    max-width: 1000px;
+  }
+
   /* Section-Wrapper: Seitenabstände wie im Original (20 / 30 / 36 px) */
   .section-x {
     padding-inline: 20px;
