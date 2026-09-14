@@ -24,7 +24,6 @@ wget \
   --convert-links \
   --span-hosts \
   --domains=rsacademy.ch,www.rsacademy.ch,framerusercontent.com,app.framerstatic.com,framer.com,fonts.googleapis.com,fonts.gstatic.com \
-  --include-directories=/ \
   --no-parent \
   --execute robots=off \
   --restrict-file-names=windows \
