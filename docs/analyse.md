@@ -61,7 +61,7 @@ Framer-Preset → Klasse in `src/styles/global.css`, Werte je Breakpoint (Deskto
 ## Sections in Reihenfolge
 
 1. **Header** — fixed, Logo + Navigation, Burger unterhalb Desktop
-2. **Hero** — Vollbild, Hintergrundbild + dunkles Overlay, Firmenname, „Profis in der Höhe", Claim, 3 Bewertungskarten
+2. **Hero** — Vollbild, Hintergrundbild + dunkles Overlay, Firmenname, „Profis in der Höhe", Claim, Bewertungs-Slider (3 Karten, Pfeile + Bullets; Karte 463px, Wrapper 501px)
 3. **Einleitung** — Label „Über uns", H1, zwei Fließtexte (Wort-für-Wort-Reveal), Bewertung 4,9 / 320+, Telefon-Button
 4. **Kursangebot** — 9 Karten im 2-Spalten-Raster, darunter zwei Buttons
 5. **Numbers** — 4 Zähler
@@ -85,6 +85,7 @@ Framer-Preset → Klasse in `src/styles/global.css`, Werte je Breakpoint (Deskto
 | Zähler | Scroll | Hochzählen von 0 |
 | Portrait (Bento) | Scroll | `perspective(1200px) translateY(-40px) scale(1.15)` |
 | Akkordeon | Klick | Öffnen/Schließen, Plus-Icon dreht |
+| Bewertungs-Slider | Klick | Karte wechselt, aktiver Bullet `opacity 1`, inaktiv `0.3` |
 
 ## Bekannte Lücken
 

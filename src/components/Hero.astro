@@ -1,7 +1,7 @@
 ---
-import { images, reviews, contact } from "../data/site";
+import { images } from "../data/site";
 import PlusIcon from "./PlusIcon.astro";
-import StarRating from "./StarRating.astro";
+import ReviewSlider from "./ReviewSlider.astro";
 ---
 
 <section
@@ -9,85 +9,14 @@ import StarRating from "./StarRating.astro";
   class="relative flex w-full flex-col items-center justify-center gap-[50px] tablet:gap-[100px] desktop:gap-[110px]"
 >
   <div
-    class="relative z-[3] flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-surface pt-[61px] tablet:h-auto desktop:h-screen"
+    class="relative z-[3] flex w-full flex-col items-center justify-center overflow-hidden bg-surface pt-[61px] desktop:h-screen"
   >
     <div
       class="relative flex h-full w-full flex-1 items-center justify-center overflow-hidden desktop:px-1 desktop:pb-1"
       data-reveal="up-lg"
     >
-      <div
-        class="relative z-[1] flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-[8px] px-5 pt-[54px] pb-9 tablet:gap-[100px] tablet:px-[30px] tablet:py-20 desktop:justify-between desktop:px-9 desktop:py-[90px]"
-      >
-        <!-- Kopfzeile -->
-        <div class="flex w-full flex-col gap-4">
-          <div
-            class="flex w-full flex-col items-stretch gap-2 desktop:flex-row desktop:items-end desktop:justify-between"
-          >
-            <p
-              class="text-[9vw] leading-[120%] font-semibold text-white tablet:text-[6vw] desktop:text-[clamp(28px,3.6vw,48px)]"
-              style="letter-spacing:-0.06em"
-            >
-              Rescue & Safety Academy AG
-            </p>
-            <p
-              class="text-[7vw] leading-[120%] font-semibold text-white tablet:text-[5vw] desktop:text-right desktop:text-[clamp(30px,3.8vw,50px)]"
-              style="letter-spacing:-0.06em"
-            >
-              Profis in der Höhe
-            </p>
-          </div>
-
-          <div class="hidden justify-between desktop:flex">
-            {Array.from({ length: 4 }).map(() => <PlusIcon size={10} />)}
-          </div>
-        </div>
-
-        <!-- Fußzeile -->
-        <div
-          class="flex w-full flex-col items-start gap-8 desktop:flex-row desktop:items-end desktop:justify-between"
-        >
-          <p class="t-body-lg max-w-[420px] text-white">
-            Marktführer für Sicherheits- und <br class="hidden desktop:inline" />
-            Rettungsausbildungen in der Schweiz
-          </p>
-
-          <div
-            class="flex w-full gap-3 overflow-x-auto pb-1 desktop:w-auto desktop:overflow-visible"
-            data-reveal="up"
-          >
-            {
-              reviews.map((review) => (
-                <figure class="flex w-[260px] shrink-0 flex-col gap-3 rounded-[8px] bg-white/95 p-3 backdrop-blur-[80px] shadow-[0px_30px_18px_-20px_rgba(0,0,0,0.16)]">
-                  <div class="flex items-center gap-3">
-                    <img
-                      src={review.image}
-                      alt=""
-                      width="40"
-                      height="40"
-                      loading="lazy"
-                      class="h-10 w-10 rounded-[4px] object-cover"
-                    />
-                    <StarRating />
-                  </div>
-                  <figcaption class="flex flex-col gap-1">
-                    <p class="t-caption line-clamp-4 text-ink-soft opacity-70">
-                      {review.text}
-                    </p>
-                    <p class="t-caption font-semibold text-ink">
-                      {review.name}
-                    </p>
-                  </figcaption>
-                </figure>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-
-      <!-- Hintergrundbild -->
-      <div
-        class="absolute inset-0 z-0 bg-ink desktop:inset-1 desktop:rounded-[8px]"
-      >
+      <!-- Hintergrund -->
+      <div class="absolute inset-0 z-0 bg-ink desktop:inset-1 desktop:rounded-[8px]">
         <img
           src={images.heroBg}
           alt=""
@@ -98,6 +27,46 @@ import StarRating from "./StarRating.astro";
           class="absolute inset-0 bg-ink/35 desktop:rounded-[8px]"
           aria-hidden="true"
         >
+        </div>
+      </div>
+
+      <!-- Inhalt -->
+      <div
+        class="relative z-[1] flex w-full flex-col justify-between gap-[60px] px-5 pt-[54px] pb-9 tablet:gap-[100px] tablet:px-[30px] tablet:py-20 desktop:h-full desktop:gap-0 desktop:px-9 desktop:py-[90px]"
+      >
+        <!-- Kopfzeile -->
+        <div class="flex w-full flex-col gap-6">
+          <div
+            class="flex w-full flex-col items-start gap-[26px] tablet:gap-5 desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-0"
+          >
+            <p
+              class="text-[9vw] leading-[120%] font-semibold text-white tablet:text-[6vw] desktop:text-[clamp(30px,3.3vw,48px)]"
+              style="letter-spacing:-0.06em"
+            >
+              Rescue & Safety Academy AG
+            </p>
+            <p
+              class="text-[8vw] leading-[120%] font-semibold text-white tablet:text-[5.5vw] desktop:text-right desktop:text-[clamp(32px,3.5vw,50px)]"
+              style="letter-spacing:-0.06em"
+            >
+              Profis in der Höhe
+            </p>
+          </div>
+
+          <div class="hidden justify-between opacity-60 desktop:flex">
+            {Array.from({ length: 4 }).map(() => <PlusIcon size={10} />)}
+          </div>
+        </div>
+
+        <!-- Fußzeile -->
+        <div
+          class="flex w-full flex-col items-start gap-[30px] tablet:gap-[31px] desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-10"
+        >
+          <p class="t-body-lg max-w-[420px] text-white desktop:max-w-none">
+            Marktführer für Sicherheits- und <br class="hidden desktop:inline" />
+            Rettungsausbildungen in der Schweiz
+          </p>
+          <ReviewSlider />
         </div>
       </div>
     </div>
