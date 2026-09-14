@@ -1,0 +1,27 @@
+{
+	"short_name": "Framer",
+	"name": "Framer",
+	"description": "Prototyping for teams",
+	"icons": [
+		{
+			"src": "/s/icon-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/s/icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "/s/icon-1024.png",
+			"type": "image/png",
+			"sizes": "1024x1024"
+		}
+	],
+	"start_url": "/projects/",
+	"background_color": "#F3F3F3",
+	"display": "minimal-ui",
+	"scope": "/projects/",
+	"theme_color": "#F3F3F3"
+}
