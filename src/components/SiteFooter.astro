@@ -1,26 +1,37 @@
 ---
 import { nav, legal, contact } from "../data/site";
 import PlusIcon from "./PlusIcon.astro";
+import FitText from "./FitText.astro";
 
+/**
+ * Fußbereich. Maße aus dem Clone:
+ *
+ *   Top     Innenabstand 100px 36px
+ *   Links   zwei Spalten, Abstand 4px
+ *   Spalte1 rechts 80px Abstand, Abstand 80px, Kontaktblock 28px
+ *   Spalte2 Abstand 100px — oben Navigation und Soziales nebeneinander,
+ *           darunter der große Schriftzug als Fit-Text
+ *   Bottom  Innenabstand 42px 36px, drei gleich breite Spalten
+ *
+ * Schriftgrößen: Gruppentitel 14px/500, Linkeinträge 22px/500,
+ * Telefon und E-Mail 34px/600.
+ */
 const social = [
   { label: "Linked In", href: "https://www.linkedin.com" },
   { label: "Google Maps", href: "https://maps.google.com" },
 ];
 
-const groups = [
-  { title: "Navigation", items: nav, dots: true },
-  { title: "Soziale Netzwerke", items: social, external: true },
-  { title: "Rechtliches", items: legal },
-];
+const linkClass =
+  "text-[22px] leading-[1.2em] font-medium text-ink transition-opacity duration-300 hover:opacity-60";
+const titleClass = "text-[14px] leading-[1.3em] font-medium text-ink opacity-60";
 ---
 
 <footer class="w-full overflow-hidden bg-surface">
   <!-- Top -->
   <div
-    class="relative z-[1] flex w-full flex-col items-center gap-10 bg-surface px-5 py-[50px] tablet:gap-[70px] tablet:px-[30px] tablet:pt-[140px] tablet:pb-[100px] desktop:gap-20 desktop:px-9 desktop:py-[100px]"
+    class="flex w-full flex-col items-center gap-10 bg-surface px-5 py-[50px] tablet:gap-[70px] tablet:px-[30px] tablet:pt-[140px] tablet:pb-[100px] desktop:gap-20 desktop:px-9 desktop:py-[100px]"
     data-measure="footer-top"
   >
-    <!-- Links: zwei Spalten -->
     <div
       class="container-wide flex flex-col items-start gap-10 tablet:grid tablet:grid-cols-2 tablet:gap-1"
       data-measure="footer-links"
@@ -34,14 +45,14 @@ const groups = [
         <div class="flex w-full flex-col items-start gap-7">
           <a
             href={contact.phoneHref}
-            class="t-h2 whitespace-pre transition-opacity duration-300 hover:opacity-60"
-            >{contact.phone}</a
+            class="text-[26px] leading-[1.1em] font-semibold whitespace-pre text-ink transition-opacity duration-300 hover:opacity-60 desktop:text-[34px]"
+            style="letter-spacing:-0.04em">{contact.phone}</a
           >
           <span class="relative">
             <a
               href={`mailto:${contact.mailKurs}`}
-              class="t-h2 whitespace-pre transition-opacity duration-300 hover:opacity-60"
-              >{contact.mailKurs}</a
+              class="text-[26px] leading-[1.1em] font-semibold whitespace-pre text-ink transition-opacity duration-300 hover:opacity-60 desktop:text-[34px]"
+              style="letter-spacing:-0.04em">{contact.mailKurs}</a
             >
             <span
               class="absolute -bottom-[6px] left-0 h-[2px] w-full bg-ink"
@@ -50,31 +61,54 @@ const groups = [
         </div>
       </div>
 
-      <!-- Spalte 2: Linklisten -->
+      <!-- Spalte 2: Linklisten und Schriftzug -->
       <div
         class="flex w-full flex-col items-start gap-10 tablet:gap-[90px] desktop:gap-[100px]"
       >
-        {
-          groups.map((group) => (
-            <nav class="flex w-full flex-col items-start gap-5">
-              <p class="t-small opacity-60">{group.title}</p>
-              <ul class="flex flex-col gap-2">
-                {group.items.map((item) => (
-                  <li>
-                    <a
-                      href={item.href}
-                      target={group.external ? "_blank" : undefined}
-                      rel={group.external ? "noopener noreferrer" : undefined}
-                      class="t-body-lg group inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
-                    >
-                      {group.dots && (
-                        <span class="h-[5px] w-[5px] rounded-full bg-ink" />
-                      )}
-                      {item.label}
-                      {group.external && (
+        <div class="flex w-full flex-col gap-10 tablet:flex-row tablet:gap-1">
+          <!-- Navigation -->
+          <nav
+            class="flex w-full flex-col items-start gap-10 tablet:flex-1 desktop:gap-20"
+          >
+            <PlusIcon size={16} bar={2} color="#0a0a0a" class="opacity-30" />
+            <div class="flex w-full flex-col items-start gap-4">
+              <p class={titleClass}>Navigation</p>
+              <ul class="flex flex-col gap-[10px]">
+                {
+                  nav.map((item) => (
+                    <li>
+                      <a href={item.href} class={linkClass}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </nav>
+
+          <!-- Soziales und Rechtliches -->
+          <div
+            class="flex w-full flex-col items-start gap-10 tablet:flex-1 desktop:gap-[60px]"
+          >
+            <PlusIcon size={16} bar={2} color="#0a0a0a" class="opacity-30" />
+
+            <div class="flex w-full flex-col items-start gap-4">
+              <p class={titleClass}>Soziale Netzwerke</p>
+              <ul class="flex flex-col gap-[10px]">
+                {
+                  social.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`${linkClass} group inline-flex items-center gap-2`}
+                      >
+                        {item.label}
                         <svg
-                          width="12"
-                          height="12"
+                          width="14"
+                          height="14"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -84,33 +118,67 @@ const groups = [
                         >
                           <path d="M7 17L17 7M7 7h10v10" />
                         </svg>
-                      )}
-                    </a>
-                  </li>
-                ))}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
-            </nav>
+            </div>
+
+            <div class="flex w-full flex-col items-start gap-4">
+              <p class={titleClass}>Rechtliches</p>
+              <ul class="flex flex-col gap-[10px]">
+                {
+                  legal.map((item) => (
+                    <li>
+                      <a href={item.href} class={linkClass}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schriftzug als Fit-Text, wie im Original -->
+        <div class="w-full pb-[10px]">
+          <FitText
+            viewBox="0 0 561.7901981016153 192"
+            fontSize={79.83663502692025}
+            color="#0a0a0a"
+          >
+            Rescue &amp; Safety{"\n"}Academy AG
+          </FitText>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: drei gleich breite Spalten -->
+  <div class="w-full px-5 py-[30px] tablet:px-[30px] desktop:px-9 desktop:py-[42px]">
+    <div
+      class="container-wide flex flex-col gap-4 tablet:grid tablet:grid-cols-3 tablet:gap-1"
+    >
+      <p class="t-caption opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
+      <div class="flex gap-[18px]">
+        {
+          legal.map((item) => (
+            <a href={item.href} class="t-caption opacity-60 hover:opacity-100">
+              {item.label}
+            </a>
           ))
         }
       </div>
-    </div>
-
-    <!-- Bottom -->
-    <div
-      class="container-wide flex flex-col items-start gap-6 border-t border-ink/10 pt-8 tablet:flex-row tablet:items-end tablet:justify-between"
-    >
-      <p class="t-h2">Rescue &amp; Safety<br />Academy AG</p>
-      <div class="flex flex-col gap-1 tablet:items-end">
-        <p class="t-caption opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
-        <p class="t-caption opacity-60">
-          Mit ❤️ erstellt von <a
-            href="https://sawix.studio"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2">Sawix Studio</a
-          >
-        </p>
-      </div>
+      <p class="t-caption opacity-60">
+        Mit ❤️ erstellt von <a
+          href="https://sawix.studio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2">Sawix Studio</a
+        >
+      </p>
     </div>
   </div>
 </footer>
