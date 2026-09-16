@@ -22,14 +22,14 @@ const items = [
 
 <section id="kontakt" class="section-x flex w-full items-start justify-center gap-1">
   <div
-    class="container-wide flex flex-col items-start gap-[60px] desktop:flex-row desktop:gap-1"
+    class="container-wide flex flex-col items-start gap-[60px] tablet:flex-row tablet:gap-1"
     data-measure="kontakt-container"
   >
     <!-- Formular. Darunter liegt im Original eine 80px hohe Freifläche,
          die die Höhe der Spalte bestimmt. -->
-    <div class="flex w-full flex-col items-start gap-1 desktop:flex-1">
+    <div class="flex w-full flex-col items-start gap-1 tablet:flex-1">
       <div
-        class="flex w-full flex-col items-start gap-[30px] overflow-hidden rounded-[18px] bg-white p-[30px] desktop:max-w-[546px] desktop:p-10"
+        class="flex w-full flex-col items-start gap-[30px] overflow-hidden rounded-[18px] bg-white p-10 tablet:max-w-[418px] desktop:max-w-[546px]"
         data-measure="kontakt-form"
         data-reveal="up"
       >
@@ -80,12 +80,12 @@ const items = [
           </p>
         </form>
       </div>
-      <div class="hidden h-[80px] w-full desktop:block" aria-hidden="true"></div>
+      <div class="hidden h-[80px] w-full tablet:block" aria-hidden="true"></div>
     </div>
 
     <!-- Bildfläche mit Kontaktdaten -->
     <div
-      class="relative flex w-full flex-col items-start gap-[60px] overflow-hidden rounded-[18px] p-[30px] desktop:flex-1 desktop:gap-10 desktop:self-start desktop:p-10"
+      class="relative flex w-full flex-col items-start gap-[60px] overflow-hidden rounded-[18px] tablet:flex-1 tablet:gap-10 tablet:self-start tablet:p-10"
       data-reveal="up"
       style="transition-delay:90ms"
     >
@@ -99,7 +99,7 @@ const items = [
       </div>
 
       <h2
-        class="text-[38px] leading-[92%] font-semibold text-white desktop:text-[54px]"
+        class="text-[38px] leading-[92%] font-semibold text-white tablet:text-[54px]"
         style="letter-spacing:-0.06em"
       >
         Jetzt<br />Kontaktieren
@@ -110,7 +110,7 @@ const items = [
           items.map((item) => (
             <a
               href={item.href}
-              class="flex w-full flex-col items-start justify-center gap-2 rounded-[18px] bg-white p-5 desktop:gap-5 transition-opacity duration-300 hover:opacity-90 desktop:h-[120px] desktop:max-w-[546px]"
+              class="flex w-full flex-col items-start justify-center gap-[14px] rounded-[18px] bg-white p-5 transition-opacity duration-300 hover:opacity-90 max-w-[280px] tablet:h-[120px] tablet:max-w-[384px] desktop:max-w-[546px] desktop:gap-5"
               data-measure="kontakt-item"
             >
               <span class="t-body-lg text-ink">{item.label}</span>

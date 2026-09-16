@@ -10,11 +10,11 @@ import { faq } from "../data/site";
 
 <section class="section-x flex w-full items-center justify-center gap-1">
   <div
-    class="container-wide flex flex-col items-start justify-center gap-10 desktop:flex-row desktop:gap-1"
+    class="container-wide flex flex-col items-start justify-center gap-10 tablet:flex-row tablet:gap-1"
     data-measure="faq-container"
   >
     <div
-      class="flex w-full flex-col items-start gap-[18px] desktop:flex-1 desktop:gap-[30px]"
+      class="flex w-full flex-col items-start gap-[18px] tablet:flex-1 tablet:gap-[30px]"
       data-measure="faq-heading"
     >
       <h2 class="t-display w-full" data-reveal="up">FAQ</h2>
@@ -23,7 +23,7 @@ import { faq } from "../data/site";
       </p>
     </div>
 
-    <ul class="flex w-full flex-col gap-1 desktop:flex-1">
+    <ul class="flex w-full flex-col gap-1 tablet:flex-1">
       {
         faq.map((item) => (
           <li class="overflow-hidden rounded-[14px] bg-white" data-reveal="up" data-measure="faq-item">

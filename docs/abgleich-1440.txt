@@ -1,5 +1,5 @@
 
-Breite 1440px — Seitenhöhe Original 9632, Nachbau 9297
+Breite 1440px — Seitenhöhe Original 9632, Nachbau 9440
 
 Element                     Feld              Original            Nachbau
 ----------------------------------------------------------------------------------
@@ -7,24 +7,21 @@ Hero First screen           gap               0px                 normal
 Hero Content                gap               normal              0px
 Hero Company                h                 194                 168
 Hero Slider                 gap               normal              22px
+Hero Karte                  im Nachbau nicht ausgezeichnet
 Hero BG                     gap               10px                normal
-Hero BG                     backgroundColor   rgba(0, 0, 0, 0)    rgb(10, 10, 10)
 Einleitung Container        h                 600                 610
 Einleitung Top              h                 600                 610
 Einleitung Heading          h                 600                 610
 Einleitung Text             h                 380                 390
-Numbers Container           h                 262                 290
 Numbers Container           gap               100px               normal
-Numbers Raster              h                 262                 290
-Numbers Eintrag             h                 162                 190
 Bento Textkarte             gap               normal              32px
 Leistungen Fläche           gap               10px                normal
 Leistungen Container        gap               80px                normal
 Leistungen Eintrag          gap               0px                 normal
-Kontakt Container           h                 851                 628
-Kontakt Formularkarte       h                 767                 628
-Kontakt Infokarte           gap               20px                8px
-Footer Top                  h                 879                 990
-Footer Links                h                 679                 594
+Footer Top                  h                 879                 839
+Footer Links                h                 679                 639
+Google-Zeichen              im Nachbau nicht ausgezeichnet
+Bewertungsstern             im Original nicht gefunden
+Bezeichner Punkt            gap               10px                normal
 ----------------------------------------------------------------------------------
-23 Abweichungen, 0 Paare ohne Treffer.
+17 Abweichungen, 3 Paare ohne Treffer.

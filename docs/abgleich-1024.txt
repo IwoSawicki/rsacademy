@@ -1,5 +1,5 @@
 
-Breite 1024px — Seitenhöhe Original 8627, Nachbau 8906
+Breite 1024px — Seitenhöhe Original 8627, Nachbau 8328
 
 Element                     Feld              Original            Nachbau
 ----------------------------------------------------------------------------------
@@ -8,45 +8,33 @@ Hero First screen           gap               0px                 normal
 Hero Content                h                 793                 770
 Hero Company                h                 173                 150
 Hero Slider                 gap               normal              22px
+Hero Karte                  im Nachbau nicht ausgezeichnet
 Hero BG                     h                 793                 770
 Hero BG                     gap               10px                normal
-Hero BG                     backgroundColor   rgba(0, 0, 0, 0)    rgb(10, 10, 10)
 Einleitung Container        h                 643                 663
 Einleitung Top              h                 643                 663
 Einleitung Heading          h                 643                 663
 Einleitung Text             h                 457                 477
-Numbers Container           h                 205                 224
 Numbers Container           gap               90px                normal
-Numbers Raster              h                 205                 224
-Numbers Eintrag             h                 115                 134
-Bento Raster                w                 952                 964
-Bento Raster                h                 632                 600
-Bento Portraitkarte         w                 514                 480
-Bento Textkarte             w                 434                 480
-Bento Textkarte             h                 632                 543
-Bento Textkarte             x                 554                 514
+Bento Raster                h                 632                 622
+Bento Portraitkarte         w                 514                 507
+Bento Textkarte             w                 434                 441
+Bento Textkarte             h                 632                 622
+Bento Textkarte             x                 554                 547
 Bento Textkarte             gap               normal              32px
-Leistungen Fläche           h                 1126                1247
+Leistungen Fläche           h                 1126                1134
 Leistungen Fläche           gap               10px                normal
-Leistungen Container        h                 930                 1047
 Leistungen Container        gap               50px                normal
-Leistungen Eintrag          h                 122                 159
 Leistungen Eintrag          gap               0px                 normal
-FAQ Container               h                 393                 562
-FAQ Container               gap               4px                 40px
-FAQ Heading                 w                 480                 964
-FAQ Heading                 h                 141                 129
-FAQ Heading                 gap               30px                18px
-Kontakt Container           h                 835                 1005
-Kontakt Container           gap               4px                 60px
-Kontakt Formularkarte       w                 418                 964
-Kontakt Formularkarte       h                 751                 558
-Kontakt Formularkarte       padding           40px                30px
-Kontakt Infokarte           w                 384                 904
-Kontakt Infokarte           h                 116                 97
-Kontakt Infokarte           x                 514                 60
-Kontakt Infokarte           gap               20px                8px
-Footer Top                  h                 848                 971
-Footer Links                h                 608                 562
+Kontakt Infokarte           gap               20px                14px
+Footer Top                  h                 848                 771
+Footer Links                h                 608                 531
+Google-Zeichen              im Nachbau nicht ausgezeichnet
+Bewertungsstern             im Original nicht gefunden
+Bezeichner Punkt            x                 329                 30
+Bezeichner Punkt            gap               10px                normal
+Bezeichner Balken           x                 337                 38
+FAQ-Karte                   im Original nicht gefunden
+Kontakt Infokarte 2         gap               20px                14px
 ----------------------------------------------------------------------------------
-45 Abweichungen, 0 Paare ohne Treffer.
+29 Abweichungen, 4 Paare ohne Treffer.

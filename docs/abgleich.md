@@ -66,6 +66,16 @@ Neue Bereiche prüfen: Selektor im Clone suchen, Paar in `pairs.json` eintragen,
 
 ## Was die Messung nicht abdeckt
 
+- **Komponenten, die Framers JavaScript brauchen.** Das FAQ-Akkordeon ist eine
+  Code-Komponente; im JS-freien Original fehlen die Einträge komplett. Der
+  Höhenvergleich der FAQ-Section ist deshalb wertlos — dort hilft nur der
+  Blick in den Quelltext (Karte: Radius 14px, Innenabstand 26px, Abstand 4px,
+  Frage 18px/500) und der Screenshot.
+- **Fit-Text.** `FitText` misst die Schrift zur Laufzeit nach und passt die
+  viewBox an. Läuft auf beiden Seiten eine andere Fallback-Schrift, weicht das
+  Seitenverhältnis und damit die Höhe ab. Im Browser mit geladener Inter gleicht
+  sich das aus.
+
 - **Animationsverläufe.** Die Parameter stehen im Clone (siehe `analyse.md`),
   der zeitliche Ablauf wird aber nicht automatisch verglichen.
 - **Hover- und Klickzustände.** Nur der Ruhezustand wird gemessen.
@@ -78,4 +88,28 @@ Neue Bereiche prüfen: Selektor im Clone suchen, Paar in `pairs.json` eintragen,
 
 ## Aktueller Stand
 
+| Breite | Abweichungen |
+|---|---|
+| 1440px | 17 |
+| 1024px | 29 |
+| 390px | 27 |
+
+Darin enthalten sind die oben beschriebenen Artefakte (`gap: normal` bei
+ungleicher Verschachtelung, Fit-Text-Höhen, das FAQ-Akkordeon).
+
+Sectionhöhen bei 1440px, Original gegen Nachbau:
+
+| Section | Original | Nachbau |
+|---|---|---|
+| Hero | 900 | 900 |
+| Kurse | 2113 | 2113 |
+| Numbers | 261 | 261 |
+| Bento | 600 | 600 |
+| FAQ | 393 | 393 |
+| Leistungen | 1038 | 1042 |
+| Kontakt | 836 | 852 |
+| Einleitung | 564 | 610 |
+| Footer | 879 | 839 |
+
 Protokolle: `abgleich-1440.txt`, `abgleich-1024.txt`, `abgleich-390.txt`.
+Screenshots je Section: `compare/<section>-{orig,mine}.png`.
