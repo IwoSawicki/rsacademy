@@ -24,6 +24,8 @@ node tools/screenshots.mjs
 ## Deployment
 
 Dokploy, Build Type **Dockerfile**, Container-Port **80**.
+Preview läuft unter `rsacademy.stolz-marketing.de` und ist per `robots.txt`
+und `noindex` von der Indexierung ausgeschlossen — gesteuert über `SITE_URL`.
 Details in [`docs/deployment.md`](./docs/deployment.md).
 
 ```bash

@@ -1,5 +1,8 @@
 # Deployment auf Dokploy
 
+Preview-Domain: **`rsacademy.stolz-marketing.de`**
+Spätere Live-Domain: `rsacademy.ch`
+
 ## Kurzfassung
 
 | Einstellung | Wert |
@@ -9,7 +12,7 @@
 | Docker Context Path | `.` |
 | **Container Port** | **`80`** |
 | Branch | `main` |
-| Environment (optional) | `SITE_URL=https://<deine-subdomain>` |
+| Environment | `SITE_URL=https://rsacademy.stolz-marketing.de` |
 
 ## Schritt für Schritt
 
@@ -19,21 +22,37 @@
    - Docker File Path: `Dockerfile`
    - Docker Context Path: `.`
    - Docker Build Stage: leer lassen (das finale Stage `runtime` wird automatisch genommen)
-3. Reiter **Environment** (optional, aber empfohlen für die Preview-Subdomain):
+3. Reiter **Environment** — hier ist die Variable **nicht optional**:
    ```
-   SITE_URL=https://preview.rsacademy.ch
+   SITE_URL=https://rsacademy.stolz-marketing.de
    ```
-   Ohne diese Variable zeigen Canonical- und OG-Tags auf `https://rsacademy.ch`.
-   Das ist für die Live-Domain richtig, für eine Preview-Subdomain aber irreführend.
+   Sie steuert zwei Dinge (siehe unten): Canonical-/OG-Tags und den
+   Suchmaschinen-Ausschluss der Preview.
 4. Reiter **Domains** → **Add Domain**
-   - Host: deine Subdomain
+   - Host: `rsacademy.stolz-marketing.de`
    - Path: `/`
    - **Container Port: `80`**
    - HTTPS aktivieren, Certificate Provider **Let's Encrypt**
 5. **Deploy**.
 
-Vorher im DNS einen A-Record der Subdomain auf die IP des Dokploy-Servers setzen,
-sonst schlägt die Zertifikatsausstellung fehl.
+Vorher im DNS bei `stolz-marketing.de` einen A-Record
+`rsacademy` → IP des Dokploy-Servers setzen. Ohne aufgelösten DNS-Eintrag
+schlägt die Let's-Encrypt-Ausstellung fehl.
+
+## Wichtig: Preview darf nicht indexiert werden
+
+Eine öffentlich erreichbare Kopie der Seite konkurriert in den Suchergebnissen
+mit der echten Domain (Duplicate Content). Der Build regelt das automatisch über
+`SITE_URL`:
+
+| `SITE_URL` | `robots.txt` | `<meta name="robots">` |
+|---|---|---|
+| `https://rsacademy.ch` (oder nicht gesetzt) | `Allow: /` | — |
+| alles andere, z. B. die Preview-Subdomain | `Disallow: /` | `noindex, nofollow` |
+
+Die Logik liegt in `src/consts.ts`. Wird die Seite später unter `rsacademy.ch`
+ausgeliefert, `SITE_URL` entweder auf `https://rsacademy.ch` setzen oder ganz
+entfernen — dann wird die Seite indexierbar.
 
 ## Warum Dockerfile und nicht Nixpacks
 
@@ -84,3 +103,5 @@ docker run --rm -p 8080:80 rsacademy
 - **Kontaktformular** hat noch keinen Endpunkt, der Submit tut nichts.
 - Schriften kommen von Google Fonts. Für vollständige Unabhängigkeit müssten die
   woff2-Dateien nach `public/fonts/` und per `@font-face` eingebunden werden.
+- Beim Umzug auf `rsacademy.ch`: `SITE_URL` anpassen oder löschen, sonst bleibt
+  die Live-Seite auf `noindex`.
