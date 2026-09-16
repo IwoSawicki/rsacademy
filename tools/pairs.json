@@ -1,36 +1,214 @@
 {
-  "_hinweis": "Elementpaare für tools/measure.mjs. 'orig' ist der Selektor im Clone (reference/rsacademy.ch/index.html), 'mine' das data-measure-Attribut im Nachbau.",
+  "_hinweis": "Elementpaare für tools/measure.mjs. 'orig' ist der Selektor im Clone (reference/rsacademy.ch/index.html), 'mine' das data-measure-Attribut im Nachbau. Einträge mit \"detail\": true werden zusätzlich auf Radius, Hintergrund, Schatten, Backdrop-Filter und Deckkraft geprüft.",
   "paare": [
-    { "name": "Hero First screen",   "orig": ".framer-19j2lei",  "mine": "hero-screen" },
-    { "name": "Hero Content",        "orig": ".framer-1kxwov3",  "mine": "hero-content" },
-    { "name": "Hero Company",        "orig": ".framer-1spzsp8",  "mine": "hero-company" },
-    { "name": "Hero Claim",          "orig": ".framer-1h9hge5",  "mine": "hero-claim" },
-    { "name": "Hero Slider",         "orig": ".framer-1i43mhu-container", "mine": "hero-slider" },
-    { "name": "Hero Karte",          "orig": ".framer-ax5a2l",   "mine": "hero-card" },
-    { "name": "Hero BG",             "orig": ".framer-1b8ph4g",  "mine": "hero-bg" },
-    { "name": "Einleitung Container","orig": ".framer-1xayq43",  "mine": "intro-container" },
-    { "name": "Einleitung Top",      "orig": ".framer-15lgm9m",  "mine": "intro-top" },
-    { "name": "Einleitung Heading",  "orig": ".framer-lftblh",   "mine": "intro-heading" },
-    { "name": "Einleitung Text",     "orig": ".framer-1agv014",  "mine": "intro-text" },
-    { "name": "Kurse Container",     "orig": ".framer-oh8nsj",   "mine": "kurse-container" },
-    { "name": "Kurse Raster",        "orig": ".framer-1l4glo8",  "mine": "kurse-grid" },
-    { "name": "Kurs Kopfzeile",      "orig": ".framer-f2jpip",   "mine": "kurs-header" },
-    { "name": "Numbers Container",   "orig": ".framer-sl8twl",   "mine": "numbers-container" },
-    { "name": "Numbers Raster",      "orig": ".framer-1i2okjw",  "mine": "numbers-grid" },
-    { "name": "Numbers Eintrag",     "orig": ".framer-1v8aapq",  "mine": "numbers-item" },
-    { "name": "Bento Raster",        "orig": ".framer-1injmib",  "mine": "bento-grid" },
-    { "name": "Bento Portraitkarte", "orig": ".framer-i3bqw7",   "mine": "bento-portrait" },
-    { "name": "Bento Textkarte",     "orig": ".framer-cmppjy",   "mine": "bento-text" },
-    { "name": "Leistungen Fläche",   "orig": ".framer-lahi66",   "mine": "leistungen-bg" },
-    { "name": "Leistungen Container","orig": ".framer-1x8odko",  "mine": "leistungen-container" },
-    { "name": "Leistungen Heading",  "orig": ".framer-s80mzp",   "mine": "leistungen-heading" },
-    { "name": "Leistungen Eintrag",  "orig": ".framer-mo3Tb",    "mine": "leistungen-item" },
-    { "name": "FAQ Container",       "orig": ".framer-pcuxg5",   "mine": "faq-container" },
-    { "name": "FAQ Heading",         "orig": ".framer-1xjiuvd",  "mine": "faq-heading" },
-    { "name": "Kontakt Container",   "orig": ".framer-1ozc41g",  "mine": "kontakt-container" },
-    { "name": "Kontakt Formularkarte","orig": ".framer-0axoJ",   "mine": "kontakt-form" },
-    { "name": "Kontakt Infokarte",   "orig": ".framer-75j668",   "mine": "kontakt-item" },
-    { "name": "Footer Top",          "orig": ".framer-trcty",    "mine": "footer-top" },
-    { "name": "Footer Links",        "orig": ".framer-a68ss",    "mine": "footer-links" }
+    {
+      "name": "Hero First screen",
+      "orig": ".framer-19j2lei",
+      "mine": "hero-screen"
+    },
+    {
+      "name": "Hero Content",
+      "orig": ".framer-1kxwov3",
+      "mine": "hero-content"
+    },
+    {
+      "name": "Hero Company",
+      "orig": ".framer-1spzsp8",
+      "mine": "hero-company"
+    },
+    {
+      "name": "Hero Claim",
+      "orig": ".framer-1h9hge5",
+      "mine": "hero-claim"
+    },
+    {
+      "name": "Hero Slider",
+      "orig": ".framer-1i43mhu-container",
+      "mine": "hero-slider"
+    },
+    {
+      "name": "Hero Karte",
+      "orig": ".framer-ax5a2l",
+      "mine": "hero-card"
+    },
+    {
+      "name": "Hero BG",
+      "orig": ".framer-1b8ph4g",
+      "mine": "hero-bg"
+    },
+    {
+      "name": "Einleitung Container",
+      "orig": ".framer-1xayq43",
+      "mine": "intro-container"
+    },
+    {
+      "name": "Einleitung Top",
+      "orig": ".framer-15lgm9m",
+      "mine": "intro-top"
+    },
+    {
+      "name": "Einleitung Heading",
+      "orig": ".framer-lftblh",
+      "mine": "intro-heading"
+    },
+    {
+      "name": "Einleitung Text",
+      "orig": ".framer-1agv014",
+      "mine": "intro-text"
+    },
+    {
+      "name": "Kurse Container",
+      "orig": ".framer-oh8nsj",
+      "mine": "kurse-container"
+    },
+    {
+      "name": "Kurse Raster",
+      "orig": ".framer-1l4glo8",
+      "mine": "kurse-grid"
+    },
+    {
+      "name": "Kurs Kopfzeile",
+      "orig": ".framer-f2jpip",
+      "mine": "kurs-header"
+    },
+    {
+      "name": "Numbers Container",
+      "orig": ".framer-sl8twl",
+      "mine": "numbers-container"
+    },
+    {
+      "name": "Numbers Raster",
+      "orig": ".framer-1i2okjw",
+      "mine": "numbers-grid"
+    },
+    {
+      "name": "Numbers Eintrag",
+      "orig": ".framer-1v8aapq",
+      "mine": "numbers-item"
+    },
+    {
+      "name": "Bento Raster",
+      "orig": ".framer-1injmib",
+      "mine": "bento-grid"
+    },
+    {
+      "name": "Bento Portraitkarte",
+      "orig": ".framer-i3bqw7",
+      "mine": "bento-portrait"
+    },
+    {
+      "name": "Bento Textkarte",
+      "orig": ".framer-cmppjy",
+      "mine": "bento-text"
+    },
+    {
+      "name": "Leistungen Fläche",
+      "orig": ".framer-lahi66",
+      "mine": "leistungen-bg"
+    },
+    {
+      "name": "Leistungen Container",
+      "orig": ".framer-1x8odko",
+      "mine": "leistungen-container"
+    },
+    {
+      "name": "Leistungen Heading",
+      "orig": ".framer-s80mzp",
+      "mine": "leistungen-heading"
+    },
+    {
+      "name": "Leistungen Eintrag",
+      "orig": ".framer-mo3Tb",
+      "mine": "leistungen-item"
+    },
+    {
+      "name": "FAQ Container",
+      "orig": ".framer-pcuxg5",
+      "mine": "faq-container"
+    },
+    {
+      "name": "FAQ Heading",
+      "orig": ".framer-1xjiuvd",
+      "mine": "faq-heading"
+    },
+    {
+      "name": "Kontakt Container",
+      "orig": ".framer-1ozc41g",
+      "mine": "kontakt-container"
+    },
+    {
+      "name": "Kontakt Formularkarte",
+      "orig": ".framer-0axoJ",
+      "mine": "kontakt-form"
+    },
+    {
+      "name": "Kontakt Infokarte",
+      "orig": ".framer-75j668",
+      "mine": "kontakt-item"
+    },
+    {
+      "name": "Footer Top",
+      "orig": ".framer-trcty",
+      "mine": "footer-top"
+    },
+    {
+      "name": "Footer Links",
+      "orig": ".framer-a68ss",
+      "mine": "footer-links"
+    },
+    {
+      "name": "Bewertungskarte",
+      "orig": ".framer-ax5a2l",
+      "mine": "review-card",
+      "detail": true
+    },
+    {
+      "name": "Google-Zeichen",
+      "orig": ".framer-1kzv3h",
+      "mine": "review-mark",
+      "detail": true
+    },
+    {
+      "name": "Bewertungsstern",
+      "orig": ".framer-1pa0shi",
+      "mine": "review-star",
+      "detail": true
+    },
+    {
+      "name": "Bezeichner Über uns",
+      "orig": ".framer-1rxcnc",
+      "mine": "eyebrow",
+      "detail": true
+    },
+    {
+      "name": "Bezeichner Punkt",
+      "orig": ".framer-ul5qem",
+      "mine": "eyebrow-dot",
+      "detail": true
+    },
+    {
+      "name": "Bezeichner Balken",
+      "orig": ".framer-1f2k6fv",
+      "mine": "eyebrow-bar",
+      "detail": true
+    },
+    {
+      "name": "Kurskarte",
+      "orig": ".framer-LWJez",
+      "mine": "kurs-card",
+      "detail": true
+    },
+    {
+      "name": "FAQ-Karte",
+      "orig": ".force-styles-\\:R5ltjdalqop\\:-item-0",
+      "mine": "faq-item",
+      "detail": true
+    },
+    {
+      "name": "Kontakt Infokarte 2",
+      "orig": ".framer-75j668",
+      "mine": "kontakt-item",
+      "detail": true
+    }
   ]
 }

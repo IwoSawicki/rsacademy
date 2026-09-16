@@ -1,19 +1,35 @@
 ---
-import PlusIcon from "./PlusIcon.astro";
+/**
+ * Bezeichner über einer Section. Im Original ist das keine Pille: ein
+ * dunkler Kreis von 18px mit weißem Plus, daneben der Text — Abstand 9px,
+ * Gesamthöhe 22px.
+ */
 interface Props {
   label: string;
   tone?: "dark" | "light";
 }
 const { label, tone = "dark" } = Astro.props;
-const isDark = tone === "dark";
+const dot = tone === "dark" ? "bg-ink" : "bg-white";
+const bar = tone === "dark" ? "bg-white" : "bg-ink";
+const text = tone === "dark" ? "text-ink" : "text-white";
 ---
 
-<div
-  class:list={[
-    "flex w-max items-center gap-2 rounded-pill px-4 py-2",
-    isDark ? "bg-ink text-white" : "bg-white text-ink",
-  ]}
->
-  <PlusIcon size={9} color={isDark ? "#ffffff" : "#0a0a0a"} />
-  <span class="t-body">{label}</span>
+<div class="flex w-max items-center gap-[9px]" data-measure="eyebrow">
+  <span
+    class:list={["relative block h-[18px] w-[18px] shrink-0 rounded-[50px]", dot]}
+    data-measure="eyebrow-dot"
+  >
+    <span
+      class:list={[
+        "absolute top-1/2 left-1/2 h-[8px] w-[2px] -translate-x-1/2 -translate-y-1/2",
+        bar,
+      ]}
+      data-measure="eyebrow-bar"></span>
+    <span
+      class:list={[
+        "absolute top-1/2 left-1/2 h-[8px] w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-90",
+        bar,
+      ]}></span>
+  </span>
+  <span class:list={["t-body", text]}>{label}</span>
 </div>

@@ -23,7 +23,8 @@ import RollButton from "./RollButton.astro";
           <li class="w-full" data-reveal="up" style={`transition-delay:${(i % 2) * 90}ms`}>
             <a
               href="/kurse"
-              class="group flex w-full cursor-pointer flex-col items-center gap-1"
+              class="group flex w-full cursor-pointer flex-col items-center gap-1 rounded-card"
+              data-measure="kurs-card"
             >
               <!-- Project header -->
               <div class="box-border flex h-[58px] w-full items-center gap-4 rounded-card bg-white px-5 py-[18px] tablet:gap-5 tablet:px-6" data-measure="kurs-header">

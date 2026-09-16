@@ -2,11 +2,23 @@
 import { nav, legal, contact } from "../data/site";
 import RollLink from "./RollLink.astro";
 import PlusIcon from "./PlusIcon.astro";
+
+/**
+ * Kopfzeile mit aufklappendem Menü.
+ *
+ * Im Original ist der Header selbst der Container: `overflow: hidden`,
+ * Innenabstand `19px 36px` geschlossen und `19px 36px 36px` geöffnet.
+ * Der Menüblock sitzt geschlossen bei `top:-750px` und rutscht beim Öffnen
+ * herunter — kein eigenes Overlay. Der Header wächst dabei mit.
+ *
+ * Nachgebaut über ein Raster von `0fr` auf `1fr` (animierbare Höhe) und
+ * einen `translateY` auf dem Block. Die Menüpunkte blenden gestaffelt ein.
+ */
 ---
 
-<!-- Kopfzeile: volle Breite, Logo links, Navigation gleichmäßig verteilt -->
 <header
-  class="fixed top-0 left-0 z-50 w-full bg-surface/90 px-5 py-[19px] backdrop-blur-[7px] tablet:px-8 desktop:px-9"
+  class="fixed top-0 left-0 z-50 flex w-full flex-col justify-between overflow-hidden bg-surface/90 px-5 pt-[19px] backdrop-blur-[7px] transition-[padding] duration-[600ms] ease-[var(--ease-framer)] tablet:px-8 desktop:px-9"
+  data-header
 >
   <nav class="relative z-[2] flex w-full items-center justify-between">
     <a
@@ -15,32 +27,26 @@ import PlusIcon from "./PlusIcon.astro";
       style="letter-spacing:-0.04em">Rescue &amp; Safety Academy AG</a
     >
 
-    <!-- Navigationspunkte, gleichmäßig über die Breite verteilt -->
-    <ul
-      class="absolute left-1/2 hidden w-[62%] -translate-x-1/2 items-center justify-between desktop:flex"
-    >
-      {
-        nav.slice(1).map((item) => (
-          <li>
-            <RollLink
-              href={item.href}
-              label={item.label}
-              distance={40}
-              class="text-[16px] leading-[110%] font-semibold text-ink-soft"
-            />
-          </li>
-        ))
-      }
-    </ul>
+    <!-- Im Original sind Logo, Links und Schalter direkte Geschwister in
+         einer Reihe mit `space-between` — kein eigener Block in der Mitte. -->
+    {
+      nav.slice(1).map((item) => (
+        <RollLink
+          href={item.href}
+          label={item.label}
+          distance={40}
+          class="hidden text-[16px] leading-[110%] font-semibold text-ink-soft desktop:flex"
+        />
+      ))
+    }
 
-    <!-- Menü-Schalter -->
     <button
       type="button"
       id="menu-toggle"
       class="relative z-[3] flex h-[34px] w-[34px] cursor-pointer items-center justify-center"
       aria-label="Menü öffnen"
       aria-expanded="false"
-      aria-controls="menu-overlay"
+      aria-controls="menu-body"
     >
       <span class="relative block h-[12px] w-[26px]">
         <span
@@ -52,91 +58,73 @@ import PlusIcon from "./PlusIcon.astro";
       </span>
     </button>
   </nav>
-</header>
 
-<!--
-  Overlay: im Original sitzt der Block geschlossen bei `top:-750px` zwischen
-  `left/right: 36px` und fährt beim Öffnen herunter. Die Navigationspunkte
-  blenden gestaffelt ein.
--->
-<div
-  id="menu-overlay"
-  class="invisible fixed inset-x-0 top-0 z-40 bg-surface opacity-0 transition-[opacity,visibility] duration-[600ms] ease-[var(--ease-framer)]"
->
+  <!-- Menüblock: Höhe über das Raster animiert -->
   <div
-    class="flex w-full flex-col items-center gap-[110px] px-8 pt-[130px] pb-10 desktop:gap-[120px] desktop:px-9 desktop:pt-[120px]"
-    data-menu-body
+    class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[700ms] ease-[var(--ease-framer)]"
+    data-menu-shell
   >
-    <!-- Navigation -->
-    <ul class="flex w-full flex-col items-center gap-1">
-      {
-        nav.map((item, i) => (
-          <li
-            class="translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)]"
-            data-menu-item
-            style={`transition-delay:${i * 60}ms`}
-          >
-            <RollLink
-              href={item.href}
-              label={item.label}
-              class="t-h1 text-ink"
-            />
-          </li>
-        ))
-      }
-    </ul>
-
-    <!-- Sprachwahl -->
-    <div
-      class="translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)]"
-      data-menu-item
-      style={`transition-delay:${nav.length * 60}ms`}
-    >
-      <span
-        class="flex items-center gap-2 rounded-[10px] border border-ink/10 bg-white px-4 py-[10px]"
+    <div class="overflow-hidden">
+      <div
+        id="menu-body"
+        class="flex w-full flex-col items-center gap-[60px] pt-[80px] tablet:gap-[110px] tablet:pt-[130px] desktop:gap-[120px] desktop:pt-[120px]"
+        style="transform:translateY(-750px);transition:transform 700ms var(--ease-framer)"
+        data-menu-body
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18" />
-        </svg>
-        <span class="t-body-lg">Deutsch</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </span>
-    </div>
+        <ul class="flex w-full flex-col items-center gap-1">
+          {
+            nav.map((item) => (
+              <li data-menu-item>
+                <RollLink href={item.href} label={item.label} class="t-h1 text-ink" />
+              </li>
+            ))
+          }
+        </ul>
 
-    <!-- Fußzeile des Menüs -->
-    <div
-      class="flex w-full flex-col gap-6 translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)] desktop:flex-row desktop:items-end desktop:justify-between"
-      data-menu-item
-      style={`transition-delay:${(nav.length + 1) * 60}ms`}
-    >
-      <div class="flex flex-col items-start gap-2">
-        <a href={contact.phoneHref} class="t-body-lg hover:opacity-60"
-          >{contact.phone}</a
+        <div data-menu-item>
+          <span class="flex items-center gap-2 rounded-[10px] border border-ink/10 bg-white px-4 py-[10px]">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18" />
+            </svg>
+            <span class="t-body-lg">Deutsch</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </span>
+        </div>
+
+        <div
+          class="flex w-full flex-col gap-6 desktop:flex-row desktop:items-end desktop:justify-between"
+          data-menu-item
         >
-        <span class="flex items-center gap-2">
-          <PlusIcon size={14} bar={2} color="#0a0a0a" />
-          <a
-            href={`mailto:${contact.mailInfo}`}
-            class="t-h2 underline underline-offset-[6px] hover:opacity-60"
-            >{contact.mailInfo}</a
-          >
-        </span>
-      </div>
+          <div class="flex flex-col items-start gap-2">
+            <a href={contact.phoneHref} class="t-body-lg hover:opacity-60"
+              >{contact.phone}</a
+            >
+            <span class="flex items-center gap-2">
+              <PlusIcon size={14} bar={2} color="#0a0a0a" />
+              <a
+                href={`mailto:${contact.mailInfo}`}
+                class="t-h2 underline underline-offset-[6px] hover:opacity-60"
+                >{contact.mailInfo}</a
+              >
+            </span>
+          </div>
 
-      <div class="flex gap-8">
-        {
-          legal.map((item) => (
-            <a href={item.href} class="t-body hover:opacity-60">
-              {item.label}
-            </a>
-          ))
-        }
-      </div>
+          <div class="flex gap-8">
+            {
+              legal.map((item) => (
+                <a href={item.href} class="t-body hover:opacity-60">
+                  {item.label}
+                </a>
+              ))
+            }
+          </div>
 
-      <p class="t-body opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
+          <p class="t-body opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</header>

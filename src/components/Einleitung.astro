@@ -11,11 +11,18 @@ const paragraphs = [
 ];
 ---
 
-<section class="section-x flex w-full flex-col items-center gap-[70px]">
+<!-- Die Section ist an die Scrollposition gekoppelt: sie startet bei
+     translateY(-150px) scale(0.95) und läuft auf den Normalzustand. -->
+<section
+  class="section-x flex w-full flex-col items-center gap-[70px] will-change-transform"
+  data-parallax
+  data-parallax-shift="-150"
+  data-parallax-scale="0.95"
+  style="transform:translateY(-150px) scale(0.95)"
+>
   <div
     class="flex w-full max-w-[1520px] flex-col items-center gap-9 tablet:gap-[60px] desktop:gap-[120px]"
     data-measure="intro-container"
-    data-reveal="scale"
   >
     <!-- Kopfbereich: Label links, Überschrift über drei Spalten -->
     <div

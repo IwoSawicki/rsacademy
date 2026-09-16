@@ -1,6 +1,7 @@
 import { initFitText } from "./fit-text";
 import { initMenu } from "./menu";
 import { initReviews } from "./reviews";
+import { initParallax } from "./parallax";
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -106,6 +107,7 @@ function initContactForm() {
 function init() {
   initFitText();
   initReveal();
+  initParallax();
   initCounters();
   initAccordions();
   initReviews();

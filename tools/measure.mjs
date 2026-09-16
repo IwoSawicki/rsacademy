@@ -40,12 +40,15 @@ const PREP = `
 
 const FIELDS = ['w', 'h', 'x', 'padding', 'gap', 'borderRadius', 'backgroundColor'];
 
+/** Zusätzliche Eigenschaften für Paare mit "detail": true. */
+const DETAIL = ['backdropFilter', 'opacity', 'borderWidth', 'boxShadow'];
+
 async function collect(url, key) {
   const page = await browser.newPage({ viewport: { width: WIDTH, height: 900 } });
   await page.goto(url, { waitUntil: 'load' });
   await page.addStyleTag({ content: PREP });
   await page.waitForTimeout(2200);
-  const data = await page.evaluate(({ pairs, key }) => {
+  const data = await page.evaluate(({ pairs, key, detail }) => {
     const out = {};
     for (const pair of pairs) {
       const sel = key === 'orig' ? pair.orig : `[data-measure="${pair.mine}"]`;
@@ -55,15 +58,24 @@ async function collect(url, key) {
       if (!el) { out[pair.name] = null; continue; }
       const r = el.getBoundingClientRect();
       const cs = getComputedStyle(el);
-      out[pair.name] = {
+      const entry = {
         w: Math.round(r.width), h: Math.round(r.height), x: Math.round(r.left),
         padding: cs.padding, gap: cs.gap,
         borderRadius: cs.borderRadius, backgroundColor: cs.backgroundColor,
       };
+      if (pair.detail) for (const k of detail) {
+        // Tailwind stapelt leere Schatten vor den echten — für den Vergleich
+        // nur die sichtbaren Anteile behalten.
+        entry[k] = k === 'boxShadow'
+          ? cs[k].split(/,(?![^(]*\))/).map((x) => x.trim())
+              .filter((x) => x && !/rgba\(0, 0, 0, 0\) 0px 0px 0px 0px/.test(x)).join(', ') || 'none'
+          : cs[k];
+      }
+      out[pair.name] = entry;
     }
     out.__height = document.body.scrollHeight;
     return out;
-  }, { pairs: PAIRS, key });
+  }, { pairs: PAIRS, key, detail: DETAIL });
   await page.close();
   return data;
 }
@@ -89,7 +101,7 @@ for (const { name } of PAIRS) {
     missing++;
     continue;
   }
-  for (const f of FIELDS) {
+  for (const f of [...FIELDS, ...(PAIRS.find((x) => x.name === name)?.detail ? DETAIL : [])]) {
     const av = a[f], bv = b[f];
     const bad = typeof av === 'number'
       ? Math.abs(av - bv) > TOL
