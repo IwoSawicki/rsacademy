@@ -65,7 +65,11 @@ Framer-Preset → Klasse in `src/styles/global.css`, Werte je Breakpoint (Deskto
 ## Sections in Reihenfolge
 
 1. **Header** — fixed, Logo + Navigation, Burger unterhalb Desktop
-2. **Hero** — Vollbild, Hintergrundbild + dunkles Overlay, Firmenname, „Profis in der Höhe", Claim, Bewertungs-Slider (3 Karten, Pfeile + Bullets; Karte 463px, Wrapper 501px)
+2. **Hero** — Vollbild. Hintergrund eingerückt (`inset 0 6px 6px`, Radius 25px),
+   Bild mit `brightness(.8)`. Titel als **Fit-Text**: 80% breite Spalte, beide Zeilen
+   rechtsbündig, Zeile 2 („Profis in der Höhe") 43% breit. Claim max. 490px.
+   Bewertungs-Slider (Karte 463px) mit **senkrechter** Steuerung rechts daneben
+   (Pfeil hoch, 3 Bullets untereinander, Pfeil runter), Wrapper 501px.
 3. **Einleitung** — Label „Über uns", H1, zwei Fließtexte (Wort-für-Wort-Reveal), Bewertung 4,9 / 320+, Telefon-Button
 4. **Kursangebot** — 9 Karten im 2-Spalten-Raster, darunter zwei Buttons
 5. **Numbers** — 4 Zähler
@@ -90,6 +94,23 @@ Framer-Preset → Klasse in `src/styles/global.css`, Werte je Breakpoint (Deskto
 | Portrait (Bento) | Scroll | `perspective(1200px) translateY(-40px) scale(1.15)` |
 | Akkordeon | Klick | Öffnen/Schließen, Plus-Icon dreht |
 | Bewertungs-Slider | Klick | Karte wechselt, aktiver Bullet `opacity 1`, inaktiv `0.3` |
+
+## Korrekturen nach dem zweiten Abgleich
+
+Beim ersten Durchgang war zu viel geschätzt. Die wichtigsten Abweichungen:
+
+| Stelle | Falsch | Original |
+|---|---|---|
+| „Kursangebot", „Eigene Leistungen", „FAQ" | 38px (`.t-h2`) | **144/99/50px** (Preset `1yvd34u`) |
+| FAQ | „FAQ" als kleines Label, „Häufig gestellte Fragen." als Headline | umgekehrt: „FAQ" ist die Headline, der Satz die Unterzeile (16px, `opacity .6`, max. 380px) |
+| Hero-Titel | zwei Texte links/rechts verteilt | eine 80% breite Spalte, beide Zeilen rechtsbündig, Fit-Text |
+| Hero-Bewertungen | drei Karten nebeneinander, Steuerung darunter | eine Karte, Steuerung **senkrecht rechts daneben** |
+| Bewertungskarte | Sterne + Text | Name oben (Figtree 12px, `opacity .6`), Text darunter (14px, `opacity .8`) |
+| Hero-Hintergrund | randlos + dunkles Overlay | eingerückt `inset 0 6px 6px`, Radius 25px, `brightness(.8)` |
+| Plus-Icons im Hero | Desktop | **nur Tablet**, `opacity .6`, 16px mit 2px-Balken |
+| Bento-Portrait | mittig im Fluss | absolut, 403×653px, `bottom 3px right 45px`, unten ausgeblendet per `mask` |
+| Footer | drei Spalten | **zwei Spalten**: Kontakt links, Linklisten rechts |
+| Leistungen-Akkordeon | 28/22px | Geist **48/40px**, Zeilenabstand `gap 100px` / `50px`, Padding `32px 0` |
 
 ## Bekannte Lücken
 

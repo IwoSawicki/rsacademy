@@ -1,34 +1,31 @@
 ---
-import { faq, images } from "../data/site";
-import SectionLabel from "./SectionLabel.astro";
+import { faq } from "../data/site";
 ---
 
-<section class="section-x flex w-full items-center justify-center">
+<section class="section-x flex w-full items-center justify-center gap-1">
   <div
-    class="container-wide grid gap-10 tablet:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] tablet:gap-1"
+    class="container-wide flex flex-col items-start justify-center gap-10 desktop:flex-row desktop:gap-1"
   >
-    <div class="flex flex-col gap-6" data-reveal="up">
-      <SectionLabel label="FAQ" />
-      <h2 class="t-h2">Häufig gestellte Fragen.</h2>
-      <img
-        src={images.faqSide}
-        alt=""
-        loading="lazy"
-        class="hidden w-full rounded-card object-cover tablet:block"
-      />
+    <!-- Heading -->
+    <div class="flex w-full flex-col items-start gap-[18px] desktop:flex-1 desktop:gap-[30px]">
+      <h2 class="t-display w-full" data-reveal="up">FAQ</h2>
+      <p class="t-body w-full max-w-[380px] opacity-60" data-reveal="up">
+        Häufig gestellte Fragen.
+      </p>
     </div>
 
-    <ul class="flex flex-col">
+    <!-- Fragen -->
+    <ul class="flex w-full flex-col desktop:flex-1">
       {
         faq.map((item) => (
           <li class="border-b border-ink/10" data-reveal="up">
             <button
               type="button"
-              class="group flex w-full items-center justify-between gap-5 py-6 text-left"
+              class="group flex w-full cursor-pointer items-center justify-between gap-5 py-6 text-left"
               data-accordion
               aria-expanded="false"
             >
-              <span class="t-subhead">{item.q}</span>
+              <span class="t-subhead flex-1">{item.q}</span>
               <span
                 class="relative block h-[18px] w-[18px] shrink-0 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
                 aria-hidden="true"

@@ -4,65 +4,83 @@ import RollButton from "./RollButton.astro";
 ---
 
 <section
-  class="section-x flex w-full items-center justify-center bg-surface py-[50px] tablet:py-[100px] desktop:py-[200px]"
+  class="flex w-full items-center justify-center overflow-hidden bg-surface px-6 py-[50px] tablet:px-[30px] tablet:py-[100px] desktop:px-9 desktop:py-[200px]"
 >
-  <div
-    class="container-wide relative overflow-hidden rounded-card bg-ink px-6 py-12 desktop:px-14 desktop:py-20"
-  >
-    <img
-      src={images.leistungenBg}
-      alt=""
-      loading="lazy"
-      class="absolute inset-0 -z-10 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 -z-10 bg-ink/70" aria-hidden="true"></div>
+  <div class="container-wide relative">
+    <!-- Dunkle Karte als Hintergrund, Bild leicht aufgehellt -->
+    <div
+      class="absolute inset-0 -z-0 overflow-hidden bg-ink desktop:rounded-[25px]"
+      aria-hidden="true"
+    >
+      <img
+        src={images.leistungenBg}
+        alt=""
+        loading="lazy"
+        class="h-full w-full object-cover brightness-115"
+      />
+    </div>
 
-    <div class="flex flex-col gap-10">
-      <div class="flex flex-col gap-4" data-reveal="up">
-        <h2 class="t-h2 text-white">Eigene Leistungen</h2>
-        <p class="t-body-lg max-w-[620px] text-white/90">
-          Wir bieten nicht nur Schulungen an, sondern können die Arbeiten selbst
-          ausführen. <br class="hidden desktop:inline" />Mit einem Team an
-          Spezialisten, sind wir Ihr Ansprechpartner für Arbeiten in der Höhe.
-        </p>
+    <!-- Container -->
+    <div
+      class="relative z-[1] flex flex-col items-center gap-[28px] px-6 py-12 tablet:gap-[50px] desktop:gap-20 desktop:px-14 desktop:py-20"
+    >
+      <!-- Top: Überschrift über drei von vier Spalten -->
+      <div
+        class="flex w-full flex-col gap-[18px] desktop:grid desktop:grid-cols-4 desktop:gap-1"
+      >
+        <div
+          class="flex flex-col items-start gap-[14px] desktop:col-span-3 desktop:gap-[22px]"
+        >
+          <h2 class="t-display w-full text-white" data-reveal="up">
+            Eigene Leistungen
+          </h2>
+          <p class="t-body-lg w-full text-white" data-reveal="up">
+            Wir bieten nicht nur Schulungen an, sondern können die Arbeiten
+            selbst ausführen. <br class="hidden desktop:inline" />Mit einem Team
+            an Spezialisten, sind wir Ihr Ansprechpartner für Arbeiten in der
+            Höhe.
+          </p>
+        </div>
       </div>
 
-      <ul class="flex flex-col">
+      <!-- Akkordeon -->
+      <ul class="flex w-full flex-col">
         {
           leistungen.map((item) => (
-            <li class="border-b border-white/100" data-reveal="up">
+            <li class="w-full border-b border-white" data-reveal="up">
               <button
                 type="button"
-                class="group flex w-full items-center gap-5 py-6 text-left"
+                class="group flex w-full cursor-pointer flex-col items-start py-8 text-left"
                 data-accordion
                 aria-expanded="false"
               >
-                <span
-                  class="font-geist text-[28px] font-semibold text-white desktop:text-[48px]"
-                  style="letter-spacing:-0.4px;line-height:120%"
-                >
-                  {item.no}
-                </span>
-                <span
-                  class="font-geist flex-1 text-[22px] font-semibold text-white desktop:text-[40px]"
-                  style="letter-spacing:-0.4px;line-height:120%"
-                >
-                  {item.title}
-                </span>
-                <span
-                  class="relative block h-[26px] w-[26px] shrink-0 rotate-45 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-0"
-                  aria-hidden="true"
-                >
-                  <span class="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 bg-white" />
-                  <span class="absolute top-0 left-1/2 h-full w-[2px] -translate-x-1/2 bg-white" />
-                </span>
+                <div class="flex w-full flex-col items-start gap-[10px] desktop:flex-row desktop:gap-[100px]">
+                  <span class="font-geist text-[32px] leading-[120%] font-semibold whitespace-pre text-white desktop:text-[48px]" style="letter-spacing:-0.4px">
+                    {item.no}
+                  </span>
+
+                  <div class="flex w-full flex-1 flex-col items-start">
+                    <div class="flex w-full items-center gap-[10px] desktop:gap-[50px]">
+                      <span class="font-geist flex-1 text-[24px] leading-[120%] font-semibold text-white desktop:text-[40px]" style="letter-spacing:-0.4px">
+                        {item.title}
+                      </span>
+                      <span
+                        class="relative block h-[47px] w-[47px] shrink-0 rotate-45 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-0 desktop:h-[57px] desktop:w-[57px]"
+                        aria-hidden="true"
+                      >
+                        <span class="absolute top-1/2 left-1/4 h-[2px] w-1/2 -translate-y-1/2 bg-white" />
+                        <span class="absolute top-1/4 left-1/2 h-1/2 w-[2px] -translate-x-1/2 bg-white" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </button>
             </li>
           ))
         }
       </ul>
 
-      <div data-reveal="up">
+      <div class="flex w-full" data-reveal="up">
         <RollButton label="Jetzt Kontaktieren" href="/kontakt" variant="light" />
       </div>
     </div>

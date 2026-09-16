@@ -1,99 +1,105 @@
 ---
 import { nav, legal, contact } from "../data/site";
+import PlusIcon from "./PlusIcon.astro";
 
 const social = [
   { label: "Linked In", href: "https://www.linkedin.com" },
   { label: "Google Maps", href: "https://maps.google.com" },
 ];
+
+const groups = [
+  { title: "Navigation", items: nav, dots: true },
+  { title: "Soziale Netzwerke", items: social, external: true },
+  { title: "Rechtliches", items: legal },
+];
 ---
 
-<footer class="w-full bg-surface">
-  <div class="section-x container-wide mx-auto flex flex-col gap-16 py-16">
-    <div class="flex flex-col gap-10 desktop:flex-row desktop:justify-between">
-      <a
-        href={`mailto:${contact.mailKurs}`}
-        class="t-h1 block w-max border-b border-ink/20 pb-2 transition-opacity duration-300 hover:opacity-60"
-        >{contact.mailKurs}</a
-      >
-    </div>
-
-    <div class="grid gap-10 tablet:grid-cols-3">
-      <nav class="flex flex-col gap-3">
-        <p class="t-caption opacity-60">Navigation</p>
-        <ul class="flex flex-col gap-2">
-          {
-            nav.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="t-body inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
-                >
-                  <span class="h-[5px] w-[5px] rounded-full bg-ink" />
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <nav class="flex flex-col gap-3">
-        <p class="t-caption opacity-60">Soziale Netzwerke</p>
-        <ul class="flex flex-col gap-2">
-          {
-            social.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="t-body group inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
-                >
-                  {item.label}
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    class="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 17L17 7M7 7h10v10" />
-                  </svg>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <nav class="flex flex-col gap-3">
-        <p class="t-caption opacity-60">Rechtliches</p>
-        <ul class="flex flex-col gap-2">
-          {
-            legal.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="t-body transition-opacity duration-300 hover:opacity-60"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </div>
-
+<footer class="w-full overflow-hidden bg-surface">
+  <!-- Top -->
+  <div
+    class="relative z-[1] flex w-full flex-col items-center gap-10 bg-surface px-5 py-[50px] tablet:gap-[70px] tablet:px-[30px] tablet:pt-[140px] tablet:pb-[100px] desktop:gap-20 desktop:px-9 desktop:py-[100px]"
+  >
+    <!-- Links: zwei Spalten -->
     <div
-      class="flex flex-col gap-4 border-t border-ink/10 pt-6 tablet:flex-row tablet:items-end tablet:justify-between"
+      class="container-wide flex flex-col items-start gap-10 tablet:grid tablet:grid-cols-2 tablet:gap-1"
     >
-      <p class="t-h2">Rescue & Safety<br />Academy AG</p>
+      <!-- Spalte 1: Kontakt -->
+      <div
+        class="flex w-full flex-col items-start gap-10 tablet:gap-[70px] tablet:pr-[30px] desktop:gap-20 desktop:pr-20"
+      >
+        <PlusIcon size={16} bar={2} color="#0a0a0a" class="opacity-30" />
+
+        <div class="flex w-full flex-col items-start gap-7">
+          <a
+            href={contact.phoneHref}
+            class="t-h2 whitespace-pre transition-opacity duration-300 hover:opacity-60"
+            >{contact.phone}</a
+          >
+          <span class="relative">
+            <a
+              href={`mailto:${contact.mailKurs}`}
+              class="t-h2 whitespace-pre transition-opacity duration-300 hover:opacity-60"
+              >{contact.mailKurs}</a
+            >
+            <span
+              class="absolute -bottom-[6px] left-0 h-[2px] w-full bg-ink"
+              aria-hidden="true"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Spalte 2: Linklisten -->
+      <div
+        class="flex w-full flex-col items-start gap-10 tablet:gap-[90px] desktop:gap-[100px]"
+      >
+        {
+          groups.map((group) => (
+            <nav class="flex w-full flex-col items-start gap-5">
+              <p class="t-caption opacity-60">{group.title}</p>
+              <ul class="flex flex-col gap-2">
+                {group.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      target={group.external ? "_blank" : undefined}
+                      rel={group.external ? "noopener noreferrer" : undefined}
+                      class="t-body-lg group inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
+                    >
+                      {group.dots && (
+                        <span class="h-[5px] w-[5px] rounded-full bg-ink" />
+                      )}
+                      {item.label}
+                      {group.external && (
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          class="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+                          aria-hidden="true"
+                        >
+                          <path d="M7 17L17 7M7 7h10v10" />
+                        </svg>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div
+      class="container-wide flex flex-col items-start gap-6 border-t border-ink/10 pt-8 tablet:flex-row tablet:items-end tablet:justify-between"
+    >
+      <p class="t-h2">Rescue &amp; Safety<br />Academy AG</p>
       <div class="flex flex-col gap-1 tablet:items-end">
-        <p class="t-caption opacity-60">© 2026 Search & Rescue Academy AG</p>
+        <p class="t-caption opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
         <p class="t-caption opacity-60">
           Mit ❤️ erstellt von <a
             href="https://sawix.studio"

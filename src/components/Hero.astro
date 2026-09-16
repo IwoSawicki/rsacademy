@@ -1,5 +1,6 @@
 ---
 import { images } from "../data/site";
+import FitText from "./FitText.astro";
 import PlusIcon from "./PlusIcon.astro";
 import ReviewSlider from "./ReviewSlider.astro";
 ---
@@ -8,66 +9,88 @@ import ReviewSlider from "./ReviewSlider.astro";
   id="hero"
   class="relative flex w-full flex-col items-center justify-center gap-[50px] tablet:gap-[100px] desktop:gap-[110px]"
 >
+  <!-- First screen -->
   <div
     class="relative z-[3] flex w-full flex-col items-center justify-center overflow-hidden bg-surface pt-[61px] desktop:h-screen"
   >
+    <!-- Container -->
     <div
-      class="relative flex h-full w-full flex-1 items-center justify-center overflow-hidden desktop:px-1 desktop:pb-1"
+      class="relative flex w-full flex-1 items-center justify-center overflow-hidden tablet:px-1 tablet:pb-1"
       data-reveal="up-lg"
     >
-      <!-- Hintergrund -->
-      <div class="absolute inset-0 z-0 bg-ink desktop:inset-1 desktop:rounded-[8px]">
+      <!-- Content -->
+      <div
+        class="relative z-[1] flex h-[80vh] w-full flex-1 flex-col items-center justify-start gap-[100px] overflow-hidden px-5 pt-[54px] pb-9 tablet:h-auto tablet:px-[30px] tablet:py-20 desktop:h-full desktop:justify-between desktop:gap-0 desktop:px-9 desktop:py-[90px]"
+      >
+        <!-- Top -->
+        <div
+          class="flex w-full flex-col items-start justify-start gap-[26px] tablet:gap-5 desktop:flex-row desktop:items-center desktop:gap-0"
+        >
+          <!-- Company: rechtsbündige Spalte, 80% breit auf Desktop -->
+          <div
+            class="flex w-full flex-col items-end gap-[3px] tablet:gap-5 desktop:w-4/5"
+          >
+            <FitText
+              viewBox="0 0 612.8523981626503 57"
+              fontSize={47.53996937750419}
+              class="hidden tablet:block"
+            >
+              Rescue &amp; Safety Academy AG
+            </FitText>
+
+            <FitText
+              viewBox="0 0 349.98579589903943 119"
+              fontSize={49.76326498399014}
+              class="tablet:hidden"
+            >
+              Rescue &amp; Safety{"\n"}Academy AG
+            </FitText>
+
+            <FitText
+              viewBox="0 0 384.0223246899692 60"
+              fontSize={50.37207816615295}
+              align="right"
+              class="w-[45%] tablet:w-[43%]"
+            >
+              Profis in der Höhe
+            </FitText>
+          </div>
+        </div>
+
+        <!-- Icons: nur auf Tablet sichtbar -->
+        <div
+          class="hidden w-full items-center justify-between opacity-60 tablet:flex desktop:hidden"
+        >
+          {Array.from({ length: 4 }).map(() => <PlusIcon size={16} bar={2} />)}
+        </div>
+
+        <!-- Bottom -->
+        <div
+          class="flex w-full flex-col items-start justify-start gap-[222px] tablet:gap-[60px] desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-0"
+        >
+          <div
+            class="flex w-full flex-col items-start gap-[30px] tablet:gap-[31px] desktop:flex-1 desktop:flex-row desktop:items-end desktop:justify-between desktop:pr-[110px]"
+          >
+            <p class="t-body w-full text-white desktop:max-w-[490px]">
+              Marktführer für Sicherheits- und <br />
+              Rettungsausbildungen in der Schweiz
+            </p>
+          </div>
+
+          <ReviewSlider />
+        </div>
+      </div>
+
+      <!-- BG: eingerückt mit großer Rundung, Bild abgedunkelt -->
+      <div
+        class="absolute inset-x-[2px] top-0 bottom-[2px] z-0 overflow-hidden rounded-[16px] bg-ink tablet:inset-x-1 tablet:bottom-1 desktop:inset-x-[6px] desktop:bottom-[6px] desktop:rounded-[25px]"
+      >
         <img
           src={images.heroBg}
           alt=""
           fetchpriority="high"
-          class="h-full w-full object-cover desktop:rounded-[8px]"
+          class="absolute inset-0 h-full w-full object-cover brightness-80"
         />
-        <div
-          class="absolute inset-0 bg-ink/35 desktop:rounded-[8px]"
-          aria-hidden="true"
-        >
-        </div>
-      </div>
-
-      <!-- Inhalt -->
-      <div
-        class="relative z-[1] flex w-full flex-col justify-between gap-[60px] px-5 pt-[54px] pb-9 tablet:gap-[100px] tablet:px-[30px] tablet:py-20 desktop:h-full desktop:gap-0 desktop:px-9 desktop:py-[90px]"
-      >
-        <!-- Kopfzeile -->
-        <div class="flex w-full flex-col gap-6">
-          <div
-            class="flex w-full flex-col items-start gap-[26px] tablet:gap-5 desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-0"
-          >
-            <p
-              class="text-[9vw] leading-[120%] font-semibold text-white tablet:text-[6vw] desktop:text-[clamp(30px,3.3vw,48px)]"
-              style="letter-spacing:-0.06em"
-            >
-              Rescue & Safety Academy AG
-            </p>
-            <p
-              class="text-[8vw] leading-[120%] font-semibold text-white tablet:text-[5.5vw] desktop:text-right desktop:text-[clamp(32px,3.5vw,50px)]"
-              style="letter-spacing:-0.06em"
-            >
-              Profis in der Höhe
-            </p>
-          </div>
-
-          <div class="hidden justify-between opacity-60 desktop:flex">
-            {Array.from({ length: 4 }).map(() => <PlusIcon size={10} />)}
-          </div>
-        </div>
-
-        <!-- Fußzeile -->
-        <div
-          class="flex w-full flex-col items-start gap-[30px] tablet:gap-[31px] desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-10"
-        >
-          <p class="t-body-lg max-w-[420px] text-white desktop:max-w-none">
-            Marktführer für Sicherheits- und <br class="hidden desktop:inline" />
-            Rettungsausbildungen in der Schweiz
-          </p>
-          <ReviewSlider />
-        </div>
       </div>
     </div>
   </div>

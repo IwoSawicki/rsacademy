@@ -1,0 +1,35 @@
+---
+/**
+ * Framers "Fit Text": Der Text skaliert mit der Container-Breite.
+ * Umgesetzt wie im Original — ein SVG mit viewBox im Seitenverhältnis des
+ * Textes; der Text liegt als HTML im foreignObject und skaliert mit.
+ *
+ * viewBox und fontSize stammen aus `reference/rsacademy.ch/index.html` und
+ * dienen als Startwert. `fit-text.ts` misst nach dem Laden der Schrift nach
+ * und korrigiert die viewBox, damit der Text exakt anliegt — unabhängig
+ * davon, welche Schrift tatsächlich geladen wurde.
+ */
+interface Props {
+  viewBox: string;
+  fontSize: number;
+  align?: "left" | "right";
+  class?: string;
+}
+
+const { viewBox, fontSize, align = "left", class: className = "" } = Astro.props;
+---
+
+<svg
+  class:list={["block h-auto w-full", className]}
+  viewBox={viewBox}
+  role="presentation"
+  data-fit-text
+>
+  <foreignObject width="100%" height="100%" style="overflow:visible">
+    <p
+      style={`margin:0;display:inline-block;color:#fff;font-weight:600;letter-spacing:-0.06em;line-height:120%;white-space:pre;text-align:${align};font-size:${fontSize}px`}
+    >
+      <slot />
+    </p>
+  </foreignObject>
+</svg>

@@ -1,3 +1,5 @@
+import { initFitText } from "./fit-text";
+
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Elemente mit [data-reveal] beim Eintritt in den Viewport einblenden. */
@@ -134,6 +136,7 @@ function initContactForm() {
 }
 
 function init() {
+  initFitText();
   initReveal();
   initCounters();
   initAccordions();

@@ -4,36 +4,46 @@ import RollButton from "./RollButton.astro";
 ---
 
 <section class="section-x flex w-full flex-col items-center gap-[70px]">
-  <div class="container-wide flex flex-col gap-10">
-    <h2 class="t-h2" data-reveal="up">Kursangebot</h2>
+  <div
+    class="container-wide flex flex-col items-center gap-[30px] tablet:gap-[60px] desktop:gap-[90px]"
+  >
+    <!-- Top -->
+    <div class="flex w-full flex-col items-start gap-4 desktop:gap-1">
+      <h2 class="t-display w-full" data-reveal="up">Kursangebot</h2>
+    </div>
 
+    <!-- Kartenraster, 1000px breit und zentriert -->
     <ul
-      class="container-narrow mx-auto flex flex-col gap-[10px] tablet:grid tablet:grid-cols-2 tablet:gap-5"
+      class="container-narrow flex flex-col items-center gap-[10px] tablet:grid tablet:grid-cols-2 tablet:gap-5"
     >
       {
         kurse.map((kurs, i) => (
-          <li data-reveal="up" style={`transition-delay:${(i % 2) * 90}ms`}>
+          <li class="w-full" data-reveal="up" style={`transition-delay:${(i % 2) * 90}ms`}>
             <a
               href="/kurse"
-              class="group block overflow-hidden rounded-card bg-white transition-opacity duration-500 hover:opacity-100"
+              class="group flex w-full cursor-pointer flex-col items-center gap-1"
             >
-              <div class="flex min-h-[58px] items-center justify-between gap-5 px-6 py-[18px]">
-                <p class="t-label text-ink">{kurs.title}</p>
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  class="shrink-0 -rotate-40 text-ink transition-transform duration-[450ms] ease-[var(--ease-framer)] group-hover:rotate-0"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
+              <!-- Project header -->
+              <div class="flex min-h-[58px] w-full items-center gap-4 rounded-card bg-white px-5 py-4 tablet:gap-5 tablet:px-6 tablet:py-[18px]">
+                <p class="t-label flex-1 text-ink">{kurs.title}</p>
+                <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    class="-rotate-40 text-ink transition-transform duration-[450ms] ease-[var(--ease-framer)] group-hover:rotate-0"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
               </div>
 
-              <div class="relative aspect-[1.36585] w-full">
+              <!-- Background + Image -->
+              <div class="relative aspect-[1.36585] w-full overflow-hidden rounded-card bg-white">
                 <div class="absolute inset-1 overflow-hidden rounded-[16px] transition-[inset] duration-[450ms] ease-[var(--ease-framer)] group-hover:inset-0">
                   <img
                     src={kurs.image}
@@ -41,7 +51,7 @@ import RollButton from "./RollButton.astro";
                     width="600"
                     height="400"
                     loading="lazy"
-                    class="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-framer)] group-hover:scale-105"
+                    class="h-full w-full object-cover"
                   />
                   <div
                     class="absolute inset-0 bg-ink/15 transition-opacity duration-500 group-hover:opacity-0"
@@ -55,7 +65,7 @@ import RollButton from "./RollButton.astro";
       }
     </ul>
 
-    <div class="flex flex-wrap items-center gap-3" data-reveal="up">
+    <div class="flex w-full flex-wrap items-center gap-3" data-reveal="up">
       <RollButton label="Kontaktformular" href="/kontakt" />
       <RollButton
         label={contact.phoneLabel}

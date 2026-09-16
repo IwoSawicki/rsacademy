@@ -10,47 +10,67 @@ const paragraphs = [
 ];
 ---
 
-<section class="section-x flex w-full items-center justify-center">
-  <div class="container-wide grid gap-1 tablet:h-[600px] tablet:grid-cols-2">
-    <!-- Portrait-Karte -->
+<section class="section-x flex w-full items-center justify-center gap-1">
+  <div
+    class="container-wide flex flex-col gap-1 tablet:flex-row tablet:items-start desktop:grid desktop:h-[600px] desktop:grid-cols-4"
+  >
+    <!-- Portraitkarte -->
     <div
-      class="relative flex h-[510px] flex-col justify-between overflow-hidden rounded-card bg-ink p-[30px] tablet:h-full desktop:p-10"
+      class="relative flex h-[510px] w-full flex-col items-start justify-between overflow-visible p-[30px] tablet:h-[600px] tablet:flex-1 desktop:col-span-2 desktop:h-full desktop:p-10"
       data-reveal="up"
     >
-      <div class="relative z-[2] flex items-start justify-between">
-        <div class="flex flex-col gap-1">
-          <p class="t-body text-white">Roger Schüle</p>
-          <p class="t-caption text-white/70">
-            Geschäftsführer<br />Rescue & Safety Academy AG
-          </p>
-        </div>
-        <PlusIcon size={10} />
+      <!-- BG -->
+      <div
+        class="absolute inset-0 z-0 overflow-hidden rounded-[16px] bg-ink desktop:rounded-card"
+        aria-hidden="true"
+      >
       </div>
 
-      <p class="relative z-[2] t-quote max-w-[420px] text-white desktop:text-right">
-        "Ein erfolgreiches Unternehmen muss man mit Leidenschaft aufbauen"
-      </p>
-
+      <!-- Portrait: unten rechts verankert, unten ausgeblendet -->
       <img
         src={images.portrait}
         alt="Roger Schüle"
         width="944"
         height="1500"
         loading="lazy"
-        class="pointer-events-none absolute bottom-0 left-1/2 z-[1] h-[85%] -translate-x-1/2 object-contain"
+        class="pointer-events-none absolute right-[18px] bottom-0 z-[1] h-[482px] w-[215px] object-cover object-top tablet:right-[39px] tablet:h-[481px] tablet:w-[78%] desktop:right-[45px] desktop:bottom-[3px] desktop:h-[653px] desktop:w-[403px]"
+        style="mask-image:linear-gradient(#000 68%,#0000 100%);-webkit-mask-image:linear-gradient(#000 68%,#0000 100%)"
       />
+
+      <!-- Top -->
+      <div class="relative z-[2] flex w-full items-start justify-between">
+        <div class="flex w-min flex-col items-start gap-1">
+          <p class="t-body whitespace-pre text-white">Roger Schüle</p>
+          <p class="t-caption whitespace-pre text-white opacity-60">
+            Geschäftsführer<br />Rescue &amp; Safety Academy AG
+          </p>
+        </div>
+        <PlusIcon size={16} bar={2} />
+      </div>
+
+      <!-- Bottom -->
+      <div
+        class="relative z-[2] flex w-full flex-col items-start gap-9 desktop:flex-row desktop:items-end desktop:justify-end desktop:gap-1"
+      >
+        <p
+          class="t-quote w-full text-white desktop:max-w-[290px] desktop:text-right"
+        >
+          "Ein erfolgreiches Unternehmen muss man mit Leidenschaft aufbauen"
+        </p>
+      </div>
     </div>
 
-    <!-- Text-Karte -->
+    <!-- Textkarte -->
     <div
-      class="flex flex-col justify-between gap-8 overflow-hidden rounded-card bg-white p-[30px] tablet:h-full desktop:p-10"
+      class="flex w-full flex-col items-start justify-start gap-[120px] overflow-hidden rounded-[16px] bg-white p-[30px] tablet:flex-1 tablet:justify-between tablet:gap-8 desktop:col-span-2 desktop:h-full desktop:rounded-card desktop:p-10"
       data-reveal="up"
       style="transition-delay:90ms"
     >
-      <h2 class="t-h3">Wir stehen für Sicherheit am Arbeitsplatz.</h2>
-
-      <div class="flex flex-col gap-4">
-        {paragraphs.map((text) => <p class="t-body-lg opacity-70">{text}</p>)}
+      <div class="flex flex-col gap-6">
+        <h2 class="t-h3">Wir stehen für Sicherheit am Arbeitsplatz.</h2>
+        <div class="flex flex-col gap-4 opacity-60 desktop:opacity-100">
+          {paragraphs.map((text) => <p class="t-body-lg">{text}</p>)}
+        </div>
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
