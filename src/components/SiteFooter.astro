@@ -18,10 +18,12 @@ const groups = [
   <!-- Top -->
   <div
     class="relative z-[1] flex w-full flex-col items-center gap-10 bg-surface px-5 py-[50px] tablet:gap-[70px] tablet:px-[30px] tablet:pt-[140px] tablet:pb-[100px] desktop:gap-20 desktop:px-9 desktop:py-[100px]"
+    data-measure="footer-top"
   >
     <!-- Links: zwei Spalten -->
     <div
       class="container-wide flex flex-col items-start gap-10 tablet:grid tablet:grid-cols-2 tablet:gap-1"
+      data-measure="footer-links"
     >
       <!-- Spalte 1: Kontakt -->
       <div
@@ -55,7 +57,7 @@ const groups = [
         {
           groups.map((group) => (
             <nav class="flex w-full flex-col items-start gap-5">
-              <p class="t-caption opacity-60">{group.title}</p>
+              <p class="t-small opacity-60">{group.title}</p>
               <ul class="flex flex-col gap-2">
                 {group.items.map((item) => (
                   <li>

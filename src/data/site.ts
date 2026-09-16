@@ -46,8 +46,12 @@ export const reviews = [
 
 export const kurse = [
   { title: "Absturzsicherheit PSAgA", image: `${IMG}/kurs-absturzsicherheit.svg` },
-  { title: "HAB International 2 Kategorien, 3a & 3b", image: `${IMG}/kurs-hab-international.svg` },
-  { title: "Bauarbeiten-verordnung 2022", image: `${IMG}/kurs-bauarbeitenverordnung.svg` },
+  {
+    // Diese Karte trägt im Original je Breakpoint einen anderen Titel
+    title: "HAB International 2 Kategorien, 3a & 3b",
+    titlePhone: "Bauarbeiten-verordnung 2022",
+    image: `${IMG}/kurs-hab-international.svg`,
+  },
   { title: "Hallenkran Portalkran Kategorie C", image: `${IMG}/kurs-hallenkran.svg` },
   { title: "Personaltraining by Rescue & Safety Academy AG", image: `${IMG}/kurs-personaltraining.svg` },
   { title: "Bauarbeitenverordnung verstehen - Lasten richtig anschlagen", image: `${IMG}/kurs-lasten-anschlagen.svg` },
@@ -102,6 +106,7 @@ export const images = {
   heroBg: `${IMG}/hero-bg.svg`,
   portrait: `${IMG}/portrait.svg`,
   leistungenBg: `${IMG}/leistungen-bg.svg`,
-  faqSide: `${IMG}/faq.svg`,
+  kontaktBg: `${IMG}/kontakt-bg.svg`,
+  noise: `${IMG}/noise.svg`,
   favicon: `${IMG}/favicon.svg`,
 };

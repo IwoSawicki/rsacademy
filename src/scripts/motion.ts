@@ -1,4 +1,6 @@
 import { initFitText } from "./fit-text";
+import { initMenu } from "./menu";
+import { initReviews } from "./reviews";
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -91,40 +93,6 @@ function initAccordions() {
   });
 }
 
-/** Bewertungs-Slider im Hero. */
-function initReviewSlider() {
-  document.querySelectorAll<HTMLElement>("[data-review-slider]").forEach((root) => {
-    const slides = root.querySelectorAll<HTMLElement>("[data-review-slide]");
-    const dots = root.querySelectorAll<HTMLElement>("[data-review-dot]");
-    const prev = root.querySelector<HTMLButtonElement>("[data-review-prev]");
-    const next = root.querySelector<HTMLButtonElement>("[data-review-next]");
-    if (slides.length < 2) return;
-
-    let index = 0;
-
-    const show = (to: number) => {
-      index = (to + slides.length) % slides.length;
-      slides.forEach((slide, i) => {
-        const active = i === index;
-        slide.classList.toggle("opacity-100", active);
-        slide.classList.toggle("opacity-0", !active);
-        slide.classList.toggle("pointer-events-none", !active);
-        slide.setAttribute("aria-hidden", String(!active));
-      });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("opacity-100", i === index);
-        dot.classList.toggle("opacity-30", i !== index);
-      });
-      prev?.classList.toggle("opacity-30", index === 0);
-      prev?.classList.toggle("opacity-100", index !== 0);
-    };
-
-    prev?.addEventListener("click", () => show(index - 1));
-    next?.addEventListener("click", () => show(index + 1));
-    show(0);
-  });
-}
-
 /** Kontaktformular: noch kein Backend angebunden. */
 function initContactForm() {
   document.querySelectorAll<HTMLFormElement>("[data-contact-form]").forEach((form) => {
@@ -140,9 +108,12 @@ function init() {
   initReveal();
   initCounters();
   initAccordions();
-  initReviewSlider();
+  initReviews();
   initContactForm();
 }
+
+// Das Menü muss sofort bedienbar sein, unabhängig vom Ladebildschirm
+initMenu();
 
 if (document.getElementById("preloader")) {
   document.addEventListener("preloader:done", init, { once: true });

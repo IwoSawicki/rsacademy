@@ -1,33 +1,46 @@
 ---
 import { faq } from "../data/site";
+
+/**
+ * FAQ. Im Original ist jede Frage eine weiße Karte: Radius 14px,
+ * Innenabstand 26px, 4px Abstand zur nächsten. Frage in Inter 18px/500,
+ * Zeilenhöhe 1.3em, Laufweite -0.04em.
+ */
 ---
 
 <section class="section-x flex w-full items-center justify-center gap-1">
   <div
     class="container-wide flex flex-col items-start justify-center gap-10 desktop:flex-row desktop:gap-1"
+    data-measure="faq-container"
   >
-    <!-- Heading -->
-    <div class="flex w-full flex-col items-start gap-[18px] desktop:flex-1 desktop:gap-[30px]">
+    <div
+      class="flex w-full flex-col items-start gap-[18px] desktop:flex-1 desktop:gap-[30px]"
+      data-measure="faq-heading"
+    >
       <h2 class="t-display w-full" data-reveal="up">FAQ</h2>
       <p class="t-body w-full max-w-[380px] opacity-60" data-reveal="up">
         Häufig gestellte Fragen.
       </p>
     </div>
 
-    <!-- Fragen -->
-    <ul class="flex w-full flex-col desktop:flex-1">
+    <ul class="flex w-full flex-col gap-1 desktop:flex-1">
       {
         faq.map((item) => (
-          <li class="border-b border-ink/10" data-reveal="up">
+          <li class="overflow-hidden rounded-[14px] bg-white" data-reveal="up">
             <button
               type="button"
-              class="group flex w-full cursor-pointer items-center justify-between gap-5 py-6 text-left"
+              class="flex w-full cursor-pointer items-center justify-between p-[26px] text-left"
               data-accordion
               aria-expanded="false"
             >
-              <span class="t-subhead flex-1">{item.q}</span>
               <span
-                class="relative block h-[18px] w-[18px] shrink-0 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
+                class="text-[18px] leading-[1.3em] font-medium text-ink"
+                style="letter-spacing:-0.04em"
+              >
+                {item.q}
+              </span>
+              <span
+                class="relative ml-4 block h-[18px] w-[18px] shrink-0 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
                 aria-hidden="true"
               >
                 <span class="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-ink" />
@@ -39,7 +52,7 @@ import { faq } from "../data/site";
               data-accordion-panel
             >
               <div class="overflow-hidden">
-                <p class="t-body-lg pb-6 opacity-70">{item.a}</p>
+                <p class="t-body-lg px-[26px] pb-[26px] opacity-70">{item.a}</p>
               </div>
             </div>
           </li>

@@ -1,124 +1,142 @@
 ---
 import { nav, legal, contact } from "../data/site";
+import RollLink from "./RollLink.astro";
+import PlusIcon from "./PlusIcon.astro";
 ---
 
+<!-- Kopfzeile: volle Breite, Logo links, Navigation gleichmäßig verteilt -->
 <header
-  class="fixed top-0 left-1/2 z-50 w-full max-w-[1200px] -translate-x-1/2 bg-surface/90 px-5 py-[19px] backdrop-blur-[7px] tablet:px-8 desktop:px-9"
+  class="fixed top-0 left-0 z-50 w-full bg-surface/90 px-5 py-[19px] backdrop-blur-[7px] tablet:px-8 desktop:px-9"
 >
-  <nav class="flex items-center justify-between">
-    <a href="/" class="text-ink" style="letter-spacing:-0.04em;line-height:110%">
-      <span class="text-[14px] font-semibold tablet:text-[20px]"
-        >Rescue & Safety Academy AG</span
-      >
-    </a>
+  <nav class="relative z-[2] flex w-full items-center justify-between">
+    <a
+      href="/"
+      class="text-[14px] leading-[110%] font-semibold whitespace-pre text-ink tablet:text-[20px]"
+      style="letter-spacing:-0.04em">Rescue &amp; Safety Academy AG</a
+    >
 
-    <!-- Desktop-Navigation -->
-    <ul class="hidden items-center gap-[30px] desktop:flex">
+    <!-- Navigationspunkte, gleichmäßig über die Breite verteilt -->
+    <ul
+      class="absolute left-1/2 hidden w-[62%] -translate-x-1/2 items-center justify-between desktop:flex"
+    >
       {
         nav.slice(1).map((item) => (
           <li>
-            <a
+            <RollLink
               href={item.href}
-              class="relative text-[16px] font-semibold text-ink-soft transition-opacity duration-300 hover:opacity-60"
-              style="letter-spacing:-0.04em;line-height:110%"
-            >
-              {item.label}
-            </a>
+              label={item.label}
+              distance={40}
+              class="text-[16px] leading-[110%] font-semibold text-ink-soft"
+            />
           </li>
         ))
       }
     </ul>
 
-    <!-- Menü-Toggle -->
+    <!-- Menü-Schalter -->
     <button
       type="button"
       id="menu-toggle"
-      class="flex h-[34px] w-[34px] items-center justify-center desktop:hidden"
+      class="relative z-[3] flex h-[34px] w-[34px] cursor-pointer items-center justify-center"
       aria-label="Menü öffnen"
       aria-expanded="false"
       aria-controls="menu-overlay"
     >
-      <span class="relative block h-[12px] w-[20px]">
+      <span class="relative block h-[12px] w-[26px]">
         <span
-          class="absolute top-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-300 ease-[var(--ease-framer)]"
+          class="absolute top-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-[450ms] ease-[var(--ease-framer)]"
           data-burger-top></span>
         <span
-          class="absolute bottom-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-300 ease-[var(--ease-framer)]"
+          class="absolute bottom-0 left-0 h-[1.5px] w-full bg-ink transition-transform duration-[450ms] ease-[var(--ease-framer)]"
           data-burger-bottom></span>
       </span>
     </button>
   </nav>
 </header>
 
-<!-- Overlay-Navigation -->
+<!--
+  Overlay: im Original sitzt der Block geschlossen bei `top:-750px` zwischen
+  `left/right: 36px` und fährt beim Öffnen herunter. Die Navigationspunkte
+  blenden gestaffelt ein.
+-->
 <div
   id="menu-overlay"
-  class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-ink px-5 pt-[90px] pb-10 opacity-0 transition-[opacity,visibility] duration-500 ease-[var(--ease-framer)] tablet:px-8"
+  class="invisible fixed inset-x-0 top-0 z-40 bg-surface opacity-0 transition-[opacity,visibility] duration-[600ms] ease-[var(--ease-framer)]"
 >
-  <ul class="flex flex-col gap-2">
-    {
-      nav.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class="t-h1 block text-white transition-opacity duration-300 hover:opacity-60"
-          >
-            {item.label}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-
-  <div class="flex flex-col gap-4 text-white">
-    <div class="flex flex-col gap-1">
-      <a href={contact.phoneHref} class="t-body hover:opacity-60"
-        >{contact.phone}</a
-      >
-      <a href={`mailto:${contact.mailInfo}`} class="t-body hover:opacity-60"
-        >{contact.mailInfo}</a
-      >
-    </div>
-    <div class="flex gap-4 opacity-60">
+  <div
+    class="flex w-full flex-col items-center gap-[110px] px-8 pt-[130px] pb-10 desktop:gap-[120px] desktop:px-9 desktop:pt-[120px]"
+    data-menu-body
+  >
+    <!-- Navigation -->
+    <ul class="flex w-full flex-col items-center gap-1">
       {
-        legal.map((item) => (
-          <a href={item.href} class="t-caption hover:opacity-100">
-            {item.label}
-          </a>
+        nav.map((item, i) => (
+          <li
+            class="translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)]"
+            data-menu-item
+            style={`transition-delay:${i * 60}ms`}
+          >
+            <RollLink
+              href={item.href}
+              label={item.label}
+              class="t-h1 text-ink"
+            />
+          </li>
         ))
       }
+    </ul>
+
+    <!-- Sprachwahl -->
+    <div
+      class="translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)]"
+      data-menu-item
+      style={`transition-delay:${nav.length * 60}ms`}
+    >
+      <span
+        class="flex items-center gap-2 rounded-[10px] border border-ink/10 bg-white px-4 py-[10px]"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18" />
+        </svg>
+        <span class="t-body-lg">Deutsch</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </span>
     </div>
-    <p class="t-caption opacity-60">© 2026 Search & Rescue Academy AG</p>
+
+    <!-- Fußzeile des Menüs -->
+    <div
+      class="flex w-full flex-col gap-6 translate-y-[90px] opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-framer)] desktop:flex-row desktop:items-end desktop:justify-between"
+      data-menu-item
+      style={`transition-delay:${(nav.length + 1) * 60}ms`}
+    >
+      <div class="flex flex-col items-start gap-2">
+        <a href={contact.phoneHref} class="t-body-lg hover:opacity-60"
+          >{contact.phone}</a
+        >
+        <span class="flex items-center gap-2">
+          <PlusIcon size={14} bar={2} color="#0a0a0a" />
+          <a
+            href={`mailto:${contact.mailInfo}`}
+            class="t-h2 underline underline-offset-[6px] hover:opacity-60"
+            >{contact.mailInfo}</a
+          >
+        </span>
+      </div>
+
+      <div class="flex gap-8">
+        {
+          legal.map((item) => (
+            <a href={item.href} class="t-body hover:opacity-60">
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <p class="t-body opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
+    </div>
   </div>
 </div>
-
-<script>
-  const toggle = document.getElementById("menu-toggle");
-  const overlay = document.getElementById("menu-overlay");
-  const top = document.querySelector<HTMLElement>("[data-burger-top]");
-  const bottom = document.querySelector<HTMLElement>("[data-burger-bottom]");
-
-  let open = false;
-
-  const setOpen = (next: boolean) => {
-    open = next;
-    toggle?.setAttribute("aria-expanded", String(open));
-    toggle?.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
-    overlay?.classList.toggle("invisible", !open);
-    overlay?.classList.toggle("opacity-0", !open);
-    document.body.style.overflow = open ? "hidden" : "";
-    if (top) {
-      top.style.transform = open ? "translateY(5px) rotate(45deg)" : "";
-      top.style.backgroundColor = open ? "#ffffff" : "";
-    }
-    if (bottom) {
-      bottom.style.transform = open ? "translateY(-5px) rotate(-45deg)" : "";
-      bottom.style.backgroundColor = open ? "#ffffff" : "";
-    }
-  };
-
-  toggle?.addEventListener("click", () => setOpen(!open));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && open) setOpen(false);
-  });
-</script>

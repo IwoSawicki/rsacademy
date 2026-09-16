@@ -14,11 +14,13 @@ const paragraphs = [
 <section class="section-x flex w-full flex-col items-center gap-[70px]">
   <div
     class="flex w-full max-w-[1520px] flex-col items-center gap-9 tablet:gap-[60px] desktop:gap-[120px]"
+    data-measure="intro-container"
     data-reveal="scale"
   >
     <!-- Kopfbereich: Label links, Überschrift über drei Spalten -->
     <div
       class="flex w-full flex-col gap-4 tablet:grid tablet:grid-cols-4 tablet:gap-1"
+      data-measure="intro-top"
     >
       <div class="order-1 tablet:order-none">
         <SectionLabel label="Über uns" />
@@ -26,6 +28,7 @@ const paragraphs = [
 
       <div
         class="flex flex-col items-start gap-[14px] tablet:col-span-3 tablet:gap-[21px] desktop:gap-[22px]"
+        data-measure="intro-heading"
       >
         <h2 class="t-h1" data-reveal="up">
           <strong class="font-semibold"
@@ -41,6 +44,7 @@ const paragraphs = [
         >
           <div
             class="flex flex-col items-start gap-10 tablet:col-span-2 desktop:gap-[30px]"
+            data-measure="intro-text"
           >
             {paragraphs.map((text) => <WordReveal text={text} class="t-lead" />)}
           </div>
@@ -54,7 +58,7 @@ const paragraphs = [
                 <span class="t-subhead font-semibold">4,9</span>
                 <span class="t-caption opacity-60">320+ Bewertungen</span>
               </div>
-              <StarRating size={16} />
+              <StarRating size={16} pop />
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import RollButton from "./RollButton.astro";
 <section class="section-x flex w-full flex-col items-center gap-[70px]">
   <div
     class="container-wide flex flex-col items-center gap-[30px] tablet:gap-[60px] desktop:gap-[90px]"
+    data-measure="kurse-container"
   >
     <!-- Top -->
     <div class="flex w-full flex-col items-start gap-4 desktop:gap-1">
@@ -15,6 +16,7 @@ import RollButton from "./RollButton.astro";
     <!-- Kartenraster, 1000px breit und zentriert -->
     <ul
       class="container-narrow flex flex-col items-center gap-[10px] tablet:grid tablet:grid-cols-2 tablet:gap-5"
+      data-measure="kurse-grid"
     >
       {
         kurse.map((kurs, i) => (
@@ -24,8 +26,13 @@ import RollButton from "./RollButton.astro";
               class="group flex w-full cursor-pointer flex-col items-center gap-1"
             >
               <!-- Project header -->
-              <div class="flex min-h-[58px] w-full items-center gap-4 rounded-card bg-white px-5 py-4 tablet:gap-5 tablet:px-6 tablet:py-[18px]">
-                <p class="t-label flex-1 text-ink">{kurs.title}</p>
+              <div class="box-border flex h-[58px] w-full items-center gap-4 rounded-card bg-white px-5 py-[18px] tablet:gap-5 tablet:px-6" data-measure="kurs-header">
+                <p class="t-label flex-1 text-ink">
+                  <span class={kurs.titlePhone ? "hidden tablet:inline" : undefined}>
+                    {kurs.title}
+                  </span>
+                  {kurs.titlePhone && <span class="tablet:hidden">{kurs.titlePhone}</span>}
+                </p>
                 <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center">
                   <svg
                     width="24"

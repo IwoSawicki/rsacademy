@@ -1,20 +1,29 @@
 ---
+/**
+ * Sternebewertung. Im Original poppen die Sterne einzeln auf
+ * (scale 0.5 -> 1, je 0.5s versetzt; appear-ids 1ne9pd3, 1mdyvgo,
+ * 13w6uno, 6ll1xu, 13gnp6e).
+ */
 interface Props {
   count?: number;
   size?: number;
+  pop?: boolean;
 }
-const { count = 5, size = 14 } = Astro.props;
+const { count = 5, size = 14, pop = false } = Astro.props;
 ---
 
 <div class="flex items-center gap-[2px]">
   {
-    Array.from({ length: count }).map(() => (
+    Array.from({ length: count }).map((_, i) => (
       <svg
         width={size}
         height={size}
         viewBox="0 0 24 24"
-        fill="var(--color-star)"
+        fill="rgb(255, 234, 0)"
         aria-hidden="true"
+        data-star-pop={pop ? "" : undefined}
+        data-reveal={pop ? "star" : undefined}
+        style={pop ? `transition-delay:${i * 500}ms` : undefined}
       >
         <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
       </svg>

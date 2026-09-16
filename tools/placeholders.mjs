@@ -13,7 +13,7 @@ const FILES = [
   ['hero-bg', 1920, 1080, '#1c1c1c', 'Hero'],
   ['portrait', 944, 1500, '#242424', 'Portrait'],
   ['leistungen-bg', 1600, 900, '#1c1c1c', 'Leistungen'],
-  ['faq', 800, 1000, '#d8d8d8', 'FAQ'],
+  ['kontakt-bg', 1600, 1200, '#1c1c1c', 'Kontakt'],
   ['avatar', 512, 512, '#c8c8c8', ''],
   ['kurs-absturzsicherheit', 600, 400, '#cfcfcf', 'Absturzsicherheit PSAgA'],
   ['kurs-hab-international', 600, 400, '#cfcfcf', 'HAB International'],
@@ -65,6 +65,14 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" wid
 
 await mkdir(OUT, { recursive: true });
 await writeFile(`${OUT}favicon.svg`, favicon, 'utf8');
+
+/** Rauschtextur, im Original als 256px-Kachel mit 5% Deckkraft überlagert. */
+const noise = `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter>
+  <rect width="256" height="256" filter="url(#n)"/>
+</svg>
+`;
+await writeFile(`${OUT}noise.svg`, noise, 'utf8');
 await Promise.all(
   FILES.map(([name, w, h, tone, label]) =>
     writeFile(`${OUT}${name}.svg`, svg(w, h, tone, label), 'utf8'),

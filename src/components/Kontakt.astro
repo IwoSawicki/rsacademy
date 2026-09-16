@@ -1,98 +1,120 @@
 ---
-import { contact } from "../data/site";
-import PlusIcon from "./PlusIcon.astro";
+import { contact, images } from "../data/site";
 
+/**
+ * Kontakt. Links die Formularkarte (450px, Innenabstand 40px, Abstände 30px),
+ * rechts eine Bildfläche mit weißer Überschrift „Jetzt Kontaktieren" (54px,
+ * Zeilenhöhe 92%) und zwei weißen Karten (Radius 18px) mit Bezeichnung
+ * (18px) und Wert (26px).
+ */
 const fields = [
-  { name: "name", label: "Ihr Name*", type: "text", required: true },
-  { name: "email", label: "E-mail*", type: "email", required: true },
-  { name: "phone", label: "Telefon*", type: "tel", required: true },
+  { name: "name", label: "Ihr Name*", type: "text", placeholder: "Ihr Name", required: true },
+  { name: "email", label: "E-mail*", type: "email", placeholder: "you@number.com", required: true },
+  { name: "phone", label: "Telefon*", type: "tel", placeholder: "+41 123 456 789", required: true },
+];
+
+const items = [
+  { label: "E-Mail", value: contact.mailKurs, href: `mailto:${contact.mailKurs}` },
+  { label: "Telefon", value: contact.phone, href: contact.phoneHref },
 ];
 ---
 
-<section id="kontakt" class="section-x flex w-full items-center justify-center">
-  <div class="container-wide grid gap-1 tablet:grid-cols-2">
+<section id="kontakt" class="section-x flex w-full items-start justify-center gap-1">
+  <div
+    class="container-wide flex flex-col items-start gap-[60px] desktop:flex-row desktop:gap-1"
+    data-measure="kontakt-container"
+  >
     <!-- Formular -->
-    <div class="flex flex-col gap-8 rounded-card bg-white p-[30px] desktop:p-10" data-reveal="up">
-      <div class="flex flex-col gap-2">
-        <p class="t-body opacity-60">Rescue & Safety Academy AG</p>
-        <h2 class="t-h3">Noch Fragen?</h2>
+    <div class="flex w-full flex-col items-start gap-[30px] desktop:flex-1">
+      <div
+        class="flex w-full flex-col items-start gap-[30px] overflow-hidden rounded-[18px] bg-white p-[30px] desktop:max-w-[546px] desktop:p-10"
+        data-measure="kontakt-form"
+        data-reveal="up"
+      >
+        <div class="flex w-full flex-col items-start gap-3">
+          <p class="t-body opacity-60">Rescue &amp; Safety Academy AG</p>
+          <h2 class="t-h2 text-ink-soft">Noch Fragen?</h2>
+        </div>
+
+        <form class="flex w-full flex-col gap-4" data-contact-form>
+          {
+            fields.map((field) => (
+              <label class="flex flex-col gap-2">
+                <span class="t-caption opacity-60">{field.label}</span>
+                <input
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  class="t-body border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 placeholder:opacity-40 focus:border-ink"
+                />
+              </label>
+            ))
+          }
+
+          <label class="flex flex-col gap-2">
+            <span class="t-caption opacity-60">Nachricht</span>
+            <textarea
+              name="message"
+              rows="3"
+              placeholder="Lorem ipsum dolor sit amet"
+              class="t-body resize-none border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 placeholder:opacity-40 focus:border-ink"
+            ></textarea>
+          </label>
+
+          <button
+            type="submit"
+            class="mt-2 flex h-[58px] w-full cursor-pointer items-center justify-center rounded-pill bg-ink px-[30px] transition-opacity duration-300 hover:opacity-85"
+          >
+            <span class="t-label text-white">Nachricht verschicken</span>
+          </button>
+
+          <p class="t-caption opacity-60">
+            Durch das Abschicken erklären Sie sich mit unserer <a
+              href="/datenschutz"
+              class="underline underline-offset-2">Datenschutzerklärung</a
+            > einverstanden
+          </p>
+        </form>
       </div>
-
-      <form class="flex flex-col gap-4" data-contact-form>
-        {
-          fields.map((field) => (
-            <label class="flex flex-col gap-2">
-              <span class="t-caption opacity-60">{field.label}</span>
-              <input
-                type={field.type}
-                name={field.name}
-                required={field.required}
-                class="t-body border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 focus:border-ink"
-              />
-            </label>
-          ))
-        }
-
-        <label class="flex flex-col gap-2">
-          <span class="t-caption opacity-60">Nachricht</span>
-          <textarea
-            name="message"
-            rows="3"
-            class="t-body resize-none border-b border-ink/15 bg-transparent pb-2 outline-none transition-colors duration-300 focus:border-ink"
-          ></textarea>
-        </label>
-
-        <button
-          type="submit"
-          class="mt-2 flex h-[58px] w-max items-center justify-center rounded-pill bg-ink px-[30px] transition-opacity duration-300 hover:opacity-85"
-        >
-          <span class="t-label text-white">Nachricht verschicken</span>
-        </button>
-
-        <p class="t-caption opacity-60">
-          Durch das Abschicken erklären Sie sich mit unserer <a
-            href="/datenschutz"
-            class="underline underline-offset-2">Datenschutzerklärung</a
-          > einverstanden
-        </p>
-      </form>
     </div>
 
-    <!-- Kontaktdaten -->
+    <!-- Bildfläche mit Kontaktdaten -->
     <div
-      class="flex flex-col justify-between gap-10 rounded-card bg-ink p-[30px] desktop:p-10"
+      class="relative flex w-full flex-col items-start justify-between gap-[60px] overflow-hidden rounded-[18px] p-[30px] desktop:flex-1 desktop:self-stretch desktop:p-10"
       data-reveal="up"
       style="transition-delay:90ms"
     >
-      <div class="flex items-start justify-between">
-        <h2 class="t-h1 text-white">
-          Jetzt<br />Kontaktieren
-        </h2>
-        <PlusIcon size={10} />
+      <div class="absolute inset-0 -z-10 bg-ink" aria-hidden="true">
+        <img
+          src={images.kontaktBg}
+          alt=""
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
       </div>
 
-      <dl class="flex flex-col gap-6">
-        <div class="flex flex-col gap-1">
-          <dt class="t-caption text-white/60">E-Mail</dt>
-          <dd>
+      <h2
+        class="text-[38px] leading-[92%] font-semibold text-white desktop:text-[54px]"
+        style="letter-spacing:-0.06em"
+      >
+        Jetzt<br />Kontaktieren
+      </h2>
+
+      <div class="flex w-full flex-col gap-1">
+        {
+          items.map((item) => (
             <a
-              href={`mailto:${contact.mailKurs}`}
-              class="t-subhead text-white transition-opacity duration-300 hover:opacity-70"
-              >{contact.mailKurs}</a
+              href={item.href}
+              class="flex w-full flex-col items-start justify-center gap-2 rounded-[18px] bg-white p-5 transition-opacity duration-300 hover:opacity-90 desktop:h-[120px] desktop:max-w-[546px]"
+              data-measure="kontakt-item"
             >
-          </dd>
-        </div>
-        <div class="flex flex-col gap-1">
-          <dt class="t-caption text-white/60">Telefon</dt>
-          <dd>
-            <a
-              href={contact.phoneHref}
-              class="t-subhead text-white transition-opacity duration-300 hover:opacity-70"
-              >{contact.phone}</a
-            >
-          </dd>
-        </div>
-      </dl>
+              <span class="t-body-lg text-ink">{item.label}</span>
+              <span class="t-subhead text-ink">{item.value}</span>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

@@ -2,28 +2,28 @@
 import { reviews } from "../data/site";
 
 /**
- * Bewertungs-Slider im Hero.
- * Original: Karte 463px, daneben (22px Abstand) eine senkrechte Steuerung
- * aus Pfeil hoch, drei Bullets untereinander und Pfeil runter.
+ * Bewertungs-Stack im Hero.
+ * Karte 463px breit, Wrapper 501px inkl. 22px Abstand zur senkrechten
+ * Steuerung rechts (Pfeil hoch, drei Bullets untereinander, Pfeil runter).
+ * Die drei Karten liegen gestaffelt übereinander (scale 1 / .95 / .9,
+ * Versatz 0 / 14 / 28px) und rotieren automatisch durch.
  */
 ---
 
 <div
   class="flex w-full max-w-[501px] items-center gap-[22px]"
-  data-review-slider
+  data-measure="hero-slider"
+  data-review-stack
   data-reveal="up"
 >
-  <!-- Karten, im Raster übereinander: Höhe richtet sich nach der längsten -->
-  <div class="grid flex-1">
+  <!-- Kartenstapel -->
+  <div class="relative flex flex-1 flex-col items-center">
     {
-      reviews.map((review, i) => (
+      reviews.map((review) => (
         <figure
-          class:list={[
-            "col-start-1 row-start-1 flex w-full items-center gap-[14px] overflow-hidden rounded-[8px] bg-white p-4 backdrop-blur-[80px] shadow-[0px_30px_18px_-20px_rgba(0,0,0,0.16)] transition-opacity duration-500 ease-[var(--ease-framer)]",
-            i === 0 ? "opacity-100" : "pointer-events-none opacity-0",
-          ]}
-          data-review-slide
-          aria-hidden={i !== 0}
+          class="flex w-full origin-bottom items-center gap-[14px] overflow-hidden rounded-[8px] bg-white p-4 shadow-[0px_30px_18px_-20px_rgba(0,0,0,0.16)] backdrop-blur-[80px] transition-[transform,bottom] duration-[700ms] ease-[var(--ease-framer)]"
+          data-review-card
+          data-measure="hero-card"
         >
           <div class="flex flex-1 flex-col items-start gap-2">
             <div class="flex w-full items-center gap-[5px]">
@@ -37,13 +37,7 @@ import { reviews } from "../data/site";
               />
               <div class="flex items-center">
                 {Array.from({ length: 5 }).map(() => (
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="rgb(255, 234, 0)"
-                    aria-hidden="true"
-                  >
+                  <svg width="14" height="15" viewBox="0 0 24 24" fill="rgb(255, 234, 0)" aria-hidden="true">
                     <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
                   </svg>
                 ))}
@@ -64,7 +58,7 @@ import { reviews } from "../data/site";
     }
   </div>
 
-  <!-- Senkrechte Steuerung rechts neben der Karte -->
+  <!-- Senkrechte Steuerung -->
   <div class="flex w-min flex-col items-center gap-[10px]">
     <button
       type="button"

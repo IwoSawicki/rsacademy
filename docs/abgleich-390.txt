@@ -1,0 +1,42 @@
+
+Breite 390px — Seitenhöhe Original 10385, Nachbau 10386
+
+Element                     Feld              Original            Nachbau
+----------------------------------------------------------------------------------
+Hero First screen           gap               0px                 normal
+Hero Content                gap               normal              100px
+Hero Slider                 im Original nicht gefunden
+Hero Karte                  im Original nicht gefunden
+Hero BG                     gap               10px                normal
+Hero BG                     backgroundColor   rgba(0, 0, 0, 0)    rgb(10, 10, 10)
+Einleitung Heading          h                 863                 850
+Einleitung Text             h                 481                 501
+Kurse Container             h                 2832                2850
+Kurse Raster                h                 2600                2616
+Kurs Kopfzeile              h                 51                  58
+Kurs Kopfzeile              padding           16px 20px           18px 20px
+Kurs Kopfzeile              gap               20px                16px
+Kurs Kopfzeile              borderRadius      14px                18px
+Numbers Container           h                 261                 289
+Numbers Container           gap               40px                normal
+Numbers Raster              h                 261                 289
+Numbers Eintrag             h                 90                  104
+Bento Raster                h                 1105                1183
+Bento Textkarte             h                 591                 669
+Leistungen Fläche           h                 1034                1050
+Leistungen Fläche           gap               10px                normal
+Leistungen Container        h                 934                 950
+Leistungen Container        gap               28px                normal
+Leistungen Eintrag          h                 147                 159
+Leistungen Eintrag          gap               0px                 normal
+FAQ Container               h                 436                 585
+Kontakt Container           h                 1271                995
+Kontakt Formularkarte       h                 744                 556
+Kontakt Formularkarte       padding           40px                30px
+Kontakt Infokarte           w                 280                 290
+Kontakt Infokarte           h                 109                 93
+Kontakt Infokarte           x                 20                  50
+Kontakt Infokarte           gap               14px                8px
+Footer Top                  h                 727                 913
+----------------------------------------------------------------------------------
+33 Abweichungen, 2 Paare ohne Treffer.

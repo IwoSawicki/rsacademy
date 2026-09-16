@@ -1,0 +1,38 @@
+---
+/**
+ * Link mit Roll-Hover wie im Original: zwei Textkopien, die obere sitzt bei
+ * `top:-90px`, die untere im Fluss; beim Hover rollen beide nach unten.
+ */
+interface Props {
+  href: string;
+  label: string;
+  class?: string;
+  distance?: number;
+}
+const { href, label, class: className = "", distance = 90 } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "group relative flex cursor-pointer flex-col items-center overflow-hidden pr-[3px]",
+    className,
+  ]}
+>
+  <span
+    class="absolute left-0 whitespace-pre transition-transform duration-[500ms] ease-[var(--ease-framer)]"
+    style={`top:-${distance}px`}
+    data-roll-top>{label}</span
+  >
+  <span
+    class="relative whitespace-pre transition-transform duration-[500ms] ease-[var(--ease-framer)]"
+    data-roll-bottom>{label}</span
+  >
+</a>
+
+<style define:vars={{ distance: `${distance}px` }}>
+  a:hover [data-roll-top],
+  a:hover [data-roll-bottom] {
+    transform: translateY(var(--distance));
+  }
+</style>

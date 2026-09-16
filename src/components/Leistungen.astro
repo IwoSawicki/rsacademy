@@ -4,32 +4,38 @@ import RollButton from "./RollButton.astro";
 ---
 
 <section
-  class="flex w-full items-center justify-center overflow-hidden bg-surface px-6 py-[50px] tablet:px-[30px] tablet:py-[100px] desktop:px-9 desktop:py-[200px]"
+  class="relative flex w-full items-center justify-center overflow-hidden bg-surface px-6 py-[50px] tablet:px-[30px] tablet:py-[100px] desktop:px-9 desktop:py-[200px]"
 >
-  <div class="container-wide relative">
-    <!-- Dunkle Karte als Hintergrund, Bild leicht aufgehellt -->
-    <div
-      class="absolute inset-0 -z-0 overflow-hidden bg-ink desktop:rounded-[25px]"
-      aria-hidden="true"
-    >
-      <img
-        src={images.leistungenBg}
-        alt=""
-        loading="lazy"
-        class="h-full w-full object-cover brightness-115"
-      />
-    </div>
+  <!-- Dunkle Fläche: im Original nur 6px eingerückt, Radius 25px, über die
+       volle Höhe der Section. Darüber eine Rauschtextur mit 5% Deckkraft. -->
+  <div
+    class="absolute inset-x-[2px] inset-y-0 z-0 overflow-hidden bg-ink tablet:inset-x-1 tablet:rounded-[25px] desktop:inset-x-[6px]"
+    data-measure="leistungen-bg"
+    aria-hidden="true"
+  >
+    <img
+      src={images.leistungenBg}
+      alt=""
+      loading="lazy"
+      class="h-full w-full object-fill brightness-115"
+    />
+    <span
+      class="absolute inset-0 opacity-[0.05]"
+      style={`background-image:url(${images.noise});background-size:256px 256px;background-repeat:repeat`}
+    ></span>
+  </div>
 
-    <!-- Container -->
+  <div class="container-wide relative z-[1]" data-measure="leistungen-container">
     <div
-      class="relative z-[1] flex flex-col items-center gap-[28px] px-6 py-12 tablet:gap-[50px] desktop:gap-20 desktop:px-14 desktop:py-20"
+      class="flex flex-col items-center gap-[28px] tablet:gap-[50px] desktop:gap-20"
     >
       <!-- Top: Überschrift über drei von vier Spalten -->
       <div
-        class="flex w-full flex-col gap-[18px] desktop:grid desktop:grid-cols-4 desktop:gap-1"
+        class="flex w-full flex-col gap-[18px] tablet:grid tablet:grid-cols-4 tablet:gap-1"
       >
         <div
-          class="flex flex-col items-start gap-[14px] desktop:col-span-3 desktop:gap-[22px]"
+          class="flex flex-col items-start gap-[14px] tablet:col-span-3 tablet:gap-[21px] desktop:gap-[22px]"
+          data-measure="leistungen-heading"
         >
           <h2 class="t-display w-full text-white" data-reveal="up">
             Eigene Leistungen
@@ -51,6 +57,7 @@ import RollButton from "./RollButton.astro";
               <button
                 type="button"
                 class="group flex w-full cursor-pointer flex-col items-start py-8 text-left"
+                data-measure="leistungen-item"
                 data-accordion
                 aria-expanded="false"
               >

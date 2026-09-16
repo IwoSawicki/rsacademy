@@ -13,15 +13,17 @@ const paragraphs = [
 <section class="section-x flex w-full items-center justify-center gap-1">
   <div
     class="container-wide flex flex-col gap-1 tablet:flex-row tablet:items-start desktop:grid desktop:h-[600px] desktop:grid-cols-4"
+    data-measure="bento-grid"
   >
     <!-- Portraitkarte -->
     <div
-      class="relative flex h-[510px] w-full flex-col items-start justify-between overflow-visible p-[30px] tablet:h-[600px] tablet:flex-1 desktop:col-span-2 desktop:h-full desktop:p-10"
+      class="relative flex h-[510px] w-full flex-col items-start justify-between overflow-visible p-[30px] tablet:h-[600px] tablet:flex-1 tablet:p-10 desktop:col-span-2 desktop:h-full"
       data-reveal="up"
+      data-measure="bento-portrait"
     >
       <!-- BG -->
       <div
-        class="absolute inset-0 z-0 overflow-hidden rounded-[16px] bg-ink desktop:rounded-card"
+        class="absolute inset-0 z-0 overflow-hidden rounded-[16px] bg-ink desktop:rounded-[18px]"
         aria-hidden="true"
       >
       </div>
@@ -62,8 +64,9 @@ const paragraphs = [
 
     <!-- Textkarte -->
     <div
-      class="flex w-full flex-col items-start justify-start gap-[120px] overflow-hidden rounded-[16px] bg-white p-[30px] tablet:flex-1 tablet:justify-between tablet:gap-8 desktop:col-span-2 desktop:h-full desktop:rounded-card desktop:p-10"
+      class="flex w-full flex-col items-start justify-start gap-[120px] overflow-hidden rounded-[18px] bg-white p-[30px] tablet:flex-1 tablet:justify-between tablet:gap-8 tablet:p-10 desktop:col-span-2 desktop:h-full"
       data-reveal="up"
+      data-measure="bento-text"
       style="transition-delay:90ms"
     >
       <div class="flex flex-col gap-6">

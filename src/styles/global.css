@@ -24,6 +24,20 @@
 
   --ease-framer: cubic-bezier(0.44, 0, 0.56, 1);
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Preloader-Kurve exakt aus dem Clone (tween, 2.1s) */
+  --ease-preloader: cubic-bezier(0.56, 0.22, 0.05, 0.99);
+
+  /* Federkurven aus den Original-Parametern, erzeugt von tools/springs.mjs.
+     hero        = spring(stiffness 120, damping 25, mass 0.3)
+     hero-phone  = spring(130, 27, 0.3)
+     reveal      = spring(121, 27, 0.3) */
+  --spring-hero-duration: 1.503s;
+  --spring-hero: linear(0.0004,0.0759,0.1849,0.2818,0.3709,0.4462,0.5149,0.573,0.626,0.6708,0.7117,0.7462,0.7765,0.8043,0.8277,0.8491,0.8672,0.8837,0.8976,0.9103,0.921,0.9308,0.9391,0.9467,0.9531,0.9587,0.9638,0.9681,0.9721,0.9754,0.9785,0.9811,0.9834,0.9854,0.9872,0.9887,0.9901,0.9913,0.9924,0.9933,0.9941,0.9948,0.9955,0.996,0.9965,0.9969,0.9973,0.9976,0.9979,0.9982,0.9984,0.9986,0.9988,0.9989,0.999,0.9992,0.9993,0.9994,0.9994,0.9995);
+  --spring-hero-phone-duration: 1.505s;
+  --spring-hero-phone: linear(0.0004,0.079,0.1887,0.2852,0.3738,0.4486,0.5169,0.5746,0.6274,0.6719,0.7126,0.7469,0.7783,0.8048,0.829,0.8494,0.8681,0.8838,0.8982,0.9104,0.9215,0.9309,0.9394,0.9467,0.9533,0.9589,0.964,0.9683,0.9722,0.9755,0.9786,0.9811,0.9835,0.9854,0.9872,0.9888,0.9902,0.9913,0.9924,0.9933,0.9941,0.9948,0.9955,0.996,0.9965,0.9969,0.9973,0.9976,0.9979,0.9982,0.9984,0.9986,0.9988,0.9989,0.999,0.9992,0.9993,0.9994,0.9994,0.9995);
+  --spring-reveal-duration: 1.623s;
+  --spring-reveal: linear(0.0004,0.0815,0.1917,0.2881,0.3762,0.4508,0.5187,0.5763,0.6287,0.6731,0.7136,0.7478,0.779,0.8055,0.8295,0.8499,0.8685,0.8842,0.8985,0.9107,0.9217,0.9311,0.9396,0.9468,0.9534,0.959,0.9641,0.9684,0.9723,0.9756,0.9786,0.9812,0.9835,0.9855,0.9873,0.9888,0.9902,0.9914,0.9924,0.9933,0.9942,0.9949,0.9955,0.996,0.9965,0.9969,0.9973,0.9976,0.9979,0.9982,0.9984,0.9986,0.9988,0.9989,0.999,0.9992,0.9993,0.9994,0.9994,0.9995);
 }
 
 @layer base {
@@ -191,14 +205,43 @@
   [data-reveal] {
     opacity: 0;
     transition:
-      opacity 0.8s var(--ease-out-soft),
-      transform 0.8s var(--ease-out-soft),
-      filter 0.8s var(--ease-out-soft);
+      opacity var(--spring-reveal-duration) var(--spring-reveal),
+      transform var(--spring-reveal-duration) var(--spring-reveal),
+      filter var(--spring-reveal-duration) var(--spring-reveal);
     will-change: opacity, transform;
   }
   [data-reveal="up"] { transform: translateY(40px); }
-  [data-reveal="up-lg"] { transform: translateY(120px); }
+
+  /* Hero-Container: y=400 (Telefon y=220), Feder aus dem Clone */
+  [data-reveal="up-lg"] {
+    transform: translateY(220px);
+    transition:
+      opacity var(--spring-hero-phone-duration) var(--spring-hero-phone),
+      transform var(--spring-hero-phone-duration) var(--spring-hero-phone);
+  }
+  @media (min-width: 810px) {
+    [data-reveal="up-lg"] {
+      transform: translateY(400px);
+      transition:
+        opacity var(--spring-hero-duration) var(--spring-hero),
+        transform var(--spring-hero-duration) var(--spring-hero);
+    }
+  }
+
+  /* Sterne: scale 0.5 -> 1, je 0.5s versetzt (appear-ids 1ne9pd3 ff.) */
+  [data-star-pop] {
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+      opacity 1s var(--spring-reveal),
+      transform 1s var(--spring-reveal);
+  }
+  [data-star-pop].is-visible {
+    opacity: 1;
+    transform: none;
+  }
   [data-reveal="fade"] { transform: none; }
+  [data-reveal="star"] { transform: scale(0.5); }
   [data-reveal="scale"] { transform: translateY(60px) scale(0.97); }
 
   [data-reveal].is-visible {
