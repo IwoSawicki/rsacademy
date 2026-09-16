@@ -92,9 +92,13 @@ Alles so exakt wie möglich rekonstruieren:
 - Sauberer, lesbarer, komponentisierter Code.
 
 **Bilder:** Der Clone enthält den Ordner `framerusercontent.com/` nicht; die Umgebung
-hat keinen Netzzugriff auf diese Domain. Bilder werden vorerst per absoluter CDN-URL
-eingebunden. Sobald die Dateien lokal vorliegen, werden sie nach `public/images/`
-umgezogen und die URLs ersetzt.
+hat keinen Netzzugriff auf diese Domain. Unter `public/images/` liegen deshalb
+**SVG-Platzhalter** (erzeugt von `tools/placeholders.mjs`), Seitenverhältnisse
+entsprechen den Originalen. Sobald die echten Dateien vorliegen: dort ablegen und
+die Endungen in `src/data/site.ts` anpassen. Keine externen CDN-Requests.
+
+**Deployment:** Dokploy mit Dockerfile (Node baut, nginx liefert aus), Container-Port
+`80`. Siehe `docs/deployment.md`.
 
 ---
 
@@ -144,7 +148,7 @@ umgezogen und die URLs ersetzt.
 - [ ] Typografie, Farben, Abstände, Rundungen stimmig zum Original
 - [ ] Alle Animationen (Load, Scroll, Hover) rekonstruiert
 - [ ] Responsive auf allen Original-Breakpoints identisch
-- [ ] Bilder lokal unter `public/images/` (sobald verfügbar)
+- [ ] Echte Bilder unter `public/images/` (derzeit Platzhalter)
 - [ ] Visueller Abgleich auf allen drei Viewports, Protokoll in `docs/`
 - [ ] Meta-Tags, Favicons, `alt`-Texte übernommen
 - [ ] Auf `main` gepusht

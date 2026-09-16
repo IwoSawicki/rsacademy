@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import RollButton from "../components/RollButton.astro";
+import { contact } from "../data/site";
+---
+
+<BaseLayout
+  title="Seite nicht gefunden — Rescue & Safety Academy AG"
+  description="Diese Seite existiert nicht."
+>
+  <SiteHeader />
+
+  <main
+    class="section-x flex min-h-screen w-full flex-col items-center justify-center bg-surface"
+  >
+    <div class="container-wide flex flex-col items-start gap-8">
+      <p class="t-display text-ink/15">404</p>
+      <h1 class="t-h1 max-w-[720px]">
+        Diese Seite ist noch <span class="text-ink/60">nicht verfügbar.</span>
+      </h1>
+      <p class="t-body-lg max-w-[520px] opacity-70">
+        Die Unterseiten der neuen Website sind in Arbeit. Melden Sie sich
+        jederzeit direkt bei uns.
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        <RollButton label="Zur Startseite" href="/" />
+        <RollButton
+          label={contact.phoneLabel}
+          href={contact.phoneHref}
+          variant="light"
+          class="border border-ink/10"
+        />
+      </div>
+    </div>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>

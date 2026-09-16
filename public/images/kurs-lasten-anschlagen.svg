@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img">
+  <defs>
+    <pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="28" stroke="#0a0a0a" stroke-opacity=".05" stroke-width="10"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="#cfcfcf"/>
+  <rect width="600" height="400" fill="url(#p)"/>
+  <text x="50%" y="50%" fill="#0a0a0a" fill-opacity=".45" font-family="Inter, system-ui, sans-serif"
+       font-size="29" font-weight="600" letter-spacing="-.04em"
+       text-anchor="middle" dominant-baseline="middle">Lasten anschlagen</text>
+</svg>

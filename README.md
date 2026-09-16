@@ -21,12 +21,28 @@ npm run build && npx astro preview --port 4321 &
 node tools/screenshots.mjs
 ```
 
+## Deployment
+
+Dokploy, Build Type **Dockerfile**, Container-Port **80**.
+Details in [`docs/deployment.md`](./docs/deployment.md).
+
+```bash
+docker build -t rsacademy .
+docker run --rm -p 8080:80 rsacademy
+```
+
+## Bilder
+
+`public/images/` enthält aktuell **Platzhalter**, erzeugt von `tools/placeholders.mjs`.
+Echte Bilder dort ablegen und die Dateiendungen in `src/data/site.ts` anpassen.
+
 ## Ordnerstruktur
 
 ```
 reference/   Original-Clone (wget) — read-only
 src/         Nachbau (components, layouts, pages, styles, data, scripts)
-docs/        analyse.md, Screenshots
+docs/        analyse.md, deployment.md, Screenshots
+public/      Bilder (derzeit Platzhalter)
 tools/       Hilfsskripte
 ```
 
