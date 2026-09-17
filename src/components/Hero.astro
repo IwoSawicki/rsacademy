@@ -21,7 +21,7 @@ import ReviewSlider from "./ReviewSlider.astro";
     >
       <!-- Content -->
       <div
-        class="relative z-[1] flex h-[80vh] w-full flex-1 flex-col items-center justify-start gap-[100px] overflow-hidden px-5 pt-[54px] pb-9 tablet:h-auto tablet:px-[30px] tablet:py-20 desktop:h-full desktop:justify-between desktop:gap-0 desktop:px-9 desktop:py-[90px]"
+        class="relative z-[1] flex h-[80vh] w-full flex-1 flex-col items-center justify-between overflow-hidden px-5 pt-[54px] pb-9 tablet:h-auto tablet:justify-start tablet:gap-[100px] tablet:px-[30px] tablet:py-20 desktop:h-full desktop:justify-between desktop:gap-0 desktop:px-9 desktop:py-[90px]"
         data-measure="hero-content"
       >
         <!-- Top -->
@@ -53,7 +53,8 @@ import ReviewSlider from "./ReviewSlider.astro";
               viewBox="0 0 384.0223246899692 60"
               fontSize={50.37207816615295}
               align="right"
-              class="w-[45%] tablet:w-[43%]"
+              width="45%"
+              class="tablet:!w-[43%]"
             >
               Profis in der Höhe
             </FitText>
@@ -69,7 +70,7 @@ import ReviewSlider from "./ReviewSlider.astro";
 
         <!-- Bottom -->
         <div
-          class="flex w-full flex-col items-start justify-start gap-[222px] tablet:gap-[60px] desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-0"
+          class="flex w-full flex-col items-start justify-start tablet:gap-[60px] desktop:flex-row desktop:items-end desktop:justify-between desktop:gap-0"
         >
           <div
             class="flex w-full flex-col items-start gap-[30px] tablet:gap-[31px] desktop:flex-1 desktop:flex-row desktop:items-end desktop:justify-between desktop:pr-[110px]"
@@ -80,7 +81,7 @@ import ReviewSlider from "./ReviewSlider.astro";
             </p>
           </div>
 
-          <ReviewSlider />
+          <ReviewSlider class="hidden tablet:flex" />
         </div>
       </div>
 

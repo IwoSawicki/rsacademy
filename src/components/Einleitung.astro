@@ -11,14 +11,15 @@ const paragraphs = [
 ];
 ---
 
-<!-- Die Section ist an die Scrollposition gekoppelt: sie startet bei
-     translateY(-150px) scale(0.95) und läuft auf den Normalzustand. -->
+<!-- Ab Tablet ist die Section an die Scrollposition gekoppelt: sie startet
+     bei translateY(-150px) scale(0.95) und läuft auf den Normalzustand.
+     Auf dem Telefon steht im Original transform:none — dort kein Parallax. -->
 <section
   class="section-x flex w-full flex-col items-center gap-[70px] will-change-transform"
   data-parallax
   data-parallax-shift="-150"
   data-parallax-scale="0.95"
-  style="transform:translateY(-150px) scale(0.95)"
+  data-parallax-min-width="810"
 >
   <div
     class="flex w-full max-w-[1520px] flex-col items-center gap-9 tablet:gap-[60px] desktop:gap-[120px]"
@@ -29,12 +30,12 @@ const paragraphs = [
       class="flex w-full flex-col gap-4 tablet:grid tablet:grid-cols-4 tablet:gap-1"
       data-measure="intro-top"
     >
-      <div class="order-1 tablet:order-none">
+      <div>
         <SectionLabel label="Über uns" />
       </div>
 
       <div
-        class="flex flex-col items-start gap-[14px] tablet:col-span-3 tablet:gap-[21px] desktop:gap-[22px]"
+        class="order-1 flex flex-col items-end gap-[14px] tablet:order-none tablet:items-start tablet:col-span-3 tablet:gap-[21px] desktop:gap-[22px]"
         data-measure="intro-heading"
       >
         <h2 class="t-h1 max-w-[830px]" data-reveal="up">

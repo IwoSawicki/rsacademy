@@ -14,6 +14,8 @@ interface Props {
   fontSize: number;
   align?: "left" | "right";
   color?: string;
+  /** Breite als CSS-Wert (z. B. "43%") — im Original steht sie am Element. */
+  width?: string;
   class?: string;
 }
 
@@ -22,12 +24,14 @@ const {
   fontSize,
   align = "left",
   color = "#fff",
+  width = "100%",
   class: className = "",
 } = Astro.props;
 ---
 
 <svg
-  class:list={["block h-auto w-full", className]}
+  class:list={["block h-auto", className]}
+  style={`width:${width}`}
   viewBox={viewBox}
   role="presentation"
   data-fit-text

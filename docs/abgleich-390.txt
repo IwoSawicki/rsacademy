@@ -1,16 +1,16 @@
 
-Breite 390px — Seitenhöhe Original 10385, Nachbau 10371
+Breite 390px — Seitenhöhe Original 10385, Nachbau 10404
 
 Element                     Feld              Original            Nachbau
 ----------------------------------------------------------------------------------
 Hero First screen           gap               0px                 normal
-Hero Content                gap               normal              100px
+Hero Company                h                 147                 125
 Hero Slider                 im Original nicht gefunden
 Hero Karte                  im Original nicht gefunden
 Hero BG                     gap               10px                normal
-Einleitung Container        h                 897                 885
-Einleitung Top              h                 897                 885
-Einleitung Heading          h                 863                 850
+Einleitung Container        h                 897                 917
+Einleitung Top              h                 897                 917
+Einleitung Heading          h                 863                 883
 Einleitung Text             h                 481                 501
 Kurse Container             h                 2832                2794
 Kurse Raster                h                 2600                2560

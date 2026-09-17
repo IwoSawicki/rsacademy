@@ -3,6 +3,11 @@ import { reviews } from "../data/site";
 import GoogleMark from "./GoogleMark.astro";
 import StarIcon from "./StarIcon.astro";
 
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
 /**
  * Bewertungs-Stack im Hero.
  * Karte 463px breit, Wrapper 501px inkl. 22px Abstand zur senkrechten
