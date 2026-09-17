@@ -29,18 +29,15 @@ export const legal = [
 export const reviews = [
   {
     name: "— Eno A.",
-    text: "Der Unterricht ist strukturiert, verständlich und motivierend aufgebaut. Die Trainer nehmen sich Zeit, erklären alles sauber und gehen individuell auf Fragen ein.",
-    image: `${IMG}/avatar.svg`,
+    text: "Der Unterricht ist strukturiert, verständlich und motivierend aufgebaut. Die Trainer nehmen sich Zeit, erklären alles sauber und gehen individuell auf einen ein.",
   },
   {
-    name: "— Reynolds., Happy Client",
-    text: "“We’ve partnered with Climafix for over one years to maintain the Air Quality Solutions in our commercial.”",
-    image: `${IMG}/avatar.svg`,
+    name: "— linceiberico75",
+    text: "Erstklassiges Personal, das in seinen jeweiligen Fachgebieten sehr kompetent ist! Ein rundum gelungener Tag – Wissen ist nie umsonst! Ich komme bald wieder, um weitere Kurse zu besuchen.",
   },
   {
-    name: "— Thornton., Happy Client",
-    text: "“We’ve partnered with Climafix for over two years to maintain the HVAC systems in our commercial.”",
-    image: `${IMG}/avatar.svg`,
+    name: "— Emircan C.",
+    text: "Sehr gut organisierter Hebebühnenkurs! Der Trainer war kompetent, praxisnah und hat alles verständlich erklärt.",
   },
 ];
 

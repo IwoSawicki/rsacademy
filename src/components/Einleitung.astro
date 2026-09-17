@@ -3,7 +3,7 @@ import { contact } from "../data/site";
 import SectionLabel from "./SectionLabel.astro";
 import WordReveal from "./WordReveal.astro";
 import RollButton from "./RollButton.astro";
-import StarRating from "./StarRating.astro";
+import GoogleBadge from "./GoogleBadge.astro";
 
 const paragraphs = [
   "Wir bilden Fachkräfte für anspruchsvolle Arbeitsumgebungen aus – von Höhenarbeit und Absturzsicherung bis hin zu komplexen Rettungseinsätzen. Unser Fokus liegt auf realitätsnahen Trainings, die nicht nur Wissen vermitteln, sondern Handlungssicherheit schaffen.",
@@ -60,13 +60,7 @@ const paragraphs = [
             class="flex flex-col items-start gap-5 tablet:items-end tablet:self-start"
           >
             <RollButton label={contact.phoneLabel} href={contact.phoneHref} />
-            <div class="flex items-center gap-3 tablet:flex-row-reverse">
-              <div class="flex flex-col tablet:items-end">
-                <span class="t-subhead font-semibold">4,9</span>
-                <span class="t-caption opacity-60">320+ Bewertungen</span>
-              </div>
-              <StarRating size={16} pop />
-            </div>
+            <GoogleBadge />
           </div>
         </div>
       </div>

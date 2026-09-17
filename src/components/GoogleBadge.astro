@@ -1,0 +1,60 @@
+---
+import GoogleMark from "./GoogleMark.astro";
+import StarIcon from "./StarIcon.astro";
+
+/**
+ * Google-Bewertungsplakette. Maße aus dem Clone:
+ *
+ *   Hülle   72px hoch, Innenabstand 8px, Abstand 16px, Radius 16px,
+ *           Hintergrund rgba(46,46,46,.05), Rahmen 1px rgba(10,10,10,.1)
+ *   Zeichen 46x46
+ *   Wertung "4,9" in Poppins 16px, daneben fünf Sterne à 15px (Abstand 4px)
+ *   Zusatz  "320+ Bewertungen" in Poppins 12px, rgba(10,10,10,.5)
+ *
+ * Die Sterne poppen einzeln auf (scale 0.5 -> 1, je 0.5s versetzt).
+ */
+interface Props {
+  rating?: string;
+  count?: string;
+  pop?: boolean;
+}
+const { rating = "4,9", count = "320+ Bewertungen", pop = true } = Astro.props;
+---
+
+<div
+  class="flex h-[72px] w-max items-center gap-4 rounded-[16px] border border-ink/10 bg-[rgba(46,46,46,0.05)] p-2"
+  data-measure="google-badge"
+>
+  <GoogleMark size={46} />
+
+  <div class="flex w-max flex-col items-start">
+    <div class="flex w-max items-center gap-1">
+      <p
+        class="font-poppins text-[16px] leading-[1.6em] whitespace-pre text-ink"
+        style="letter-spacing:-0.02em"
+      >
+        {rating}
+      </p>
+      <div class="flex items-center">
+        {
+          Array.from({ length: 5 }).map((_, i) => (
+            <StarIcon
+              size={15}
+              class={pop ? "opacity-0" : undefined}
+              data-star-pop={pop ? "" : undefined}
+              data-reveal={pop ? "star" : undefined}
+              style={pop ? `transition-delay:${i * 500}ms` : undefined}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <p
+      class="font-poppins text-[12px] leading-[1.6em] whitespace-pre text-ink/50"
+      style="letter-spacing:-0.02em"
+    >
+      {count}
+    </p>
+  </div>
+</div>

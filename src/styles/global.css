@@ -14,6 +14,7 @@
   --font-sans: "Inter", "Inter Placeholder", ui-sans-serif, system-ui, sans-serif;
   --font-geist: "Geist", "Geist Placeholder", ui-sans-serif, system-ui, sans-serif;
   --font-figtree: "Figtree", "Figtree Placeholder", ui-sans-serif, system-ui, sans-serif;
+  --font-poppins: "Poppins", "Poppins Placeholder", ui-sans-serif, system-ui, sans-serif;
 
   /* Framer-Breakpoints */
   --breakpoint-tablet: 810px;

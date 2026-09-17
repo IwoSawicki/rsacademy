@@ -1,6 +1,7 @@
 ---
 import { reviews } from "../data/site";
 import GoogleMark from "./GoogleMark.astro";
+import StarIcon from "./StarIcon.astro";
 
 /**
  * Bewertungs-Stack im Hero.
@@ -22,7 +23,7 @@ import GoogleMark from "./GoogleMark.astro";
     {
       reviews.map((review) => (
         <figure
-          class="flex w-full origin-bottom items-center gap-[14px] overflow-hidden rounded-[8px] bg-white p-4 shadow-[0px_30px_18px_-20px_rgba(0,0,0,0.16)] backdrop-blur-[80px] transition-[transform,bottom] duration-[700ms] ease-[var(--ease-framer)]"
+          class="flex w-full origin-bottom items-center gap-[14px] overflow-hidden rounded-[8px] bg-white p-4 shadow-[0px_30px_18px_-20px_rgba(0,0,0,0.16)] backdrop-blur-[80px] transition-[transform,bottom,opacity] duration-[380ms] ease-[var(--ease-framer)]"
           data-review-card
           data-measure="review-card"
         >
@@ -30,11 +31,7 @@ import GoogleMark from "./GoogleMark.astro";
             <div class="flex w-full items-center gap-[5px]">
               <GoogleMark size={18} class="rounded-[4px]" data-measure="review-mark" />
               <div class="flex items-center">
-                {Array.from({ length: 5 }).map(() => (
-                  <svg width="14" height="15" viewBox="0 0 24 24" fill="rgb(255, 234, 0)" aria-hidden="true" data-measure="review-star">
-                    <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
-                  </svg>
-                ))}
+                {Array.from({ length: 5 }).map(() => <StarIcon size={14} />)}
               </div>
             </div>
 

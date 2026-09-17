@@ -12,7 +12,7 @@ const SLOTS = [
   { z: "1", bottom: "-28px", scale: 0.9, absolute: true },
 ];
 
-const INTERVAL = 4000;
+const INTERVAL = 3400;
 
 export function initReviews() {
   document.querySelectorAll<HTMLElement>("[data-review-stack]").forEach((root) => {
