@@ -96,15 +96,14 @@ docker run --rm -p 8080:80 rsacademy
 ## Bekannte Punkte vor dem Live-Gang
 
 - **Bilder** sind Platzhalter aus `tools/placeholders.mjs` (`public/images/*.svg`).
-  Für die echten: `bash tools/bilder-holen.sh` — das Skript lädt genau die
-  **16 Dateien**, die die Startseite braucht, aus dem Framer-CDN und benennt
-  sie passend. Danach in `src/data/site.ts` die Endungen von `.svg` auf die
-  echten umstellen.
+  Für die echten: `bash tools/bilder-holen.sh` — das Skript lädt die
+  **36 Dateien**, die auf Start- und Unterseiten vorkommen, aus dem
+  Framer-CDN und benennt sie passend. Danach in `src/data/site.ts` die
+  Endungen von `.svg` auf die echten umstellen.
 
   Der Ordner `framerusercontent.com/images/` enthält die Assets des gesamten
-  Framer-Kontos (rund 3000 Dateien, 600 MB). Davon braucht die Startseite
-  nichts weiter — die 16 Dateien liegen zusammen im niedrigen zweistelligen
-  MB-Bereich.
+  Framer-Kontos (rund 3000 Dateien, 600 MB). Davon braucht die Website nur
+  diese 36.
 - **Zählerwerte** in `src/data/site.ts` (`numbers`) sind geschätzt.
 - **Unterseiten** (`/kurse`, `/leistungen`, `/ueber-uns`, `/kontakt`, `/impressum`,
   `/datenschutz`) existieren noch nicht — alle Links darauf landen auf der 404-Seite.

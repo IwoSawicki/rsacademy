@@ -43,9 +43,13 @@ Die echten Bilder holt:
 bash tools/bilder-holen.sh
 ```
 
-Das lädt genau die 16 Dateien, die die Startseite verwendet, direkt aus dem
-Framer-CDN. Danach in `src/data/site.ts` die Endungen von `.svg` auf die
-echten umstellen.
+Das lädt die **36 Dateien**, die auf Start- und Unterseiten vorkommen, direkt
+aus dem Framer-CDN. Danach in `src/data/site.ts` die Endungen von `.svg` auf
+die echten umstellen.
+
+Namen mit Seitenpräfix (`kurse-01`, `ueber-uns-07`, …) sind noch nicht
+zugeordnet — sie bekommen ihren endgültigen Namen, wenn die jeweilige Seite
+gebaut wird.
 
 ## Ordnerstruktur
 
