@@ -86,15 +86,15 @@ export const leistungen = [
 export const faq = [
   {
     q: "Was macht die RS Academy genau?",
-    a: "Die RS Academy ist ein spezialisierter Anbieter für Aus- und Weiterbildungen im Bereich Arbeitssicherheit, Rettung und Gesundheitsschutz. Ziel ist es, Menschen praxisnah und verständlich auf reale Situationen vorzubereiten.",
+    a: "Die RS Academy ist ein spezialisierter Anbieter für Aus- und Weiterbildungen im Bereich Arbeitssicherheit, Rettung und Gesundheitsschutz. Ziel ist es, Unternehmen und Mitarbeitende optimal auf anspruchsvolle und risikobehaftete Arbeitssituationen vorzubereiten.",
   },
   {
     q: "Für wen sind die Kurse geeignet?",
-    a: "Die Schulungen richten sich insbesondere an: -Unternehmen im Bau- und Industriebereich -Fachkräfte mit erhöhtem -Sicherheitsrisiko Verantwortliche für Arbeitssicherheit",
+    a: "Die Schulungen richten sich insbesondere an:\n\n-Unternehmen im Bau- und Industriebereich\n-Fachkräfte mit erhöhtem -Sicherheitsrisiko\nVerantwortliche für Arbeitssicherheit\n- Einzelpersonen, die ihre Qualifikation erweitern möchten",
   },
   {
     q: "Wo finden die Kurse statt?",
-    a: "Die Kurse werden an bestehenden Ausbildungsstandorten durchgeführt und kontinuierlich weiter ausgebaut. Zusätzlich sind – je nach Schulung – auch individuelle Durchführungen vor Ort möglich.",
+    a: "Die Kurse werden an bestehenden Ausbildungsstandorten durchgeführt und kontinuierlich weiter ausgebaut. Zusätzlich sind – je nach Schulung – auch individuelle Lösungen direkt bei Unternehmen möglich.",
   },
   {
     q: "Benötige ich Vorkenntnisse?",

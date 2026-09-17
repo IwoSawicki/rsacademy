@@ -2,9 +2,14 @@
 import { faq } from "../data/site";
 
 /**
- * FAQ. Im Original ist jede Frage eine weiße Karte: Radius 14px,
- * Innenabstand 26px, 4px Abstand zur nächsten. Frage in Inter 18px/500,
- * Zeilenhöhe 1.3em, Laufweite -0.04em.
+ * FAQ. Maße aus dem Clone:
+ *
+ *   Karte    Radius 14px, weiß, 4px Abstand zur nächsten, overflow hidden
+ *   Kopf     Innenabstand 26px, Inhalt auf space-between
+ *   Frage    Inter 18px/500, Zeilenhöhe 1.3em, Laufweite -0.04em, #0a0a0a
+ *   Symbol   18px, dunkler Kreis mit weißem Plus, 16px Abstand links
+ *   Antwort  Inter 15px/500, Zeilenhöhe 1.4em, rgba(10,10,10,.6),
+ *            Innenabstand 0 26px 26px
  */
 ---
 
@@ -26,10 +31,14 @@ import { faq } from "../data/site";
     <ul class="flex w-full flex-col gap-1 tablet:flex-1">
       {
         faq.map((item) => (
-          <li class="overflow-hidden rounded-[14px] bg-white" data-reveal="up" data-measure="faq-item">
+          <li
+            class="overflow-hidden rounded-[14px] bg-white"
+            data-reveal="up"
+            data-measure="faq-item"
+          >
             <button
               type="button"
-              class="flex w-full cursor-pointer items-center justify-between p-[26px] text-left"
+              class="group flex w-full cursor-pointer items-center justify-between p-[26px] text-left"
               data-accordion
               aria-expanded="false"
             >
@@ -39,20 +48,30 @@ import { faq } from "../data/site";
               >
                 {item.q}
               </span>
+
+              {/* Dunkler Kreis mit weißem Plus, dreht beim Öffnen auf ein Kreuz */}
               <span
-                class="relative ml-4 block h-[18px] w-[18px] shrink-0 transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
+                class="ml-4 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-ink transition-transform duration-[450ms] ease-[var(--ease-framer)] group-aria-expanded:rotate-45"
                 aria-hidden="true"
               >
-                <span class="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-ink" />
-                <span class="absolute top-0 left-1/2 h-full w-[1.5px] -translate-x-1/2 bg-ink" />
+                <span class="relative block h-[8px] w-[8px]">
+                  <span class="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 rounded-full bg-white" />
+                  <span class="absolute top-0 left-1/2 h-full w-[1.5px] -translate-x-1/2 rounded-full bg-white" />
+                </span>
               </span>
             </button>
+
             <div
               class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[450ms] ease-[var(--ease-framer)]"
               data-accordion-panel
             >
               <div class="overflow-hidden">
-                <p class="t-body-lg px-[26px] pb-[26px] opacity-70">{item.a}</p>
+                <p
+                  class="px-[26px] pb-[26px] text-[15px] leading-[1.4em] font-medium whitespace-pre-line text-ink/60"
+                  style="letter-spacing:-0.04em"
+                >
+                  {item.a}
+                </p>
               </div>
             </div>
           </li>
