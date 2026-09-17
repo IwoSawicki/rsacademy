@@ -1,5 +1,5 @@
 
-Breite 1024px — Seitenhöhe Original 8627, Nachbau 8328
+Breite 1024px — Seitenhöhe Original 8627, Nachbau 8357
 
 Element                     Feld              Original            Nachbau
 ----------------------------------------------------------------------------------

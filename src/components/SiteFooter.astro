@@ -1,6 +1,7 @@
 ---
 import { nav, legal, contact } from "../data/site";
 import PlusIcon from "./PlusIcon.astro";
+import FooterContact from "./FooterContact.astro";
 import FitText from "./FitText.astro";
 
 /**
@@ -20,6 +21,13 @@ const social = [
   { label: "Linked In", href: "https://www.linkedin.com" },
   { label: "Google Maps", href: "https://maps.google.com" },
 ];
+
+/**
+ * Rückverweis auf die Agentur. Die UTM-Parameter machen in der Statistik
+ * sichtbar, wie viele Besuche über diesen Link kommen.
+ */
+const STUDIO_URL =
+  "https://stolz-marketing.de/?utm_source=rsacademy.ch&utm_medium=referral&utm_campaign=footer-credit";
 
 const linkClass =
   "text-[22px] leading-[1.2em] font-medium text-ink transition-opacity duration-300 hover:opacity-60";
@@ -43,21 +51,11 @@ const titleClass = "text-[14px] leading-[1.3em] font-medium text-ink opacity-60"
         <PlusIcon size={16} bar={2} color="#0a0a0a" class="opacity-30" />
 
         <div class="flex w-full flex-col items-start gap-7">
-          <a
-            href={contact.phoneHref}
-            class="text-[26px] leading-[1.1em] font-semibold whitespace-pre text-ink transition-opacity duration-300 hover:opacity-60 desktop:text-[34px]"
-            style="letter-spacing:-0.04em">{contact.phone}</a
-          >
-          <span class="relative">
-            <a
-              href={`mailto:${contact.mailKurs}`}
-              class="text-[26px] leading-[1.1em] font-semibold whitespace-pre text-ink transition-opacity duration-300 hover:opacity-60 desktop:text-[34px]"
-              style="letter-spacing:-0.04em">{contact.mailKurs}</a
-            >
-            <span
-              class="absolute -bottom-[6px] left-0 h-[2px] w-full bg-ink"
-              aria-hidden="true"></span>
-          </span>
+          <FooterContact href={contact.phoneHref} label={contact.phone} />
+          <FooterContact
+            href={`mailto:${contact.mailKurs}`}
+            label={contact.mailKurs}
+          />
         </div>
       </div>
 
@@ -156,27 +154,35 @@ const titleClass = "text-[14px] leading-[1.3em] font-medium text-ink opacity-60"
     </div>
   </div>
 
-  <!-- Bottom: drei gleich breite Spalten -->
-  <div class="w-full px-5 py-[30px] tablet:px-[30px] desktop:px-9 desktop:py-[42px]">
+  <!-- Bottom: dunkler Verlauf über die volle Breite, drei gleiche Spalten -->
+  <div
+    class="relative z-[3] w-full px-6 py-10 tablet:px-[30px] tablet:py-[42px] desktop:px-9"
+    style="background:linear-gradient(90deg,#0a0a0a 0%,#050505 85%)"
+  >
     <div
       class="container-wide flex flex-col gap-4 tablet:grid tablet:grid-cols-3 tablet:gap-1"
     >
-      <p class="t-caption opacity-60">© 2026 Search &amp; Rescue Academy AG</p>
-      <div class="flex gap-[18px]">
+      <p class="t-small text-white">© 2026 Search &amp; Rescue Academy AG</p>
+
+      <div class="flex flex-wrap gap-[18px] tablet:justify-center">
         {
           legal.map((item) => (
-            <a href={item.href} class="t-caption opacity-60 hover:opacity-100">
+            <a
+              href={item.href}
+              class="t-small text-white transition-opacity duration-300 hover:opacity-70"
+            >
               {item.label}
             </a>
           ))
         }
       </div>
-      <p class="t-caption opacity-60">
+
+      <p class="t-small text-white tablet:text-right">
         Mit ❤️ erstellt von <a
-          href="https://sawix.studio"
+          href={STUDIO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="underline underline-offset-2">Sawix Studio</a
+          class="underline underline-offset-2">Stolz Marketing</a
         >
       </p>
     </div>

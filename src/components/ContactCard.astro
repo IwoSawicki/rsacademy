@@ -1,0 +1,41 @@
+---
+/**
+ * Kontaktkarte in der Kontakt-Section.
+ * Weiße Karte mit Radius 18px, Innenabstand 20px. Oben eine Reihe aus
+ * Symbol (30px) und Bezeichnung mit 16px Abstand, darunter der Wert.
+ */
+interface Props {
+  label: string;
+  value: string;
+  href: string;
+  icon: "mail" | "phone";
+}
+const { label, value, href, icon } = Astro.props;
+---
+
+<a
+  href={href}
+  rel="noopener"
+  class="flex w-full flex-col items-start justify-center gap-[14px] rounded-[18px] bg-white p-5 transition-opacity duration-300 hover:opacity-90 tablet:h-[120px] tablet:max-w-[384px] desktop:max-w-[546px] desktop:gap-5"
+  data-measure="kontakt-item"
+>
+  <div class="flex w-full items-center gap-3 tablet:gap-4">
+    <span class="flex h-[32px] w-[30px] shrink-0 items-center justify-center text-ink">
+      {
+        icon === "mail" ? (
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="2.5" y="5" width="19" height="14" rx="2" />
+            <path d="M3 6.5l9 6 9-6" />
+          </svg>
+        ) : (
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M6.5 3h-2A1.5 1.5 0 0 0 3 4.6C3 13 11 21 19.4 21a1.5 1.5 0 0 0 1.6-1.5v-2a1.2 1.2 0 0 0-.9-1.2l-3-.8a1.2 1.2 0 0 0-1.2.4l-1 1.2a13 13 0 0 1-5-5l1.2-1a1.2 1.2 0 0 0 .4-1.2l-.8-3A1.2 1.2 0 0 0 6.5 3Z" />
+          </svg>
+        )
+      }
+    </span>
+    <p class="t-body-lg text-ink">{label}</p>
+  </div>
+
+  <p class="t-subhead text-ink">{value}</p>
+</a>

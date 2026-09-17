@@ -1,6 +1,6 @@
 ---
 import { contact, images } from "../data/site";
-import SectionLabel from "./SectionLabel.astro";
+import ContactCard from "./ContactCard.astro";
 
 /**
  * Kontakt. Links die Formularkarte (450px, Innenabstand 40px, Abstände 30px),
@@ -9,14 +9,24 @@ import SectionLabel from "./SectionLabel.astro";
  * (18px) und Wert (26px).
  */
 const fields = [
-  { name: "name", label: "Ihr Name*", type: "text", placeholder: "Ihr Name", required: true },
-  { name: "email", label: "E-mail*", type: "email", placeholder: "you@number.com", required: true },
+  { name: "name", label: "Ihr Name*", type: "text", placeholder: "Max Müller", required: true },
+  { name: "email", label: "E-mail*", type: "email", placeholder: "max@mueller.com", required: true },
   { name: "phone", label: "Telefon*", type: "tel", placeholder: "+41 123 456 789", required: true },
 ];
 
 const items = [
-  { label: "E-Mail", value: contact.mailKurs, href: `mailto:${contact.mailKurs}` },
-  { label: "Telefon", value: contact.phone, href: contact.phoneHref },
+  {
+    label: "E-Mail",
+    value: contact.mailKurs,
+    href: `mailto:${contact.mailKurs}`,
+    icon: "mail" as const,
+  },
+  {
+    label: "Telefon",
+    value: contact.phone,
+    href: contact.phoneHref,
+    icon: "phone" as const,
+  },
 ];
 ---
 
@@ -34,7 +44,12 @@ const items = [
         data-reveal="up"
       >
         <div class="flex w-full flex-col items-start gap-3">
-          <SectionLabel label="Rescue & Safety Academy AG" />
+          <p
+            class="text-[20px] leading-[110%] font-semibold text-ink"
+            style="letter-spacing:-0.04em"
+          >
+            Rescue &amp; Safety Academy AG
+          </p>
           <h2 class="t-h2 w-full text-ink-soft">Noch Fragen?</h2>
         </div>
 
@@ -59,7 +74,7 @@ const items = [
               <span class="t-caption opacity-60">Nachricht</span>
               <textarea
                 name="message"
-                placeholder="Lorem ipsum dolor sit amet"
+                placeholder="Liebes RS Academy Team, ..."
                 class="h-[100px] w-full resize-none rounded-[10px] bg-surface py-3 pr-3 pl-4 text-[16px] outline-none transition-shadow duration-300 placeholder:opacity-40 focus:ring-1 focus:ring-ink/20"
               ></textarea>
             </label>
@@ -105,19 +120,20 @@ const items = [
         Jetzt<br />Kontaktieren
       </h2>
 
-      <div class="flex w-full flex-col gap-1">
-        {
-          items.map((item) => (
-            <a
-              href={item.href}
-              class="flex w-full flex-col items-start justify-center gap-[14px] rounded-[18px] bg-white p-5 transition-opacity duration-300 hover:opacity-90 max-w-[280px] tablet:h-[120px] tablet:max-w-[384px] desktop:max-w-[546px] desktop:gap-5"
-              data-measure="kontakt-item"
-            >
-              <span class="t-body-lg text-ink">{item.label}</span>
-              <span class="t-subhead text-ink">{item.value}</span>
-            </a>
-          ))
-        }
+      <div class="flex w-full flex-col gap-11">
+        <div class="flex w-full flex-col gap-1">
+          {
+            items.map((item) => (
+              <ContactCard
+                label={item.label}
+                value={item.value}
+                href={item.href}
+                icon={item.icon}
+              />
+            ))
+          }
+        </div>
+        <span class="block h-px w-full bg-white/30" aria-hidden="true"></span>
       </div>
     </div>
   </div>
