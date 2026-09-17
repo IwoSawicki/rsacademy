@@ -36,7 +36,16 @@ docker run --rm -p 8080:80 rsacademy
 ## Bilder
 
 `public/images/` enthält aktuell **Platzhalter**, erzeugt von `tools/placeholders.mjs`.
-Echte Bilder dort ablegen und die Dateiendungen in `src/data/site.ts` anpassen.
+
+Die echten Bilder holt:
+
+```bash
+bash tools/bilder-holen.sh
+```
+
+Das lädt genau die 16 Dateien, die die Startseite verwendet, direkt aus dem
+Framer-CDN. Danach in `src/data/site.ts` die Endungen von `.svg` auf die
+echten umstellen.
 
 ## Ordnerstruktur
 

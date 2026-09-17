@@ -1,7 +1,14 @@
 /**
- * Bildpfade. Aktuell Platzhalter aus `tools/placeholders.mjs`.
- * Sobald die Originalbilder vorliegen: Dateien nach `public/images/`
- * legen und hier die Endung auf die echte (.png/.jpg) ändern.
+ * Bildpfade.
+ *
+ * Aktuell stehen unter `public/images/` die Platzhalter aus
+ * `tools/placeholders.mjs`. Für die echten Bilder:
+ *
+ *   bash tools/bilder-holen.sh
+ *
+ * Das Skript holt genau die 16 Dateien, die die Startseite braucht, und legt
+ * sie unter diesen Namen ab. Danach hier die Endungen von `.svg` auf die
+ * echten umstellen — die Zuordnung steht im Skript.
  */
 const IMG = "/images";
 
